@@ -1,0 +1,4 @@
+Métodos clase sessión y login eran todos estáticos
+
+funciones sessión: leer de sesión,  guardar de sesión
+funciones login: login, logout, idLoged { le pregunta a sesión si tiene una clave user, si es q si--> está logeado, else, no está logeado }
