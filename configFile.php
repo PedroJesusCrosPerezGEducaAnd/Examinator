@@ -15,7 +15,7 @@
         "host" => "localhost",
         "user" => "root",
         "password" => "root",
-        "dbname" => "sakila"
+        "dbname" => "examinator"
     ];
     
 
