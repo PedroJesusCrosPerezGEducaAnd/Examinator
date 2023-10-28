@@ -1,11 +1,13 @@
 <?php
+    include_once $_SERVER["DOCUMENT_ROOT"]."/functions/formActions.php";
+?>
+
+<?php
 
     switch (true) 
     {
         case $_POST["login"]:
-            echo "<br><br><br>";
-            echo "HAS HECHO CLICK EN LOGIN";
-            header("Location: http://serverpedro/?hola=si");
+            actionLogin();
             break;
         
         default:

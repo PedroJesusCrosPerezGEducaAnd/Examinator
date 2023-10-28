@@ -11,12 +11,15 @@
 
 <?php
 
-    $users = findAll();
+    echo "DBExaminator . Users<br><br>";
+    //var_dump($arUsers);
+
+    $users=findAll();
     $length = count($users);
 
     for ($i=0; $i < $length; $i++) 
     { 
-        echo "Usuario: " . $users[$i].getName() . " | Contraseña: " . $users[$i].getPassword();
+        echo "Usuario: " . $users[$i]->getName() . " | Contraseña: " . $users[$i]->getPassword() . "<br>";
     }
 
 ?>

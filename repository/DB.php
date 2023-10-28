@@ -10,6 +10,7 @@ class DB extends mysqli
     private $user;
     private $password;
     private $dbname;
+    private static $cn;
 
 
     // Constructor
@@ -29,6 +30,8 @@ class DB extends mysqli
         parent::__construct($this->host, $this->user, $this->password, $this->dbname);
         $this->setConection($this);
     }
+    
+    
 
 
     // Getters y Setters
@@ -52,10 +55,10 @@ class DB extends mysqli
     private function setDBName($dbname)
     { $this->dbname = $dbname; }
 
-    function getConection() 
+    static function getConection() 
     { return $this->cn; }
-    private function setConection($cn) 
-    { return $this->cn = $cn; }
+    private static function setConection($cn) 
+    { return self::$cn = $cn; }
 
 
 
@@ -69,9 +72,36 @@ class DB extends mysqli
             return false;
     } */
 
-    public function isConnected() 
+    public function isConnected2() 
     {
         return $this->connect_error;
+    }
+
+    public function isConnected() 
+    {
+        return !$this->connect_error;
+    }
+    public function isConnectError() 
+    {
+        return $this->connect_error;
+    }
+    public static function existConnection() 
+    {
+        if ( isset(self::$cn) ) 
+        {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public static function existConnection2() 
+    {
+        if ( $this::getConection() == null ) 
+        {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 /*     public static function isConnected() : bool 
@@ -86,12 +116,9 @@ class DB extends mysqli
     //public static function getNameFields($table) 
     public function getNameFields($table) 
     {
-        // Comprobación y/o creación de conexión
-        if (!$this->isConnected()) 
-            { $cn = new DB(); }
-
         // Variables a utilizar
-        $arr;
+        $cn = $this->getConection();
+        $arr=[];
         $sql = "DESCRIBE ".$table;
         $result = $cn->query($sql);
 
@@ -106,7 +133,8 @@ class DB extends mysqli
         }
         else
         {
-            die("Error de consulta: " . $connection->error);
+            //die("Error de consulta: " . $connection->error);
+            echo "Error en la base de datos";
         }
 
         // Return

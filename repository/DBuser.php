@@ -6,15 +6,76 @@ include_once $_SERVER["DOCUMENT_ROOT"]."/entities/User.php";
 <?php
 
 // Select *
-function findAll ()
+function findAllIndexed() 
+{
+    $cn = new DB(); // TODO quitar en el futuro
+    // Variables
+    $arrUsers = [];
+    $nameFields;
+    $sql = "SELECT * FROM user";
+    $result = $cn->query($sql);
+
+    // Process
+    if ($result == true) 
+    {
+        //$nameFields = ["id", "name", "password", "role"];
+        while ($row = $result->fetch_assoc()) 
+        {
+            $arrUsers[$row["name"]] = new User($row["id"],$row["name"],$row["password"],$row["role"]);
+        }
+        $cn->close();
+        echo "Ha entrado<br>";
+    }
+    else
+    {
+        echo "Error en consulta<br>";
+    }
+
+    return $arrUsers;
+}
+
+// Select *
+function findAll()
+{
+    $cn = new DB(); // TODO quitar en el futuro
+    // Variables
+    $arrUsers = [];
+    $nameFields;
+    $sql = "SELECT * FROM user";
+    $result = $cn->query($sql);
+
+    // Proceso
+    if ($result === true) 
+    {
+        while ($row = $result->fetch_assoc()) 
+        {
+            $arrUsers[$row["name"]] = new User($row["id"],$row["name"], $row["password"], $row["role"]);
+        }
+        $cn->close();
+    }
+    else
+    {
+        echo "Error en consulta<br>";
+    }
+    
+    // Return
+    return $arrUsers;
+}
+
+
+
+// Select *
+function findAll2()
 {
     try {
-        $cn = new mysqli($host, $user, $password, $dbname);
-        if ($cn->connect_error) {
+
+        $cn = new DB();
+        if ($cn->connect_error) 
+        {
             throw new Exception("Error de conexión: " . $cn->connect_error);
         }
     } catch (Exception $e) {
-
+        echo "Ha ocurrido un error: " . $e->getMessage();
     }
 
     // Comprobación y/o creación de conexión
@@ -46,6 +107,7 @@ function findAll ()
     // Return
     return $arUsers;
 }
+
 
 
 // Select *
