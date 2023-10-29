@@ -1,5 +1,6 @@
 <?php
 include_once $_SERVER["DOCUMENT_ROOT"]."/login/login.php";
+include_once $_SERVER["DOCUMENT_ROOT"]."/repository/DBUser.php";
 ?>
 
 <?php

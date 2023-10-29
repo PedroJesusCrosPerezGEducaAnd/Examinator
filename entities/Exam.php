@@ -3,19 +3,30 @@
 class Exam 
 {
     // Properties
+    private $id;
     private $date;
     private $user_id;
 
 
     // Constructor
-    public function __construct($date, $user_id) 
+    public function __construct($id=null,$date, $user_id) 
     {
+        $this->setId($id);
         $this->setDate($date);
         $this->setUser_id($user_id);
     }
 
 
     // Getters and Setters
+    public function getId() 
+    {
+        return $this->id;
+    }
+    private function setId($id) 
+    {
+        $this->id = $id;
+    }
+
     public function getDate() 
     {
         return $this->date;

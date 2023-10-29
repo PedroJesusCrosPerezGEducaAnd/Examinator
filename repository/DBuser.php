@@ -1,4 +1,5 @@
 <?php
+namespace DBUser;
 include_once $_SERVER["DOCUMENT_ROOT"]."/repository/DB.php";
 include_once $_SERVER["DOCUMENT_ROOT"]."/entities/User.php";
 ?>
@@ -45,18 +46,11 @@ function findAll()
     $result = $cn->query($sql);
 
     // Proceso
-    if ($result === true) 
+    while ($row = $result->fetch_assoc()) 
     {
-        while ($row = $result->fetch_assoc()) 
-        {
-            $arrUsers[$row["name"]] = new User($row["id"],$row["name"], $row["password"], $row["role"]);
-        }
-        $cn->close();
+        $arrUsers[$row["name"]] = new User($row["id"],$row["name"], $row["password"], $row["role"]);
     }
-    else
-    {
-        echo "Error en consulta<br>";
-    }
+    $cn->close();
     
     // Return
     return $arrUsers;
@@ -124,29 +118,36 @@ function findAllAssoc ()
     $result = $connection->query($sql);
 
     // Proceso
-    if ($result === true) 
+    $nameFields = DB::getNameFields();
+    while ($row = $result->fetch_assoc()) 
     {
-        $nameFields = DB::getNameFields();
-        while ($row = $result->fetch_assoc()) 
-        {
-            $arrUsers[$row["name"]] = new User($row["id"],$row["name"], $row["password"], $row["role"]);
-        }
-        $connection->close();
+        $arrUsers[$row["name"]] = new User($row["id"],$row["name"], $row["password"], $row["role"]);
     }
-    else
-    {
-        die("Error de consulta: " . $connection->error);
-    }
-    
+    $connection->close();
     // Return
     return $arUsers;
 }
 
 
 // Select *
-function findByName ()
+function findByRole($role)
 {
+    $cn = new DB(); // TODO quitar en el futuro
+    // Variables
+    $arrUsers = [];
+    $nameFields;
+    $sql = "SELECT * FROM user WHERE role = '$role'";
+    $result = $cn->query($sql);
+
+    // Proceso
+    while ($row = $result->fetch_assoc()) 
+    {
+        $arrUsers[$row["name"]] = new User($row["id"],$row["name"], $row["password"], $row["role"]);
+    }
+    $cn->close();
     
+    // Return
+    return $arrUsers;
 }
 
 ?>
