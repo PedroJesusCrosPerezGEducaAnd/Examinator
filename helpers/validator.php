@@ -66,26 +66,64 @@
             }*/
         }
 
-        // Validate
+        // ###########################################################################################
+        // ############################### Validate ##################################################
+        // ###########################################################################################
+
+        // String
         function string($fieldName, $value, $errorMessage, $minLength, $maxLength) : bool 
         {
             $isValid = true;
             $regex = '/^.{'.$minLength.','.$maxLength.'}$/';
 
             if ( !is_string($value) || !preg_match($regex, $value) ) 
-            $this->setErrors($fieldName, $errorMessage);
+            {
+                $isValid = false;
+                $this->setErrors($fieldName, $errorMessage);
+            }
 
             return $isValid;
         }
 
-        function stringRegex($campo, $string, $regex) : bool 
+        function stringRegex($fieldName, $value, $regex, $errorMessage) : bool 
         {
-            $isValid = false;
+            $isValid = true;
 
-            if ( preg_match($regex, $string) ) 
-                $isValid = true;
+            if ( !preg_match($regex, $value) ) 
+            {
+                $isValid = false;
+                $this->setErrors($fieldName, $errorMessage);
+            }
 
             return $isValid;
+        }
+        
+        function stringEnum($fieldName, $value, $arr, $errorMessage) : bool 
+        {
+            $isValid = true;
+            $i=0;
+            $length = count($arr);
+
+            while ($i <= $length || $isValid == true) 
+            {
+                if (!$arr[$i] == $value) 
+                {
+                    $isValid = false;
+                    $this->setErrors($fieldName, $errorMessage);
+                }
+                
+                $i++;
+            }
+
+            return $isValid;
+        }
+
+
+
+        // Int
+        function int() : bool
+        {
+            
         }
     }
 

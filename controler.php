@@ -7,12 +7,12 @@
     switch (true) 
     {
         case $_POST["login"]:
-            actionLogin();
+            //actionLogin();
             break;
         
         default:
-        echo "<br><br><br>";
-        echo "No has pulsado nada";
+            echo "<br><br><br>";
+            echo "No has pulsado nada";
             break;
     }
 

@@ -1,18 +1,21 @@
 <?php
-namespace DBUser;
+//namespace DBUser;
 include_once $_SERVER["DOCUMENT_ROOT"]."/repository/DB.php";
 include_once $_SERVER["DOCUMENT_ROOT"]."/entities/User.php";
 ?>
 
 <?php
 
+// ############################################################################################
+// ################################## SELECT ##################################################
+// ############################################################################################
 // Select *
 function findAllIndexed() 
 {
     $cn = new DB(); // TODO quitar en el futuro
     // Variables
     $arrUsers = [];
-    $nameFields;
+    //$nameFields;
     $sql = "SELECT * FROM user";
     $result = $cn->query($sql);
 
@@ -41,7 +44,7 @@ function findAll()
     $cn = new DB(); // TODO quitar en el futuro
     // Variables
     $arrUsers = [];
-    $nameFields;
+    //$nameFields;
     $sql = "SELECT * FROM user";
     $result = $cn->query($sql);
 
@@ -77,8 +80,8 @@ function findAll2()
         { $cn = new DB(); }
     
     // Variables a utilizar
-    $arUsers;
-    $nameFields;
+    $arrUsers = [];
+    //$nameFields;
     $sql = "SELECT * FROM user";
     $result = $cn->query($sql);
 
@@ -99,7 +102,7 @@ function findAll2()
     }
     
     // Return
-    return $arUsers;
+    return $arrUsers;
 }
 
 
@@ -135,7 +138,7 @@ function findByRole($role)
     $cn = new DB(); // TODO quitar en el futuro
     // Variables
     $arrUsers = [];
-    $nameFields;
+    //$nameFields;
     $sql = "SELECT * FROM user WHERE role = '$role'";
     $result = $cn->query($sql);
 
@@ -149,5 +152,115 @@ function findByRole($role)
     // Return
     return $arrUsers;
 }
+
+
+
+// ############################################################################################
+// ################################## INSERT ##################################################
+// ############################################################################################
+function insert($user) : bool
+{
+    $cn = new DB(); // TODO quitar en el futuro
+    // Variables
+    $reached = false;
+    $sql = "INSERT INTO user (name, password, role) VALUES (\"{$user["name"]}\", \"{$user["password"]}\", \"{$user["role"]}\")";
+    
+    // Proceso
+    if ($cn->query($sql) === TRUE) {
+        echo "Inserción exitosa";
+        $reached = true;
+    } else {
+        echo "Error al insertar datos: " . $cn->error;
+    }
+
+    $cn->close();
+    
+    // Return
+    return $reached;
+}
+
+
+// ############################################################################################
+// ################################## UPDATE ##################################################
+// ############################################################################################
+function update($user) : bool
+{
+    $cn = new DB(); // TODO quitar en el futuro
+    // Variables
+    $tuples = 0;
+    $sql = "INSERT INTO user (name, password, role) VALUES (?, ?, ?)";
+    $stmt = $cn->prepare($sql);
+    $stmt->bind_param("sss", $name, $password, $role);
+    
+    if ($stmt->execute()) {
+        echo "Inserción exitosa";
+        $tuples = $stmt->affected_rows;
+    } else {
+        echo "Error al insertar datos: " . $stmt->error;
+    }
+    
+    // Cerrar la conexión
+    $stmt->close();
+    $cn->close();
+    
+    // Return
+    return $tuples;
+}
+
+
+
+// ############################################################################################
+// ################################## DELETE ##################################################
+// ############################################################################################
+function delete($name) : bool
+{
+    $cn = new DB(); // TODO quitar en el futuro
+    // Variables
+    $tuples = 0;
+    // Consulta SQL
+    $sql = "DELETE FROM user WHERE name = ?";
+    $stmt = $cn->prepare($sql);
+    $stmt->bind_param("i", $name);
+
+    if ($stmt->execute()) {
+        echo "Eliminación exitosa";
+        $tuples = $stmt->affected_rows;
+    } else {
+        echo "Error al eliminar: " . $stmt->error;
+    }
+
+    // Cerrar la conexión
+    $stmt->close();
+    $cn->close();
+    
+    // Return
+    return $tuples;
+}
+
+function deleteById($id) : bool
+{
+    $cn = new DB(); // TODO quitar en el futuro
+    // Variables
+    $tuples = 0;
+    // Consulta SQL
+    $sql = "DELETE FROM user WHERE id = ?";
+    $stmt = $cn->prepare($sql);
+    $stmt->bind_param("i", $id);
+
+    if ($stmt->execute()) {
+        echo "Eliminación exitosa";
+        $tuples = $stmt->affected_rows;
+    } else {
+        echo "Error al eliminar: " . $stmt->error;
+    }
+
+    // Cerrar la conexión
+    $stmt->close();
+    $cn->close();
+    
+    // Return
+    return $tuples;
+}
+
 
 ?>
