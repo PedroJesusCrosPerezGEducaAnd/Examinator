@@ -2,20 +2,20 @@
 
 
 /* Reglas para aplicar con JS */
-.oculto {
+.hide {
   visibility: hidden;
 }
-.error {
+.lblError {
   border: 1px solid red;
 }
-.eliminar {
+.none {
   display: none;
 }
-.btnSeleccionado {
+.btnSelected {
   background-color: #82af6e;
 }
-.btnDeseleccionado {
-  background-color: #b5e7a0;
+.btnDeselected {
+  background-color: #b5e7a0; /* Este no sería necesario ya que podríamos eliminar classList -> btnSelected */
 }
 .deshabilitar {
   opacity: 0.5;

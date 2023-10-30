@@ -1,0 +1,2 @@
+¿Como organizar las distintas pantallas?
+una vez inicias sesión, se sigue considerando una etiqueta <form>

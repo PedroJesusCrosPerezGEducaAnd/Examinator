@@ -1,23 +1,139 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="js2.js"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="application-name" content="Proyecto final HTML5, CSS3 y javascript">
+  <meta name="author" content="Pedro Jesús Cros Pérez">
+  <meta name="description" content="Proyecto final usando todo lo aprendido HTML5, CSS3, javascript y PHP">
+  <meta name="generator" content="Visual Studio Code">
+  <meta name="keywords" content="proyecto, html, css, javascript, php, formulario, examinator, login, crud users">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--<base href="./recursos/img" target="_blank">-->
+  <title>Examinator login</title>
+
+  <!-- JAVASCRIPT -->
+  <script type="text/javascript" src="script/formElement.js" charset="utf-8" defer></script>
+  <script type="text/javascript" src="script/inicialice.js" charset="utf-8" defer></script>
+  <script type="text/javascript" src="configFile.js" charset="utf-8" defer></script>
+  <script type="text/javascript" src="script/ajax.js" charset="utf-8" defer></script> <!-- AJAX -->
+  <script type="text/javascript" src="script/ajaxcallbacks.js" charset="utf-8" defer></script> <!-- AJAX CALLBACKS -->
+
+
+  <!-- CSS3 -->
+  <link rel="stylesheet" href="css/hojaReseteoEstilosCss.css"> <!-- Hoja de reseteo de estilos CSS -->
+  <link rel="stylesheet" href="css/estiloEstructura.css"> <!-- Esqueleto de la web -->
+  <link rel="stylesheet" href="css/estiloPosicionamiento.css"> <!-- Posicionamiento con flexbox. Además introduzco paddings y margin donde cuadrar los contenedores a mi gusto personal -->
+  <link rel="stylesheet" href="css/estiloEstetica.css"> <!-- Detalles estéticos de la web: colores, fondos, tamaño y fuentes de letra -->
+
+  <!-- TODO NOTAS -->
+  <!-- Cuando le de al botón enviar, se quitan todos los datos de los campos y aparece el mensaje formulario enviado, que a los 5 segundos se quita (utilizando setTimeOut) -->
+
 </head>
+
 <body>
-    <form method="post" name="login"><!-- action="controler.php"-->
-        <h3>Login form</h3>
-        <br>
+
+  <div class="form-container">
+
+    <h2 id="h2Titulo">Login</h2>
+
+    <form name="examinator-login" accept-charset="utf-8" autocomplete="off" enctype="multipart/form-data" method="post"
+      formtarget="_blank" formnovalidate="formnovalidate">
+
+      <!-- Login form - START -->
+      <div id="login" name="login">
+
         <label for="name">Name:</label>
-        <input type="text" name="name" autofocus>
-        <br>
+        <input type="text" id="name" name="name" autofocus maxlength="45">
+
         <label for="password">Password:</label>
-        <input type="text" name="password">
-        <br>
-        <br>
-        <input type="submit" value="Login" name="login">
+        <input type="password" id="password" name="password" maxlength="45">
+
+        <label for="login" class="feedback"></label>
+        <input type="submit" value="Login" name="login" id="btnLogin">
+        <!--<label for="feedback" id="feedback">¡¡Tú formulario se ha enviado correctamente!!</label>-->
+      </div>
+      <!-- Login form - END -->
     </form>
+
+  </div>
+
+    <!-- Formulario Domicilio - START -->
+    <div id="teacher" name="viewTeacher">
+
+      <div id="title">
+        <h3>¡Welcome teacher teacher->name!</h3>
+      </div>
+
+      <div id="myaccount">
+        <button><span class="icon-account"></span></button>
+        <button>Change credentials</button>
+        <button>Change name</button>
+        <button>Change password</button>
+
+        <button>Switch account</button>
+        <button>Log out</button>
+      </div>
+
+
+      <div id="controlPanel">
+        <button>Generate exam</button>
+      </div>
+
+    </div>
+    <!-- Formulario Domicilio - END -->
+
+    <!-- Formulario Otros - START -->
+    <div id="otros" name="viewStudent">
+      <label for="fecha_nacimiento" id="lblFecha_nac" class="fecha_nac">Fecha Nacimiento:</label>
+      <input type="date" id="fecha_nacimiento" class="fecha_nac" name="fecha_nacimiento" autofocus maxlength="10">
+      <label for="fecha_nacimiento" class="inputError fecha_nac" id="fecha_nacimientoError"></label>
+
+      <label for="dni" id="lblDni">DNI:</label>
+      <input type="text" id="dni" name="dni" maxlength="9">
+      <label for="dni" class="inputError" id="dniError"></label>
+
+      <label for="telefono" class="telefono">Teléfono:</label>
+      <input type="text" id="telefono" class="telefono" name="telefono" maxlength="9">
+      <label for="telefono" class="inputError telefono" id="telefonoError"></label>
+
+      <label for="sexo" id="lblSexo" class="sexo">Sexo:</label>
+      <div id="grpRBSexo" class="sexo">
+        <label for="femenino" class="femenino">F</label>
+        <input type="radio" id="inputRadioFemenino" class="femenino" name="sexo" value="F">
+
+        <label for="masculino" class="masculino">M</label>
+        <input type="radio" id="inputRadioMasculino" class="masculino" name="sexo" value="M">
+      </div>
+      <label for="sexo" class="inputError sexo" id="sexoError"></label>
+
+      <label for="intereses" id="lblIntereses">Intereses:</label>
+      <div id="grpCBIntereses">
+        <div>
+          <label for="cine" class="cine">Cine</label>
+          <input type="checkbox" id="cine" class="cine" name="cine" value="CINE">
+        </div>
+        <div>
+          <label for="musica" class="musica">Música</label>
+          <input type="checkbox" id="musica" class="musica" name="musica" value="MUSICA">
+        </div>
+        <div>
+          <label for="lectura" class="lectura">Lectura</label>
+          <input type="checkbox" id="lectura" class="lectura" name="lectura" value="LECTURA">
+        </div>
+      </div>
+      <label for="intereses" class="inputError" id="interesesError"></label>
+
+      <button type="button" id="btnOtrosAnterior">Anterior</button>
+      <button type="button" id="btnOtrosEnviar">ENVIAR</button>
+    </div>
+    <!-- Formulario Otros - END -->
+
+
+
+
 </body>
+
 </html>
