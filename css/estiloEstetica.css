@@ -23,6 +23,15 @@
 }
 
 
+/* Iconos */
+.icon-account {
+  height: 32px;
+  width: 32px;
+  display: inline-block;
+  background-size: cover;
+  background-image: url("../SOURCES/icons/accountCircle.svg");
+}
+
 /* Estética de la web */
 body {
   background-color: #f7e6d8;
