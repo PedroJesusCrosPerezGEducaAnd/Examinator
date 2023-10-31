@@ -1,7 +1,0 @@
-@echo off
-netsh interface ip set address "Nombre de tu Adaptador de Red" static 192.168.121.117 255.255.255.0 192.168.121.254
-netsh interface ip set dns "Nombre de tu Adaptador de Red" static 8.8.8.8
-netsh interface ip add dns "Nombre de tu Adaptador de Red" 8.8.4.4 index=2
-
-
-netsh interface show interface

@@ -30,4 +30,14 @@ function isLoged($credential)
     return $loged;
 }
 
+private static function existeUsuario()
+{
+
+}
+
+public static function usuarioEstaLogeado()
+{
+    // if $_Session exist clave user
+}
+
 ?>

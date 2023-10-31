@@ -2,7 +2,8 @@
 
 Class Autoload
 {
-    public static function autoload () {
+    public static function autoload () 
+    {
         spl_autoload_register('findfile');
     }
 
@@ -22,6 +23,9 @@ Class Autoload
         }
         include_once $directory . $filename . '.php';
     }
+
 }
+
+Autoload::autoload();
 
 ?>

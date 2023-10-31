@@ -38,6 +38,16 @@ btnLogin.addEventListener("click", fvalidateLogin);
 // ################################################################################
 // ######################### Generate exams #######################################
 // ################################################################################
+function fgenerateExam() 
+{
+    const exam = new Exam("urlplantilla","urldatos","objetoDestino");
+    examen.descargar;
+    examen.mostrar;
+
+}
 
 
+btnGenerateExam.addEventListener("click", fgenerateExam);
 
+
+});
