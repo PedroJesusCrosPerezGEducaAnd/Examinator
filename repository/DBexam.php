@@ -1,5 +1,5 @@
 <?php
-namespace DBExam;
+//namespace DBExam;
 include_once $_SERVER["DOCUMENT_ROOT"]."/repository/DB.php";
 include_once $_SERVER["DOCUMENT_ROOT"]."/entities/Exam.php";
 ?>
@@ -12,7 +12,6 @@ function findAll()
     $cn = new DB(); // TODO quitar en el futuro
     // Variables
     $arrExams = [];
-    $nameFields;
     $sql = "SELECT * FROM exam";
     $result = $cn->query($sql);
 
