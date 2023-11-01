@@ -4,24 +4,35 @@ Class Autoload
 {
     public static function autoload () 
     {
-        spl_autoload_register('findfile');
+        spl_autoload_register(function ($filename) {
+            self::findfile($filename);
+        });
     }
 
-    private function findfile($filename)
+    private static function findfile($filename)
     {
         $directory = "";
+        $docroot = $_SERVER["DOCUMENT_ROOT"];
 
-        switch ($filename[0]) 
+        /*switch ( substr($filename, 0, 2) ) 
         {
-            case 'C':
-                $directory = "entities/";
+            case 'CL':
+                $directory = "entities";
                 break;
             
             case 'DB':
-                $directory = "repository/";
+                $directory = "repository";
                 break;
+        }*/
+        if ( substr($filename, 0, 2) == "DB" ) {
+            $directory = "entities";
+        }elseif ( file_exists($docroot . "/" . "entities/" . $filename) ) {
+            $directory = "entities";
+        } elseif ( file_exists($docroot . "/" . "helpers/" . $filename) ) {
+            $directory = "helpers";
         }
-        include_once $directory . $filename . '.php';
+
+        include_once $_SERVER["DOCUMENT_ROOT"] . "/" . $directory . "/" . $filename . '.php';
     }
 
 }

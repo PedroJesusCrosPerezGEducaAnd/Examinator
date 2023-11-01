@@ -1,5 +1,6 @@
 <?php
     include_once $_SERVER["DOCUMENT_ROOT"]."/configFile.php";
+    //var_dump($dataBase);
 ?>
 <?php
 
@@ -21,11 +22,12 @@ class DB extends mysqli
                         )
     {
         global $dataBase;
+        //var_dump($dataBase);
 
-        $this->host = ($host !== null) ? $host : $dataBase["host"];
-        $this->user = ($user !== null) ? $user : $dataBase["user"];
-        $this->password = ($password !== null) ? $password : $dataBase["password"];
-        $this->dbname = ($dbname !== null) ? $dbname : $dataBase["dbname"];
+        $this->host = ($host !== null) ? $host : "localhost";//$dataBase["host"];
+        $this->user = ($user !== null) ? $user : "root";//$dataBase["user"];
+        $this->password = ($password !== null) ? $password : "root";//$dataBase["password"];
+        $this->dbname = ($dbname !== null) ? $dbname : "examinator";//$dataBase["dbname"];
 
         parent::__construct($this->host, $this->user, $this->password, $this->dbname);
         $this->setConection($this);

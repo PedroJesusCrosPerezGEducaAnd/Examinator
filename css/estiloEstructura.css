@@ -5,7 +5,7 @@
 form>div[name="login"] {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, auto) 2.5em repeat(2, auto) repeat(2, auto) 2.5em;
+    grid-template-rows: repeat(2, auto) 2.5em repeat(2, auto) 2.5em repeat(2, auto) 2.5em;
     column-gap: 1em;
 }
 
@@ -27,13 +27,23 @@ div[name="login"]>input[name="password"] {
   grid-row: 5/6;
 }
 
-div[name="login"]>label[for="login"] {
+div[name="login"]>label[name="feedback"] {
   grid-row: 6/7;
 }
 div[name="login"]>input[name="login"] {
   grid-row: 7/8;
 }
 
+div[name="login"]>a[name="aForgotPassword"] {
+  grid-row: 10;
+  grid-column: 1/2;
+  text-align: center;
+}
+div[name="login"]>a[name="aSignUp"] {
+  grid-row: 10;
+  grid-column: 2/3;
+  text-align: center;
+}
 
 /*form label, form input {
   grid-column: 1/3;

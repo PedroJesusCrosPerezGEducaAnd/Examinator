@@ -15,19 +15,20 @@
   <title>Examinator login</title>
 
   <!-- JAVASCRIPT -->
+  <script type="text/javascript" src="configFile.js" charset="utf-8" defer></script>
   <script type="text/javascript" src="script/formElement.js" charset="utf-8" defer></script>
   <script type="text/javascript" src="script/entities/Exam.js" charset="utf-8" defer></script>
   <script type="text/javascript" src="script/inicialice.js" charset="utf-8" defer></script>
-  <script type="text/javascript" src="configFile.js" charset="utf-8" defer></script>
   <script type="text/javascript" src="script/ajax.js" charset="utf-8" defer></script> <!-- AJAX -->
-  <script type="text/javascript" src="script/ajaxcallbacks.js" charset="utf-8" defer></script> <!-- AJAX CALLBACKS -->
 
 
   <!-- CSS3 -->
   <link rel="stylesheet" href="css/hojaReseteoEstilosCss.css"> <!-- Hoja de reseteo de estilos CSS -->
   <link rel="stylesheet" href="css/estiloEstructura.css"> <!-- Esqueleto de la web -->
-  <link rel="stylesheet" href="css/estiloPosicionamiento.css"> <!-- Posicionamiento con flexbox. Además introduzco paddings y margin donde cuadrar los contenedores a mi gusto personal -->
-  <link rel="stylesheet" href="css/estiloEstetica.css"> <!-- Detalles estéticos de la web: colores, fondos, tamaño y fuentes de letra -->
+  <link rel="stylesheet" href="css/estiloPosicionamiento.css">
+  <!-- Posicionamiento con flexbox. Además introduzco paddings y margin donde cuadrar los contenedores a mi gusto personal -->
+  <link rel="stylesheet" href="css/estiloEstetica.css">
+  <!-- Detalles estéticos de la web: colores, fondos, tamaño y fuentes de letra -->
 
   <!-- TODO NOTAS -->
   <!-- Cuando le de al botón enviar, se quitan todos los datos de los campos y aparece el mensaje formulario enviado, que a los 5 segundos se quita (utilizando setTimeOut) -->
@@ -36,32 +37,46 @@
 
 <body>
 
-  <div class="form-container">
+  <header>
 
-    <h2 id="h2Titulo">Login</h2>
+  </header>
 
-    <form name="examinator-login" accept-charset="utf-8" autocomplete="off" enctype="multipart/form-data" method="post"
-      formtarget="_blank" formnovalidate="formnovalidate">
 
-      <!-- Login form - START -->
-      <div id="login" name="login">
 
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" autofocus maxlength="45">
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" maxlength="45">
+  <main>
 
-        <label for="login" class="feedback"></label>
-        <input type="submit" value="Login" name="login" id="btnLogin">
-        <!--<label for="feedback" id="feedback">¡¡Tú formulario se ha enviado correctamente!!</label>-->
-      </div>
-      <!-- Login form - END -->
-    </form>
+    <!-- Login Form - START -->
+    <div class="form-container">
 
-  </div>
+      <h2 id="h2Titulo">Login</h2>
 
-    <!-- Formulario Domicilio - START -->
+      <form name="examinator-login" accept-charset="utf-8" autocomplete="off" enctype="multipart/form-data"
+        method="post" formtarget="_blank" formnovalidate="formnovalidate">
+
+        <!-- Login form - START -->
+        <div id="login" name="login">
+
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" autofocus maxlength="45">
+
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" maxlength="45">
+
+          <label for="login" class="feedback" name="feedback"></label>
+          <input type="submit" value="Login" name="login" id="btnLogin">
+          <!--<label for="feedback" id="feedback">¡¡Tú formulario se ha enviado correctamente!!</label>-->
+
+          <a href="helpers/router.php?menu=forgotpassword" name="aForgotPassword">¿Forgot password?</a>
+          <a href="helpers/router.php?menu=signup" name="aSignUp">Create a new account</a>
+        </div>
+        <!-- Login form - END -->
+      </form>
+
+    </div>
+    <!-- Login Form - END -->
+
+    <!-- Teacher view - START -->
     <div id="teacher" name="viewTeacher">
 
       <div id="title">
@@ -74,8 +89,8 @@
         <button>Change name</button>
         <button>Change password</button>
 
-        <button>Switch account</button>
-        <button>Log out</button>
+        <button name="switchaccount">Switch account</button>
+        <button name="logout">Log out</button>
       </div>
 
 
@@ -89,7 +104,7 @@
       </div>
 
     </div>
-    <!-- Formulario Domicilio - END -->
+    <!-- Teacher view - END -->
 
     <!-- Formulario Otros - START -->
     <div id="otros" name="viewStudent">
@@ -137,8 +152,14 @@
     </div>
     <!-- Formulario Otros - END -->
 
+  </main>
 
 
+
+
+  <footer>
+
+  </footer>
 
 </body>
 

@@ -6,71 +6,76 @@ include_once $_SERVER["DOCUMENT_ROOT"]."/entities/Exam.php";
 
 <?php
 
-// Select *
-function findAll()
+class DBexam
 {
-    $cn = new DB(); // TODO quitar en el futuro
-    // Variables
-    $arrExams = [];
-    $sql = "SELECT * FROM exam";
-    $result = $cn->query($sql);
 
-    // Proceso
-    while ($row = $result->fetch_assoc()) 
+    // Select *
+    function findAll()
     {
-        $arrExams[] = new Exam($row["id"],$row["date"], $row["user_id"]);
+        $cn = new DB(); // TODO quitar en el futuro
+        // Variables
+        $arrExams = [];
+        $sql = "SELECT * FROM exam";
+        $result = $cn->query($sql);
+
+        // Proceso
+        while ($row = $result->fetch_assoc()) 
+        {
+            $arrExams[] = new Exam($row["id"],$row["date"], $row["user_id"]);
+        }
+        $cn->close();
+        
+        // Return
+        return $arrExams;
     }
-    $cn->close();
-    
-    // Return
-    return $arrExams;
-}
 
 
 
-// ##################################################################################################
-// ###################################### Find By ###################################################
-// ##################################################################################################
-// Find By User_id
-function findByUser_id($user_id)
-{
-    $cn = new DB(); // TODO quitar en el futuro
-    // Variables
-    $arrExams = [];
-    $nameFields;
-    $sql = "SELECT * FROM exam WHERE user_id = '$user_id'";
-    $result = $cn->query($sql);
-
-    // Proceso
-    while ($row = $result->fetch_assoc()) 
+    // ##################################################################################################
+    // ###################################### Find By ###################################################
+    // ##################################################################################################
+    // Find By User_id
+    function findByUser_id($user_id)
     {
-        $arrExams[$row["name"]] = new Exam($row["id"],$row["name"], $row["password"], $row["role"]);
+        $cn = new DB(); // TODO quitar en el futuro
+        // Variables
+        $arrExams = [];
+        $nameFields;
+        $sql = "SELECT * FROM exam WHERE user_id = '$user_id'";
+        $result = $cn->query($sql);
+
+        // Proceso
+        while ($row = $result->fetch_assoc()) 
+        {
+            $arrExams[$row["name"]] = new Exam($row["id"],$row["name"], $row["password"], $row["role"]);
+        }
+        $cn->close();
+        
+        // Return
+        return $arrExams;
     }
-    $cn->close();
-    
-    // Return
-    return $arrExams;
-}
 
-// Find By Date
-function findByDate($dateStart, $dateEnd)
-{
-    $cn = new DB(); // TODO quitar en el futuro
-    // Variables
-    $arrExams = [];
-    $nameFields;
-    $sql = "SELECT * FROM exam WHERE date >= '$dateStart' AND date <= '$dateEnd'";
-    $result = $cn->query($sql);
-
-    // Proceso
-    while ($row = $result->fetch_assoc()) 
+    // Find By Date
+    function findByDate($dateStart, $dateEnd)
     {
-        $arrExams[$row["name"]] = new Exam($row["id"],$row["name"], $row["password"], $row["role"]);
+        $cn = new DB(); // TODO quitar en el futuro
+        // Variables
+        $arrExams = [];
+        $nameFields;
+        $sql = "SELECT * FROM exam WHERE date >= '$dateStart' AND date <= '$dateEnd'";
+        $result = $cn->query($sql);
+
+        // Proceso
+        while ($row = $result->fetch_assoc()) 
+        {
+            $arrExams[$row["name"]] = new Exam($row["id"],$row["name"], $row["password"], $row["role"]);
+        }
+        $cn->close();
+        
+        // Return
+        return $arrExams;
     }
-    $cn->close();
-    
-    // Return
-    return $arrExams;
+
 }
 
 ?>

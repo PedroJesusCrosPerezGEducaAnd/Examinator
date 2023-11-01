@@ -1,27 +1,32 @@
 <?php
 
-    function startSession() {
+class Session
+{
+
+    static function startSession() {
         session_start();
     }
 
-    function endSession() {
+    static function endSession() {
         session_destroy();
     }
 
-    function readSession($clave) {
+    static function readSession($clave) {
         return $_SESSION[$clave];
     }
 
-    function saveSession($clave, $valor) {
+    static function saveSession($clave, $valor) {
         $_SESSION[$clave] = $valor;
     }
 
-    function deleteSession($clave) {
-        // hay que hacer un unset
+    static function deleteSession($clave) {
+        unset($_SESSION[$clave]);
     }
     
-    function existSession($clave) {
+    static function existSession($clave) {
         return isset($_SESSION[$clave]);
     }
+
+}
 
 ?>

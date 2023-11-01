@@ -1,7 +1,8 @@
 <?php
 //include_once $_SERVER["DOCUMENT_ROOT"]."/functions/showarr.php";
-include_once $_SERVER["DOCUMENT_ROOT"]."/repository/DBUser.php";
-include_once $_SERVER["DOCUMENT_ROOT"]."/repository/DBExam.php";
+//include_once $_SERVER["DOCUMENT_ROOT"]."/repository/DBUser.php";
+//include_once $_SERVER["DOCUMENT_ROOT"]."/repository/DBExam.php";
+include_once $_SERVER["DOCUMENT_ROOT"]."/helpers/Autoload.php";
 
 function showUsers($users) 
 {
@@ -13,7 +14,7 @@ function showUsers($users)
     }
 }
 
-function showExams($arr) 
+/*function showExams($arr) 
 {
     $length = count($arr);
     for ($i=0; $i < $length; $i++) 
@@ -22,17 +23,19 @@ function showExams($arr)
         echo "Date: " . $arr[$i]->getDate() . "<br>";
         echo "User_id: " . $arr[$i]->getUser_id() . "<br><br>";
     }
-}
+}*/
 ?>
 
 <?php
 echo "Users <br>";
-$users = DBUser\findAll();
+$dbuser = new DBUser();
+$users = $dbuser::findAll();
 showUsers($users);
 ?>
 
-<?php
+<?/*
 echo "Exams <br>";
-$arr = DBExam\findAll();
+$arr = DBExam::findAll();
 showExams($arr);
+*/
 ?>

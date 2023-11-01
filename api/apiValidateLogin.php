@@ -1,21 +1,19 @@
 <?php
+    include_once $_SERVER["DOCUMENT_ROOT"]."/helpers/Autoload.php";
+    //echo $_SERVER["DOCUMENT_ROOT"]."/helpers/Autoload.php";
+?>
+<?php
 
 if ( $_SERVER['REQUEST_METHOD']=="POST" ) 
 {
     $name = $_POST["name"];
-    //$password = $_POST["password"];
+    $password = $_POST["password"];
+    $found = "false";
+    $users = DBUser::findAll();
 
-    // En el header indico que mi objeto que quiero es json
-    //header('Content-type: application/json');
-    //$obj = new stdClass;
-    //$obj->name = $name;
-    //$obj->password = $password;
 
-    // respuesta objeto json
-    //echo json_encode($obj);
-    
     header('Content-type: text/html');
-    if ($name == "pedro") {
+    if ( isset($users[$name]) && $users[$name]->getPassword() == $password ) {
         echo "true";
     } else {
         echo "false";
