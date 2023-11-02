@@ -1,6 +1,5 @@
 <?php
     include_once $_SERVER["DOCUMENT_ROOT"]."/helpers/Autoload.php";
-    //echo $_SERVER["DOCUMENT_ROOT"]."/helpers/Autoload.php";
 ?>
 <?php
 
