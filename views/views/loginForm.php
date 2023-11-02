@@ -19,8 +19,8 @@
         <input type="submit" value="Login" name="login" id="btnLogin">
         <!--<label for="feedback" id="feedback">¡¡Tú formulario se ha enviado correctamente!!</label>-->
 
-        <a href="helpers/router.php?menu=forgotpassword" name="aForgotPassword">¿Forgot password?</a>
-        <a href="helpers/router.php?menu=signup" name="aSignUp">Create a new account</a>
+        <a href="?menu=forgotpassword" name="aForgotPassword">¿Forgot password?</a>
+        <a href="?menu=signup" name="aSignUp">Create a new account</a>
     </div>
     <!-- Login form - END -->
     </form>

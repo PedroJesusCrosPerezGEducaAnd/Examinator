@@ -1,6 +1,6 @@
 <?php
 
-class router
+class Router
 {
     static function redirect() 
     {
@@ -10,7 +10,7 @@ class router
             {
                 case 'landingpage':
                     //include_once "landingpage";
-                    
+
                     break;
                 
                 case 'signup':

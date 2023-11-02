@@ -1,5 +1,46 @@
 /* ESTÉTICA */
 
+/* ######################################################################## */
+/* ############################# LAYOUT ################################### */
+/* ######################################################################## */
+
+/* HEADER */
+header {
+  background-color: #9dc58c;
+  border-bottom: 1px lightgreen solid;
+}
+
+header a {
+  text-decoration: none;
+}
+
+
+/* ######################################################################## */
+/* ####################### LANDING PAGE ################################### */
+/* ######################################################################## */
+
+/* Section 2º */
+main div[name="landingpage"] section:nth-child(2) > article {
+  border: 3px solid black;
+  border-collapse: collapse;
+}
+
+main div[name="landingpage"] section:nth-child(2) > article {
+  height: 200px;
+  width: 200px;
+}
+
+
+/* ######################################################################## */
+/* ############################# FOOTER ################################### */
+/* ######################################################################## */
+footer {
+  background-color: #9dc58c;
+}
+
+
+
+
 
 /* Reglas para aplicar con JS */
 .hide {
@@ -99,7 +140,7 @@ select:focus {
 
 
 
-button[type="button"], button[type="submit"], input[type="submit"] {
+button[type="button"], button[type="submit"], input[type="submit"], .btn {
   display: block;
   width: 100%;
   padding: 10px;

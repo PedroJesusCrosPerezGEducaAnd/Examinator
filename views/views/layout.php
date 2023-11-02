@@ -15,20 +15,21 @@
   <title>Examinator login</title>
 
   <!-- JAVASCRIPT -->
-  <script type="text/javascript" src="../configFile.js" charset="utf-8" defer></script>
-  <script type="text/javascript" src="../script/formElement.js" charset="utf-8" defer></script>
-  <script type="text/javascript" src="../script/entities/Exam.js" charset="utf-8" defer></script>
-  <script type="text/javascript" src="../script/inicialice.js" charset="utf-8" defer></script>
-  <script type="text/javascript" src="../script/ajax.js" charset="utf-8" defer></script> <!-- AJAX -->
+  <script type="text/javascript" src="views/js/configFile.js" charset="utf-8" defer></script>
+  <script type="text/javascript" src="views/js/formElement.js" charset="utf-8" defer></script>
+  <script type="text/javascript" src="views/js/entities/Exam.js" charset="utf-8" defer></script>
+  <script type="text/javascript" src="views/js/inicialice.js" charset="utf-8" defer></script>
+  <script type="text/javascript" src="views/js/ajax.js" charset="utf-8" defer></script> <!-- AJAX -->
 
 
   <!-- CSS3 -->
-  <link rel="stylesheet" href="../css/hojaReseteoEstilosCss.css"> <!-- Hoja de reseteo de estilos CSS -->
-  <link rel="stylesheet" href="../css/estiloEstructura.css"> <!-- Esqueleto de la web -->
-  <link rel="stylesheet" href="../css/estiloPosicionamiento.css">
+  <link rel="stylesheet" href="views/css/hojaReseteoEstilosCss.css"> <!-- Hoja de reseteo de estilos CSS -->
+  <link rel="stylesheet" href="views/css/estiloEstructura.css"> <!-- Esqueleto de la web -->
+  <link rel="stylesheet" href="views/css/estiloPosicionamiento.css">
   <!-- Posicionamiento con flexbox. Además introduzco paddings y margin donde cuadrar los contenedores a mi gusto personal -->
-  <link rel="stylesheet" href="../css/estiloEstetica.css">
+  <link rel="stylesheet" href="views/css/estiloEstetica.css">
   <!-- Detalles estéticos de la web: colores, fondos, tamaño y fuentes de letra -->
+  <link rel="stylesheet" href="views/css/estiloNav.css">
 
   <!-- TODO NOTAS -->
   <!-- Cuando le de al botón enviar, se quitan todos los datos de los campos y aparece el mensaje formulario enviado, que a los 5 segundos se quita (utilizando setTimeOut) -->
@@ -38,25 +39,30 @@
 <body>
 
   <header>
-
+    <?php
+        require_once "header.php";
+    ?>
   </header>
 
 
+  <aside>
+    <?php
+        //require_once "aside.php";
+    ?>
+  </aside>
 
 
   <main>
-
     <?php
-        require_once "loginForm.php";
+        require_once "Router.php";
     ?>
-
   </main>
 
 
-
-
   <footer>
-
+    <?php
+        require_once "footer.php";
+    ?>
   </footer>
 
 </body>

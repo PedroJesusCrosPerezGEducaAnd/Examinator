@@ -1,3 +1,51 @@
+/* ######################################################################## */
+/* ############################# LAYOUT ################################### */
+/* ######################################################################## */
+
+/* HEADER */
+header {
+  width: 100%;
+  display: flex;
+  justify-content: right;
+}
+header > nav {
+  display: flex;
+}
+header > nav > * {
+  margin: 1em;
+}
+
+header img {
+  height: 64px;
+  width: 64px;
+}
+header img:hover {
+  cursor: pointer;
+}
+
+/* ######################################################################## */
+/* ####################### LANDING PAGE ################################### */
+/* ######################################################################## */
+
+/* Section 1º */
+div[name="landingpage"] > * {
+  text-align: center;
+}
+
+
+/* Section 2º */
+main div[name="landingpage"] section:nth-child(2) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  /* esto iría en el archivo posicionamiento */
+  margin: auto;
+  margin-top: 2em;
+  width: 30%;
+}
+
+
 
 /* ######################################################################## */
 /* ######################### LOGIN FORM ################################### */
