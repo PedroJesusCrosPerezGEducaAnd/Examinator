@@ -30,7 +30,6 @@ class DBUser
                 $arrUsers[$row["name"]] = new User($row["id"],$row["name"],$row["password"],$row["role"]);
             }
             $cn->close();
-            echo "Ha entrado<br>";
         }
         else
         {
@@ -160,12 +159,12 @@ class DBUser
     // ############################################################################################
     // ################################## INSERT ##################################################
     // ############################################################################################
-    function insert($user) : bool
+    static function insert($user) : bool
     {
         $cn = new DB(); // TODO quitar en el futuro
         // Variables
         $reached = false;
-        $sql = "INSERT INTO user (name, password, role) VALUES (\"{$user["name"]}\", \"{$user["password"]}\", \"{$user["role"]}\")";
+        $sql = "INSERT INTO user (name, password, role) VALUES ('" . $user->getName() . "', '" . $user->getPassword() . "', '" . $user->getRole() . "')";
         
         // Proceso
         if ($cn->query($sql) === TRUE) {
@@ -185,7 +184,7 @@ class DBUser
     // ############################################################################################
     // ################################## UPDATE ##################################################
     // ############################################################################################
-    function update($user) : bool
+    static function update($user) : bool
     {
         $cn = new DB(); // TODO quitar en el futuro
         // Variables
@@ -214,7 +213,7 @@ class DBUser
     // ############################################################################################
     // ################################## DELETE ##################################################
     // ############################################################################################
-    function delete($name) : bool
+    static function delete($name) : bool
     {
         $cn = new DB(); // TODO quitar en el futuro
         // Variables
@@ -239,7 +238,7 @@ class DBUser
         return $tuples;
     }
 
-    function deleteById($id) : bool
+    static function deleteById($id) : bool
     {
         $cn = new DB(); // TODO quitar en el futuro
         // Variables
@@ -264,6 +263,36 @@ class DBUser
         return $tuples;
     }
 
+
+    // ############################################################################################
+    // ################################# FIND BY ##################################################
+    // ############################################################################################
+    // Find by name
+    static function findByName($name) 
+    {
+        $cn = new DB(); // TODO quitar en el futuro
+        // Variables
+        $user = null;
+        $sql = "SELECT * FROM user WHERE name = '$name';";
+        $result = $cn->query($sql);
+
+        // Process
+        if ($result == true) 
+        {
+            //$nameFields = ["id", "name", "password", "role"];
+            while ($row = $result->fetch_assoc()) 
+            {
+                $user = new User($row["id"],$row["name"],$row["password"],$row["role"]);
+            }
+            $cn->close();
+        }
+        else
+        {
+            echo "Error en consulta<br>";
+        }
+
+        return $user;
+    }
 }
 
 ?>

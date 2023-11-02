@@ -1,12 +1,10 @@
 <?php
-//namespace DBExam;
-include_once $_SERVER["DOCUMENT_ROOT"]."/repository/DB.php";
-include_once $_SERVER["DOCUMENT_ROOT"]."/entities/Exam.php";
+    require_once "helpers/Autoload.php";
 ?>
 
 <?php
 
-class DBexam
+class DBExam
 {
 
     // Select *

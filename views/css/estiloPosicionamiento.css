@@ -20,9 +20,9 @@ select {
     padding-bottom: 3em;
 }
 .form-container {
-    max-width: 500px;
-    margin: 50px auto;
-    padding: 30px;
+    max-width: 400px;
+    margin: 3em auto;
+    padding: 3em;
 }
 #otros input[type="radio"] {
     width: auto;

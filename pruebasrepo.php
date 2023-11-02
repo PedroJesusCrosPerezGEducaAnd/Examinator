@@ -14,6 +14,15 @@ function showUsers($users)
     }
 }
 
+function showUser($user) 
+{
+    echo "Nombre de usuario: " . $user->getName() . "<br>";
+    echo "ID: " . $user->getId() . "<br>";
+    echo "Contraseña: " . $user->getPassword() . "<br>";
+    echo "Rol: " . $user->getRole() . "<br><br>";
+    
+}
+
 /*function showExams($arr) 
 {
     $length = count($arr);
@@ -27,10 +36,29 @@ function showUsers($users)
 ?>
 
 <?php
-echo "Users <br>";
+/* echo "Users <br>";
 $dbuser = new DBUser();
 $users = $dbuser::findAll();
-showUsers($users);
+showUsers($users); */
+?>
+
+<?php
+echo "Inser User <br>";
+//$dbuser = new DBUser();
+//$users = $dbuser::findAll();
+//echo DBUser::insert(new User(null, 'aaaaaaaaa', 'hola', null)) . "<br><br>";
+$user = DBUser::findByName('aaaaaaaaa2');
+//showUsers($user);
+echo $user . "<br><br>";
+if ( isset($user) ) 
+{
+    echo "true";
+}
+else
+{
+    echo "false";
+}
+echo "<br><br>";
 ?>
 
 <?/*

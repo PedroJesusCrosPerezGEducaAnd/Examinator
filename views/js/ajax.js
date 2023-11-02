@@ -1,6 +1,9 @@
 window.addEventListener("load", function () {
 
-// Función que llama a la api que valida las credenciales del formulario login
+
+// ################################################################################
+// ################################## LOGIN #######################################
+// ################################################################################
 function fvalidateLogin(ev) 
 {
     ev.preventDefault();
@@ -15,14 +18,15 @@ function fvalidateLogin(ev)
         .then(response => response.text())
         .then(y => {
             // TODO entender ¿Por qué hay que poner '\r\ntrue' en vez de 'true'?
-            if (y == '\r\ntrue') {
+            if (y == '\r\nfalse') { //if (y == '\r\ntrue') {
+                msgFeedback = feedbackLoginForm["false"];
+                //feedback.style(".error"); // TODO crear estilo error
+            } else {
                 msgFeedback = feedbackLoginForm["true"];
                 //feedback.style(".valid"); // TODO crear estilo valid
                 formDivLogin.style.display="none";
                 viewTeacher.style.display="";
-            } else {
-                msgFeedback = feedbackLoginForm["false"];
-                //feedback.style(".error"); // TODO crear estilo error
+                //location.href = window.location.href + '?menu=';
             }
 
             //formDivLogin.appendChild(feedback);
@@ -36,6 +40,46 @@ function fvalidateLogin(ev)
 btnLogin.addEventListener("click", fvalidateLogin);
 
 
+
+// ################################################################################
+// ################################ SIGN UP #######################################
+// ################################################################################
+function fvalidateSignup(ev) 
+{
+    ev.preventDefault();
+    var formData = new FormData(formSignup);
+    var msgFeedback = "";
+    alert("FUNCIONA");
+
+    fetch(PHPapiValidateSignup, 
+    {
+        method: "POST",
+        body: formData,
+    })
+        .then(response => response.text())
+        .then(y => {
+            // TODO entender ¿Por qué hay que poner '\r\ntrue' en vez de 'true'?
+            if (y == '\r\ntrue') {
+                msgFeedback = feedbackSignupForm["true"];
+                //feedback.style(".valid"); // TODO crear estilo valid
+                formDivSignup.style.display="none";
+                viewTeacher.style.display="";
+            } else {
+                msgFeedback = feedbackSignupForm["false"];
+                //feedback.style(".error"); // TODO crear estilo error
+            }
+
+            //formDivSignup.appendChild(feedback);
+            lblSignupFeedback.innerHTML = msgFeedback;
+        })
+        /*.catch(error => {
+            feedback.innerHTML = feedbackSignupForm["error"] + error;
+        });*/
+}
+
+btnSignup.addEventListener("click", fvalidateSignup);
+alert("HOLAAAA");
+this.alert("HOLAAAA2");
 
 // ################################################################################
 // ########################### View Teacher #######################################

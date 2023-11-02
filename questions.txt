@@ -1,2 +1,2 @@
-¿Como organizar las distintas pantallas?
-una vez inicias sesión, se sigue considerando una etiqueta <form>
+1º - ¿Cuál es el constructor de un User?
+2º - ¿Por qué en la api servidor, en ajax.js javascript me devuelve '\r\ntrue'?

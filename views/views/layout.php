@@ -15,8 +15,8 @@
   <title>Examinator login</title>
 
   <!-- JAVASCRIPT -->
-  <script type="text/javascript" src="views/js/configFile.js" charset="utf-8" defer></script>
-  <script type="text/javascript" src="views/js/formElement.js" charset="utf-8" defer></script>
+  <script type="text/javascript" src="configFile.js" charset="utf-8" defer></script>
+  <script type="text/javascript" src="views/js/formElements.js" charset="utf-8" defer></script>
   <script type="text/javascript" src="views/js/entities/Exam.js" charset="utf-8" defer></script>
   <script type="text/javascript" src="views/js/inicialice.js" charset="utf-8" defer></script>
   <script type="text/javascript" src="views/js/ajax.js" charset="utf-8" defer></script> <!-- AJAX -->

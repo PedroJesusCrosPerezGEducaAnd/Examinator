@@ -1,6 +1,5 @@
 <?php
-//include_once $_SERVER["DOCUMENT_ROOT"] . "/repository/DBUser.php";
-include_once $_SERVER["DOCUMENT_ROOT"] . "/helpers/Autoload.php";
+    include_once $_SERVER["DOCUMENT_ROOT"] . "/helpers/Autoload.php";
 ?>
 
 <?php
@@ -8,45 +7,20 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/helpers/Autoload.php";
 class Login
 {
 
-    static function login($user, $password, $remember)
+    static function login($user, $remember)
     {
-        Session::
+        Session::startSession();
+        Session::saveSession("user", $user);
     }
 
-    function isLoged($credential) 
+    static function logout()
     {
-        $loged = false;
-        $users = findAll();
-
-
-        if ( isset($users[$credential["name"]]) ) 
-        {
-            if ( $credential->getPassword() == $users[""] ) 
-            {
-                $loged = true;
-            }
-            else
-            {
-                echo "La contraseña no es correcta";
-            }
-        }
-        else
-        {
-            echo "El usuario no existe";
-        }
-
-
-        return $loged;
+        Session::deleteSession("user");
     }
 
-    private static function existeUsuario()
+    static function isLoged() 
     {
-
-    }
-
-    public static function usuarioEstaLogeado()
-    {
-        // if $_Session exist clave user
+        return Session::existSession("user");
     }
 
 }

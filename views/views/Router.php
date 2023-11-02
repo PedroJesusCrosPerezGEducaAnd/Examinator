@@ -35,13 +35,11 @@ class Router
             if ($_GET['menu'] == "forgotpassword") {
                 echo "<p>Olvidé la contraseña</p>";
             } elseif ($_GET["menu"] == "signup") {
-
+                require_once "signupForm.php";
             } elseif ($_GET["menu"] == "login") {
                 require_once "loginForm.php";
             } elseif ($_GET["menu"] == "landingpage") {
                 require_once "landingpage.php";
-            } elseif ($_GET["menu"] == "TODO") {
-                
             }
         } 
         else 

@@ -6,7 +6,12 @@
 header {
   width: 100%;
   display: flex;
-  justify-content: right;
+  justify-content: space-around;
+  align-items: center;
+}
+header img[name="logo"] {
+  height: 72px;
+  width: 72px;
 }
 header > nav {
   display: flex;
@@ -15,7 +20,7 @@ header > nav > * {
   margin: 1em;
 }
 
-header img {
+header nav img {
   height: 64px;
   width: 64px;
 }
