@@ -2,6 +2,9 @@
 let viewTeacher = document.querySelector("div[name='viewTeacher']");
 let viewStudent = document.querySelector("div[name='viewStudent']");
 
+// Aside
+let aside = document.getElementsByTagName("aside")[0];
+
 // Login - Form
 let formLogin = document.querySelector("form[name='examinator-login']");
 let formDivLogin = document.querySelector("div[name='login']");
@@ -19,10 +22,10 @@ let lblSignupFeedback = document.querySelector("div[name='signup'] label[name='f
 let btnSignup = document.querySelector("div[name='signup'] input[name='signup']");
 
 // View - Teacher
+let btnGenerateExams = document.querySelector("div[name='teacher'] button[name='generateExams']");
 let lblViewTeacherError = document.querySelector("div[name='viewTeacher'] label[name='feedback']");
 
     // Buttons
-    let btnGenerateExam = document.querySelector("div[name='viewTeacher'] button[name='generateExam']");
     let btnSwitchAccount = document.querySelector("div[name='viewTeacher'] button[name='switchaccount']");
     let btnLogout = document.querySelector("div[name='viewTeacher'] button[name='logout']");
 

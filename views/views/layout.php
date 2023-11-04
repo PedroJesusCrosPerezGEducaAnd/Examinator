@@ -47,7 +47,7 @@
 
   <aside>
     <?php
-        //require_once "aside.php";
+        require_once "aside.php";
     ?>
   </aside>
 
@@ -66,5 +66,6 @@
   </footer>
 
 </body>
+<!--<script src="views/js/ajax.js"></script>-->
 
 </html>

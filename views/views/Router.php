@@ -40,6 +40,12 @@ class Router
                 require_once "loginForm.php";
             } elseif ($_GET["menu"] == "landingpage") {
                 require_once "landingpage.php";
+            } elseif ($_GET["menu"] == "student") {
+                require_once "student.php";
+            } elseif ($_GET["menu"] == "teacher") {
+                require_once "teacher.php";
+            } elseif ($_GET["menu"] == "admin") {
+                require_once "admin.php";
             }
         } 
         else 

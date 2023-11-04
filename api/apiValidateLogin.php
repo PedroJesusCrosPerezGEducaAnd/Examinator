@@ -1,34 +1,42 @@
 <?php
-    include_once $_SERVER["DOCUMENT_ROOT"]."/helpers/Autoload.php";
-?>
-<?php
+    include_once "helpers/Autoload.php";
+
 
 if ( $_SERVER['REQUEST_METHOD']=="POST" ) 
 {
     $name = $_POST["name"];
     $password = $_POST["password"];
     $found = "false";
-    $user = DBUser::findByName($name);
+    //$user = DBUser::findByName($name);
 
 
     
-    if ( isset($user) && $user[$name]->getPassword() == $password ) {
+    if ( true ) //if ( isset($user) && $user[$name]->getPassword() == $password ) 
+    {
+        echo header("Location: ?menu='teacher'");
         //echo "true";
-        switch ($user->getName()) 
+        Session::start();
+        Session::save("user",$user);
+        switch ($user->getRole()) 
         {
-            case 'git ':
-                # code...
+            case 'student':
+                header("Location: ?menu=student");
                 break;
-            
-            default:
-                # code...
+
+            case 'teacher':
+                header("Location: ?menu=teacher");
+                break;
+
+            case 'admin':
+                header("Location: ?menu=admin");
                 break;
         }
-        header("Location: ?menu=admin");
-    } else {
+    } /*else {
         header('Content-type: text/html');
         echo "false";
-    }
+    }*/
+    else { echo "ERROR EN API/APIVALIDATELOGIN.PHP"; }
+    //header("Location: ?menu=myAccount");
 }
 
 ?>

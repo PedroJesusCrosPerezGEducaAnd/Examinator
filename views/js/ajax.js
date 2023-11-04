@@ -13,11 +13,10 @@ function fvalidateLogin(ev)
     fetch(PHPapiValidateLogin, 
     {
         method: "POST",
-        body: formData,
+        body: formData
     })
         .then(response => response.text())
         .then(y => {
-            // TODO entender ¿Por qué hay que poner '\r\ntrue' en vez de 'true'?
             if (y == '\r\nfalse') { //if (y == '\r\ntrue') {
                 msgFeedback = feedbackLoginForm["false"];
                 //feedback.style(".error"); // TODO crear estilo error
@@ -37,6 +36,46 @@ function fvalidateLogin(ev)
         });*/
 }
 
+function fvalidateLogin2(ev) 
+{
+    alert("FUNCIONA ARCHIVO AJAX.JS");
+    ev.preventDefault();
+    console.log(formLogin);
+
+    fetch(PHPapiValidateLogin, 
+        {
+            method: "POST",
+            body: formLogin
+        })
+    .then(response => response.text())
+    .then(y => {
+        if (y == "false") 
+        {
+            // TODO mostrar mensaje de error
+            console.log("Error en el logeo");
+        }
+        else
+        {
+            switch (y) 
+            {
+                case "student":
+                    console.log("Este usuario tien el rol: student");
+                    break;
+            
+                case "teacher":
+                    console.log("Este usuario tien el rol: teacher");
+                    aside.style.display="";
+                    break;
+
+                case "admin":
+                    console.log("Este usuario tien el rol: admin");
+                    break;
+            }
+        }
+    })
+    ;
+}
+
 btnLogin.addEventListener("click", fvalidateLogin);
 
 
@@ -46,10 +85,10 @@ btnLogin.addEventListener("click", fvalidateLogin);
 // ################################################################################
 function fvalidateSignup(ev) 
 {
+    alert("Ha entrado en función ajax");
     ev.preventDefault();
     var formData = new FormData(formSignup);
     var msgFeedback = "";
-    alert("FUNCIONA");
 
     fetch(PHPapiValidateSignup, 
     {

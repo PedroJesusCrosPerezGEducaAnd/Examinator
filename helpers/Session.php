@@ -3,27 +3,27 @@
 class Session
 {
 
-    static function startSession() {
+    static function start() {
         session_start();
     }
 
-    static function endSession() {
+    static function end() {
         session_destroy();
     }
 
-    static function readSession($clave) {
+    static function read($clave) {
         return $_SESSION[$clave];
     }
 
-    static function saveSession($clave, $valor) {
+    static function save($clave, $valor) {
         $_SESSION[$clave] = $valor;
     }
 
-    static function deleteSession($clave) {
+    static function delete($clave) {
         unset($_SESSION[$clave]);
     }
     
-    static function existSession($clave) {
+    static function exist($clave) {
         return isset($_SESSION[$clave]);
     }
 
