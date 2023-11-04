@@ -46,6 +46,8 @@ class Router
                 require_once "teacher.php";
             } elseif ($_GET["menu"] == "admin") {
                 require_once "admin.php";
+            } elseif ($_GET["menu"] == "probar") {
+                require_once "layout.php";
             }
         } 
         else 

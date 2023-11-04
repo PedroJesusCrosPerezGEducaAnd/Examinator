@@ -7,13 +7,12 @@ if ( $_SERVER['REQUEST_METHOD']=="POST" )
     $name = $_POST["name"];
     $password = $_POST["password"];
     $found = "false";
-    //$user = DBUser::findByName($name);
+    $user = DBUser::findByName($name);
 
 
     
-    if ( true ) //if ( isset($user) && $user[$name]->getPassword() == $password ) 
+    if ( isset($user) && $user[$name]->getPassword() == $password ) 
     {
-        echo header("Location: ?menu='teacher'");
         //echo "true";
         Session::start();
         Session::save("user",$user);
