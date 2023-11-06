@@ -1,5 +1,3 @@
-
-
 <!-- Signup Form - START -->
 <div class="form-container">
 
