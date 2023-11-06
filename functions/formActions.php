@@ -1,23 +1,67 @@
 <?php
-include_once $_SERVER["DOCUMENT_ROOT"]."/login/login.php";
-include_once $_SERVER["DOCUMENT_ROOT"]."/repository/DBUser.php";
-?>
+require_once $_SERVER["DOCUMENT_ROOT"]."/helpers/Autoload.php";
 
-<?php
+
+//if ($_GET["menu"] == "login") 
+function actionLogin2()
+{
+
+    $found = false;
+    try 
+    {
+        $user = DBUser::findByName_Password($_POST["name"], $_POST["password"]);
+        Login::login($user);
+        $found = true;
+    } 
+    catch (Exception $e) 
+    {
+        echo "Credenciales incorrectas"; //TODO
+    }
+
+
+    if ( $found && !empty($rol)) 
+    {
+        switch ($rol) 
+        {
+            case 'admin':
+                header('Location: ../views/views/admin_dashboard.php');
+                exit();
+            case 'teacher':
+                header('Location: ../views/views/teacher_dashboard.php');
+                exit();
+            case 'student':
+                header('Location: ../views/views/student_dashboard.php');
+                exit();
+        }
+    }
+    
+}
+
 
 function actionLogin() 
 {
-    $credentials = ["name"=>$_POST["name"], "password"=>$_POST["password"]];
-
-
-    if ( isLoged($credentials) ) 
+    require_once "helpers/Autoload.php";
+    
+    if (Login::isLoged()) 
     {
-        //header("Location:");
-        echo "Te has logeado correctamente";
+        switch (Session::read("user")->getRole()) 
+        {
+            case 'student':
+                header("Location: student_dashboard.php");
+                break;
+            
+            case 'admin':
+                header("Location: admin_dashboard.php");
+                break;
+    
+            case 'teacher':
+                header("Location: teacher_dashboard.php");
+                break;
+        }
     }
     else
     {
-        echo "Error en el login";
+        require_once "views/views/loginForm.php";
     }
 }
 

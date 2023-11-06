@@ -18,8 +18,8 @@
   <script type="text/javascript" src="configFile.js" charset="utf-8" defer></script>
   <script type="text/javascript" src="views/js/formElements.js" charset="utf-8" defer></script>
   <script type="text/javascript" src="views/js/entities/Exam.js" charset="utf-8" defer></script>
-  <script type="text/javascript" src="views/js/inicialice.js" charset="utf-8" defer></script>
-  <script type="text/javascript" src="views/js/ajax.js" charset="utf-8" defer></script> <!-- AJAX -->
+  <!--<script type="text/javascript" src="views/js/inicialice.js" charset="utf-8" defer></script>-->
+  <!--<script type="text/javascript" src="views/js/ajax.js" charset="utf-8" defer></script>--> <!-- AJAX -->
 
 
   <!-- CSS3 -->

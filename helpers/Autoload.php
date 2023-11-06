@@ -13,16 +13,16 @@ Class Autoload
     {
         $directory = "";
         $docroot = $_SERVER["DOCUMENT_ROOT"];
-
+        
         if ( substr($filename, 0, 2) == "DB" ) {
             $directory = "repository";
-        }elseif ( file_exists($docroot . "/" . "entities/" . $filename) ) {
+        }elseif ( file_exists($docroot . "/" . "entities/" . $filename . ".php") ) {
             $directory = "entities";
-        } elseif ( file_exists($docroot . "/" . "helpers/" . $filename) ) {
+        } elseif ( file_exists($docroot . "/" . "helpers/" . $filename . ".php") ) {
             $directory = "helpers";
-        }
+        } else { $directory = "ERROR"; }
 
-        include_once $_SERVER["DOCUMENT_ROOT"] . "/" . $directory . "/" . $filename . '.php';
+        require_once $_SERVER["DOCUMENT_ROOT"] . "/" . $directory . "/" . $filename . '.php';
     }
 
 }

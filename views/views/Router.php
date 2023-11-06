@@ -4,40 +4,75 @@ class Router
 {
     static function redirect() 
     {
-        /*if ( isset($_GET["menu"]) ) 
-        {
-            $menu = $_GET["menu"];
-            switch ( $menu ) 
-            {
-                case 'landingpage':
-                    require_once "landingpage";
-                    break;
-                
-                case 'signup':
-                    //include_once "signup";
-                    echo "Has entrado en 'Sign up' <br> <a href='../'>Volver a Login</a>";
-                    break;
-                
-                case 'forgotpassword':
-                    //include_once "forgotpassword";
-                    echo "Has entrado en 'Forgot password' <br> <a href='../'>Volver a Login</a>";
-                    break;
-            }
-            echo "Si se ha encontrado";
-        }
-        else
-        {
-            echo "No se ha encontrado nada en GET";
-        }*/
-
         if (isset($_GET['menu'])) 
         {
+            switch ($_GET['menu']) 
+            {
+                case 'langingpage':
+                    # code...
+                    break;
+
+                case 'value':
+                    # code...
+                    break;
+
+                case 'value':
+                    # code...
+                    break;
+
+                case 'value':
+                    # code...
+                    break;
+
+                case 'value':
+                    # code...
+                    break;
+
+                case 'value':
+                    # code...
+                    break;
+
+                case 'value':
+                    # code...
+                    break;
+
+                case 'value':
+                    # code...
+                    break;
+                
+                default:
+                    require_once 'landingpage.php';
+                    break;
+            }
+            
             if ($_GET['menu'] == "forgotpassword") {
                 echo "<p>Olvidé la contraseña</p>";
             } elseif ($_GET["menu"] == "signup") {
                 require_once "signupForm.php";
             } elseif ($_GET["menu"] == "login") {
-                require_once "loginForm.php";
+                require_once "helpers/Autoload.php";
+                
+                if (Login::isLoged()) 
+                {
+                    switch (Session::read("user")->getRole()) 
+                    {
+                        case 'student':
+                            header("Location: student_dashboard.php");
+                            break;
+                        
+                        case 'admin':
+                            header("Location: admin_dashboard.php");
+                            break;
+
+                        case 'teacher':
+                            header("Location: teacher_dashboard.php");
+                            break;
+                    }
+                }
+                else
+                {
+                    require_once "loginForm.php";
+                }
             } elseif ($_GET["menu"] == "landingpage") {
                 require_once "landingpage.php";
             } elseif ($_GET["menu"] == "student") {

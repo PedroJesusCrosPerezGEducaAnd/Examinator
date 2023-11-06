@@ -1,13 +1,12 @@
 <?php
-    include_once $_SERVER["DOCUMENT_ROOT"]."/functions/formActions.php";
-?>
+    
 
-<?php
 
     switch (true) 
     {
         case $_POST["login"]:
-            //actionLogin();
+            require_once $_SERVER["DOCUMENT_ROOT"]."/functions/formActions.php";
+            actionLogin();
             break;
         
         default:

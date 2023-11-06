@@ -267,6 +267,33 @@ class DBUser
     // ############################################################################################
     // ################################# FIND BY ##################################################
     // ############################################################################################
+    // Find by name and password
+    static function findByName_Password($name, $password) 
+    {
+        $cn = new DB(); // TODO quitar en el futuro
+        // Variables
+        $user = null;
+        $sql = "SELECT * FROM user WHERE name = '$name' AND password = '$password';";
+        $result = $cn->query($sql);
+
+        // Process
+        if ($result == true) 
+        {
+            //$nameFields = ["id", "name", "password", "role"];
+            while ($row = $result->fetch_assoc()) 
+            {
+                $user = new User($row["id"],$row["name"],$row["password"],$row["role"]);
+            }
+            $cn->close();
+        }
+        else
+        {
+            echo "Error en consulta<br>";
+        }
+
+        return $user;
+    }
+    
     // Find by name
     static function findByName($name) 
     {
