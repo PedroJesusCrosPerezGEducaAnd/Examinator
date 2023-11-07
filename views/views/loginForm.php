@@ -4,7 +4,7 @@
     <h2 id="h2Titulo">Login</h2>
 
     <form name="examinator-login" accept-charset="utf-8" autocomplete="off" enctype="multipart/form-data"
-    method="post" formtarget="_blank" formnovalidate="formnovalidate" action="?menu=login">
+    method="post" formtarget="_blank" formnovalidate="formnovalidate" action="?menu=actionLogin">
 
     <!-- Login form - START -->
     <div id="login" name="login">

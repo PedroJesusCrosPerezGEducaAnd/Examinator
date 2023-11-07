@@ -4,27 +4,46 @@ class Session
 {
 
     static function start() {
-        session_start();
+        if (session_status() == PHP_SESSION_NONE) 
+        {
+            session_start();
+        }
     }
 
     static function end() {
+        if (session_status() == PHP_SESSION_NONE) 
+        {
+            session_start();
+        }
         session_destroy();
     }
 
     static function read($clave) {
-        return $_SESSION[$clave];
+        if (session_status() == PHP_SESSION_NONE) 
+        {
+            return $_SESSION[$clave];
+        }
     }
 
     static function save($clave, $valor) {
-        $_SESSION[$clave] = $valor;
+        if (session_status() == PHP_SESSION_NONE) 
+        {
+            $_SESSION[$clave] = $valor;
+        }
     }
 
     static function delete($clave) {
-        unset($_SESSION[$clave]);
+        if (session_status() == PHP_SESSION_NONE) 
+        {
+            unset($_SESSION[$clave]);
+        }
     }
     
     static function exist($clave) {
-        return isset($_SESSION[$clave]);
+        if (session_status() == PHP_SESSION_NONE) 
+        {
+            return isset($_SESSION[$clave]);
+        }
     }
 
 }
