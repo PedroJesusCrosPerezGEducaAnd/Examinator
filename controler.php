@@ -1,10 +1,8 @@
 <?php
-    
 
-
-    switch (true) 
+    /*switch ($_SERVER["REQUEST_METHOD"] == "GET") 
     {
-        case $_POST["login"]:
+        case $_GET["login"]:
             require_once $_SERVER["DOCUMENT_ROOT"]."/functions/formActions.php";
             actionLogin();
             break;
@@ -13,6 +11,6 @@
             echo "<br><br><br>";
             echo "No has pulsado nada";
             break;
-    }
+    }*/
 
 ?>

@@ -1,0 +1,88 @@
+table {
+    border-collapse: separate;
+    border-spacing: 0.5em;
+}
+table th, table td {
+    border: 1px solid black;
+    border-radius: 5px;
+    text-align: center;
+}
+
+thead {
+    background-color: grey;
+}
+thead th {
+    padding: 1em;
+    color: white;
+}
+td {
+    padding: 1em;
+}
+td > button:first-child {
+    margin-right: 0.5em;
+}
+
+
+
+/* =========================================================== */
+/* ==================== FONT-SIZE ============================ */
+/* =========================================================== */
+* {/*td, th, select, button {*/
+    font-size: 0.95em;
+}
+th {
+    font-size: 1.2em;
+}
+
+
+
+
+/* =========================================================== */
+/* ==================== btnAccept ============================ */
+/* =========================================================== */
+.btnAccept {
+    padding: 0.5em 1.2em;
+    background-color: green;
+    color: white;
+    border-radius: 8px;
+    border: 2px solid rgb(0, 97, 0);
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+.btnAccept:hover {
+    background-color: rgb(1, 187, 1);
+}
+
+
+
+/* =========================================================== */
+/* ====================== btnDeny ============================ */
+/* =========================================================== */
+.btnDeny {
+    padding: 0.5em 1.2em;
+    background-color: red;
+    color: white;
+    border-radius: 8px;
+    border: 2px solid rgb(170, 0, 0);
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+.btnDeny:hover {
+    background-color: rgb(255, 58, 58);
+}
+
+
+/* =========================================================== */
+/* ======================= SELECT ============================ */
+/* =========================================================== */
+.styled-select {
+    width: 10em;
+    padding: 1em;
+    border: 2px solid rgb(255, 86, 25);
+    border-radius: 5px;
+    background-color: coral;
+    color: white;
+}
+.styled-select:hover {
+    border-color: #2c3e50;
+}

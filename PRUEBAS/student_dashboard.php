@@ -1,5 +1,5 @@
 <div>
 
-    <h2>Bienvenido rol:student</h2>
+    <h2>Bienvenido rol: student</h2>
 
 </div>

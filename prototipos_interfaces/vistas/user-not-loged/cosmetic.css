@@ -1,0 +1,59 @@
+/* =========================================================== */
+/* ======================= COLORS ============================ */
+/* =========================================================== */
+header {
+    background-color: #739072;
+}
+
+nav {
+    /*background-color: #4F6F52;*/
+    background-color: #3A4D39;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 2em;
+}
+nav>span:hover {
+    background-color: #739072;
+    cursor: pointer;
+}
+
+main {
+    background-color: #739072;
+}
+footer {
+    background-color: #3A4D39;
+}
+
+main > p {
+    font-size: 1.6em;
+    font-weight: bold;
+
+    margin: auto;
+}
+
+
+/* =========================================================== */
+/* ======================== ICONS ============================ */
+/* =========================================================== */
+nav img {
+    width: 32px;
+    height: 32px;
+}
+
+/* =========================================================== */
+/* ====================== BUTTONS ============================ */
+/* =========================================================== */
+.styled-button {
+    padding: 0.5em 1em;
+    background-color: rgb(23, 133, 23);
+    color: white;
+    border-radius: 8px;
+    border: 2px solid rgb(8, 48, 8);
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    margin: auto;
+}
+.styled-button:hover {
+    background-color: rgb(1, 187, 1);
+}

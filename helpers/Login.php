@@ -14,7 +14,7 @@ class Login
             Session::start();
             Session::save("user", $user);
 
-            switch ($user->getRole()) 
+            switch ( $user->getRole() ) 
             {
                 case 'student':
                     header("Location: ?rol=student");

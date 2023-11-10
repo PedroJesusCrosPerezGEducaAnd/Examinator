@@ -40,14 +40,14 @@
 
   <header>
     <?php
-        require_once "header.php";
+        require_once "landingpage/header.php";
     ?>
   </header>
 
 
   <aside>
     <?php
-        require_once "aside.php";
+        require_once "landingpage/aside.php";
     ?>
   </aside>
 
@@ -61,7 +61,7 @@
 
   <footer>
     <?php
-        require_once "footer.php";
+        require_once "landingpage/footer.php";
     ?>
   </footer>
 

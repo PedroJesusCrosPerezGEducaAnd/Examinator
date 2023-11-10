@@ -10,10 +10,10 @@
     <div id="login" name="login">
 
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" autofocus maxlength="45">
+        <input type="text" name="name" autofocus maxlength="45" require>
 
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" maxlength="45">
+        <input type="password" name="password" maxlength="45" require>
 
         <label for="login" class="feedback" name="feedback"></label>
         <input type="submit" value="Login" name="login">
@@ -21,6 +21,7 @@
 
         <a href="?menu=forgotpassword" name="aForgotPassword">¿Forgot password?</a>
         <a href="?menu=signup" name="aSignUp">Sign up</a>
+        
     </div>
     <!-- Login form - END -->
     </form>

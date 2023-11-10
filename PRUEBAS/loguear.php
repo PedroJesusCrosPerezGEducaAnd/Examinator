@@ -1,26 +1,28 @@
 <?php
+require_once $_SERVER["DOCUMENT_ROOT"]."/helpers/Autoload.php";
 
-$userName = $_POST["name"];
-$userPassword = $_POST["password"];
-$rol = "teacher";
 
-if (!empty($rol)) 
+if ( isset($_POST["name"]) && isset($_POST["password"]) ) 
 {
-    $_SESSION['name'] = $userName;
-    $_SESSION['password'] = $userPassword;
-    $_SESSION['rol'] = $rol;
+    $name = $_POST["name"];
+    $password = $_POST["password"];
+    $user = new User(null, $name, $password, $name);
 
+    Session::save("user", $user);
 
-    switch ($rol) {
+    $myUser = Session::read("user");
+    
+    switch ($myUser->getRole()) 
+    {
         case 'admin':
             header('Location: admin_dashboard.php');
-            exit();
+            break;
         case 'teacher':
             header('Location: teacher_dashboard.php');
-            exit();
+            break;
         case 'student':
             header('Location: student_dashboard.php');
-            exit();
+            break;
     }
 } else {
     echo 'Credenciales incorrectas';

@@ -1,0 +1,41 @@
+body {
+    display: grid;
+    grid-template-areas:
+        "header header"
+        "nav nav"
+        "aside main"
+        "footer footer";
+    grid-template-columns: 20% 80%; /* Establece las proporciones de ancho de las columnas */
+    grid-template-rows: 20% 10% 60% 10%; /* Establece las proporciones de altura de las filas */
+    min-height: 100vh;
+}
+
+header {
+    grid-area: header;
+    min-height: 20%;
+    background-color: #3498db;
+}
+
+nav {
+    grid-area: nav;
+    min-height: 20%;
+    background-color: #8e2cc7;
+}
+
+aside {
+    grid-area: aside;
+    min-height: 60%;
+    background-color: rgb(23, 196, 60);
+}
+
+main {
+    grid-area: main;
+    min-height: 60%;
+    background-color: #2ecc71;
+}
+
+footer {
+    grid-area: footer;
+    min-height: 20%;
+    background-color: #e74c3c;
+}
