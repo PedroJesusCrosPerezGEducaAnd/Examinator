@@ -4,7 +4,7 @@ nav a {
 }
 /* Estilos para el botón del menú */
 .dropbtn {
-    padding: 10px;
+    /*padding: 10px;*/
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
@@ -15,12 +15,15 @@ nav a {
     position: relative;
     display: inline-block;
 }
+.dropdown > * {
+    padding: 3em;
+}
 
 /* Contenido del menú desplegable (oculto por defecto) */
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: transparent;
+    background-color: #0B5D1E;
     min-width: 2em;
     z-index: 1;
     opacity: 0;
@@ -31,15 +34,23 @@ nav a {
 /* Enlaces dentro del menú desplegable */
 .dropdown-content a {
     color: black;
+    background-color: #139A43;
     padding: 0.5em 1em 0.5em 1em;
     display: block;
     transition: background-color 0.4s ease-in-out, transform 0.10s ease-in-out;
     transform: translateX(0px);
+
+    border-top-right-radius: 1em;
+    border-bottom-right-radius: 1em;
+    border-bottom-left-radius: 1em;
+    margin-top: 0.5em;
 }
 
 /* Cambio de color al pasar el ratón por encima de las opciones */
 .dropdown-content a:hover {
-    background-color: #91b980;
+    /*background-color: #91b980;*/
+    /*background-color: #139A43;*/
+    background-color: #0DAB76;
     transform: translateX(10px);
 }
 

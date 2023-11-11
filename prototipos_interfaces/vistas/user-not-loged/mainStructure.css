@@ -18,6 +18,11 @@ header {
 nav {
     grid-area: nav;
     min-height: 10%;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 2em;
 }
 main {
     grid-area: main;

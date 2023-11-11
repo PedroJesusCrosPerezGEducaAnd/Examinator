@@ -7,9 +7,9 @@
     <title>Vista estudiante</title>
     <link rel="stylesheet" href="resetStyles.css">
     <link rel="stylesheet" href="mainStructure.css">
-    <link rel="stylesheet" href="iconStyle.css">
     <link rel="stylesheet" href="cosmetic.css">
     <link rel="stylesheet" href="dropdown.css">
+    <link rel="stylesheet" href="iconStyle.css">
 </head>
 
 <body>
@@ -20,15 +20,16 @@
     </header>
 
     <nav>
-        <a href="?menu=landingpage" class="btn">Main</a>
-        <div class="dropdown">
-        <a href="?myAccount" class="dropbtn"><img src="../src/accountBox.svg" alt="account-box"></a>
+        <span><a href="?menu=landingpage" class="btn">Main</a></span>
+        <span class="dropdown">
+            <!--<a href="?myAccount" class="dropbtn"><img src="../src/accountBox.svg" alt="account-box"></a>-->
+            <a href="?myAccount" class="dropbtn"><img src="../src/accountBox64x64.svg" alt="account-box"></a>
             <div class="dropdown-content">
                 <a href="?menu=login" class="dropbtn">Login</a>
                 <a href="?menu=logout" class="dropbtn">Logout</a>
                 <a href="?menu=myAccount" class="dropbtn">My account</a>
             </div>
-        </div>
+        </span>
     </nav>
 
     <main>

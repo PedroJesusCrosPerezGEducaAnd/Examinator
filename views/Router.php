@@ -49,15 +49,15 @@ class Router
                 switch ($_GET['rol'])
                 {
                     case 'student':
-                        require_once "rol/student/student_dashboard.php";
+                        require_once "views/rol/student/student_dashboard.php";
                         break;
     
                     case 'admin':
-                        require_once "rol/admin/admin_dashboard.php";
+                        require_once "views/rol/admin/admin_dashboard.php";
                         break;
     
                     case 'teacher':
-                        require_once "rol/teacher/teacher_dashboard.php";
+                        require_once "views/rol/teacher/teacher_dashboard.php";
                         break;
                 }
             }
