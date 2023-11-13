@@ -133,27 +133,6 @@ class DBUser
     }
 
 
-    // Select *
-    function findByRole($role)
-    {
-        $cn = new DB(); // TODO quitar en el futuro
-        // Variables
-        $arrUsers = [];
-        //$nameFields;
-        $sql = "SELECT * FROM user WHERE role = '$role'";
-        $result = $cn->query($sql);
-
-        // Proceso
-        while ($row = $result->fetch_assoc()) 
-        {
-            $arrUsers[$row["name"]] = new User($row["id"],$row["name"], $row["password"], $row["role"]);
-        }
-        $cn->close();
-        
-        // Return
-        return $arrUsers;
-    }
-
 
 
     // ############################################################################################
@@ -319,6 +298,28 @@ class DBUser
         }
 
         return $user;
+    }
+
+
+    // Find by role
+    static function findByRole($role)
+    {
+        $cn = new DB(); // TODO quitar en el futuro
+        // Variables
+        $arrUsers = [];
+        //$nameFields;
+        $sql = "SELECT * FROM user WHERE role = '$role'";
+        $result = $cn->query($sql);
+
+        // Proceso
+        while ($row = $result->fetch_assoc()) 
+        {
+            $arrUsers[$row["name"]] = new User($row["id"],$row["name"], $row["password"], $row["role"]);
+        }
+        $cn->close();
+        
+        // Return
+        return $arrUsers;
     }
 }
 

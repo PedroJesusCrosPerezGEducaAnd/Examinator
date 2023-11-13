@@ -3,30 +3,22 @@
 class Validator 
 {
     // Properties
-    private $errors;
+    private $errors = array();
 
 
     // Getters y Setters
     function getErrors() 
     { return $this->errors; }
+    function getError($campo) 
+    { return $this->errors[$campo]; }
     private function setErrors($fieldName, $errorMessage) 
-    { return $this->errors[] = [$fieldName => $errorMessage]; }
+    { return $this->errors[$fieldName] = $errorMessage; }
 
 
     // Methods
     function isError() 
     {
-        $isError = true;
-
-        if ($this->getErrors() == "")
-            return  false;
-
-        return $isError;
-    }
-
-    function getError($campo) 
-    {
-        
+        return !empty($this->errors);
     }
 
     // Este código lo rescataré en el futuro para intentar hacer pruebas sobre que la propia clase validator sea la que la clase validator ayude a mostrar errores para depurar (por ahora). aunque no debe encargase de ello en el programa futuro
@@ -72,6 +64,14 @@ class Validator
     // ###########################################################################################
 
     // String
+    function isString($fieldName, $value, $errorMessage) 
+    {
+        if ( !is_string($value) ) 
+        {
+            $this->setErrors($fieldName, $errorMessage);
+        }
+    }
+
     function string($fieldName, $value, $errorMessage, $minLength, $maxLength) : bool 
     {
         $isValid = true;

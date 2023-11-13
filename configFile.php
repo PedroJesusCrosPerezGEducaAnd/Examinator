@@ -17,8 +17,21 @@
         "password" => "root",
         "dbname" => "examinator"
     ];
-    
-    
+
+class Configfile
+{
+    static function getDatabase()
+    {
+        return 
+        [
+            "host" => "localhost",
+            "user" => "root",
+            "password" => "root",
+            "dbname" => "examinator"
+        ];
+    }
+}
+
 
 
 ?>

@@ -1,30 +1,79 @@
 <?php
+/**
+ * Cómo utilizar esta api
+ * TODO como utilizar apiUser
+ */
 
+
+
+
+
+
+
+
+
+
+
+// Autoload
+include_once $_SERVER["DOCUMENT_ROOT"]."/helpers/Autoload.php";
+
+// Cabeceras
+header('Content-Type: application/json');
+
+// Api
 switch ($_SERVER["REQUEST_METHOD"]) 
 {
     case 'GET':
-        // TODO select * from user [where ___];
-        // Se intercambia la información en el body del $_GET[]
-        echo "se han devuelto x tuplas";
+        switch ($_GET["user"]) 
+        {
+            case 'findAll':
+                $users = DBUser::findAll();
+                echo json_encode(['data' => $users]);
+                break;
+
+            case 'findByName':
+                $name = isset($_GET["name"]) ? $_GET["name"] : null;
+                $user = DBUser::findByName($name);
+                echo json_encode(['data' => $user]);
+                break;
+
+            case 'findByRole':
+                $role = isset($_GET["role"]) ? $_GET["role"] : null;
+                $users = DBUser::findByRole($role);
+                echo json_encode(['data' => $users]);
+                break;
+            
+            default:
+                echo json_encode(['error' => 'Invalid operation']);
+                break;
+        }
         break;
 
     case 'POST':
-        // TODO insert user;
-        echo "se han insertado x filas";
+        $name = isset($_POST["name"]) ? $_POST["name"] : null;
+        $password = isset($_POST["password"]) ? $_POST["password"] : null;
+
+        if ($name !== null && $password !== null) {
+            $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+            DBUser::insert(new User(null, $name, $hashedPassword, null));
+            echo json_encode(['success' => 'User inserted successfully']);
+        } else {
+            echo json_encode(['error' => 'Invalid input']);
+        }
         break;
 
-    case 'PULL':
-        // TODO update user set ____ where id=[];
-        echo "se ha actualizado correctamente";
+    case 'PUT':
+        // TODO: Handle PUT request
+        echo json_encode(['error' => 'Not implemented']);
         break;
 
     case 'DELETE':
-        // TODO delete user where id=[];
-        echo "se ha actualizado correctamente";
+        // TODO: Handle DELETE request
+        echo json_encode(['error' => 'Not implemented']);
         break;
     
     default:
-        echo "ERROR"; // TODO error
+        echo json_encode(['error' => 'Invalid request']);
         break;
 }
 

@@ -26,11 +26,6 @@ class Router
                         }
                         break;
 
-                    case 'actionLogin':
-                        // NO ENTRA AQUÍ, ES PORQUE EL MÉTODO DE REQUEST ES POST, PERO LA VARIABLE QUE TOCO ES GET
-                        echo "NO ENTRA AQUÍ";
-                        break;
-
                     case 'signup':
                         require_once "signupForm.php";
                         break;
@@ -46,19 +41,59 @@ class Router
             }
             elseif ( isset($_GET["rol"]) )
             {
-                switch ($_GET['rol'])
+                if ( Login::isLoged() ) 
                 {
-                    case 'student':
-                        require_once "views/rol/student/student_dashboard.php";
-                        break;
-    
-                    case 'admin':
-                        require_once "views/rol/admin/admin_dashboard.php";
-                        break;
-    
-                    case 'teacher':
-                        require_once "views/rol/teacher/teacher_dashboard.php";
-                        break;
+                    switch ($_GET['rol'])
+                    {
+                        case 'student':
+                            require_once "views/rol/student/student_dashboard.php";
+                            break;
+        
+                        case 'admin':
+                            $user = Session::read("user");
+                                
+                            if (  $user instanceof User && $user->getRole() == "admin" ) 
+                            {
+                                if ( isset($_GET['admin']) ) 
+                                {
+                                    switch ($_GET['admin']) 
+                                    {
+                                        case 'users_requests':
+                                            require_once "views/rol/admin/users-requests/index.php";
+                                            break;
+                                        
+                                        default:
+                                            require_once "views/rol/admin/admin_dashboard.php";
+                                            break;
+                                    }
+                                }
+                                else
+                                {
+                                    require_once "views/rol/admin/admin_dashboard.php";
+                                }
+                            }
+                            else
+                            {
+                                echo "Sitio restringido exclusivamente a administradores.";
+                            }
+                            break;
+        
+                        case 'teacher':
+                            require_once "views/rol/teacher/teacher_dashboard.php";
+                            break;
+
+                        case 'null':
+                            echo "Estás en la sala de espera, espera a que el administrador te acepte.";
+                            break;
+
+                        default:
+                            echo "Estás en la sala de espera";
+                            break;
+                    }
+                }
+                else
+                {
+                    echo "Usuario no logeado.";
                 }
             }
             else
@@ -90,6 +125,29 @@ class Router
                         {
                             require_once "loginForm.php";
                             echo "Error en las credenciales"; // TODO mostrar mejor los errores
+                        }
+                        break;
+
+                    case 'actionSignup':
+                        if ( !(empty($_POST["name"]) && empty($_POST["password"])) )
+                        {
+                            if ( empty(DBUser::findByName($_POST["name"])) ) 
+                            {
+                                // Insert en la base de datos
+                                DBUser::insert( new User(null, $_POST["name"], $_POST["password"], null) );
+                                // TODO mostrar feedback de registro;
+                                echo "¡¡¡El usuario se ha registrado con éxito!!!";
+                            }
+                            else
+                            {
+                                // Tiene que mostrar el error de que el nombre del usuario ya existe en la base de datos
+                                echo "Error en las credenciales2"; // TODO mostrar mejor los errores
+                            }
+                        }
+                        else
+                        {
+                            require_once "loginForm.php";
+                            echo "Error en las credenciales1"; // TODO mostrar mejor los errores
                         }
                         break;
                     

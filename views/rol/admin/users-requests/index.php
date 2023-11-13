@@ -1,16 +1,24 @@
 <?php
+$thisdir = "views/rol/admin/users-requests/";
 echo '
-<!DOCTYPE html>
-<html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vista estudiante</title>
-    <link rel="stylesheet" href="resetStyles.css">
-    <link rel="stylesheet" href="mainStructure.css">
-    <link rel="stylesheet" href="iconStyle.css">
-    <link rel="stylesheet" href="cosmetic.css">
+    <title>ADMIN - users requests</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="'.$thisdir.'css/resetStyles.css">
+    <link rel="stylesheet" href="'.$thisdir.'css/mainStructure.css">
+    <link rel="stylesheet" href="'.$thisdir.'css/position.css">
+
+    <link rel="stylesheet" href="'.$thisdir.'css/cosmetic.css">
+    <link rel="stylesheet" href="'.$thisdir.'css/cosmetic-table.css">
+
+    <link rel="stylesheet" href="'.$thisdir.'css/dropdown.css">
+    <link rel="stylesheet" href="'.$thisdir.'css/iconStyle.css">
+
+    <!-- JAVASCRIPT -->
+    <script src="'.$thisdir.'js/functions.js"></script>
+    <script src="'.$thisdir.'js/admin_ajax.js"></script>
 </head>
 
 <body>
@@ -21,10 +29,15 @@ echo '
     </header>
 
     <nav>
-        <span><img src="../src/accountBox.svg" alt="accountBox.vg" name="accountBox"></span>
-        <span><img src="../src/accountBox.svg" alt="accountBox.vg" name="accountBox"></span>
-        <span><img src="../src/accountBox.svg" alt="accountBox.vg" name="accountBox"></span>
-        <h2>NAV</h2>
+        <span><a href="?menu=landingpage" class="btn">Main</a></span>
+        <span class="dropdown">
+            <a href="?myAccount" class="dropbtn"><img src="src/icons/accountBox64x64.svg" alt="account-box"></a>
+            <div class="dropdown-content">
+                <p class="name">'.Session::read("user")->getName().'</p>
+                <a href="?menu=logout" class="dropbtn">Logout</a>
+                <a href="?menu=myAccount" class="dropbtn">My account</a>
+            </div>
+        </span>
     </nav>
 
     <main>
@@ -54,6 +67,7 @@ echo '
                     </tr>
                 </tbody>
             </table>
+            <button name="rellenar" id="temp">Rellenar</button>
         </div>
 
         <div>

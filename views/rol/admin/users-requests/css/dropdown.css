@@ -1,7 +1,3 @@
-nav a {
-    text-decoration: none;
-    color: black;
-}
 /* Estilos para el botón del menú */
 .dropbtn {
     border: none;
@@ -15,7 +11,7 @@ nav a {
     display: inline-block;
 }
 .dropdown > * {
-    padding: 3em;
+    padding: 1em;
 }
 
 /* Contenido del menú desplegable (oculto por defecto) */
@@ -51,6 +47,7 @@ nav a {
     /*background-color: #139A43;*/
     background-color: #0DAB76;
     transform: translateX(10px);
+    color: white;
 }
 
 /* Mostrar el menú desplegable cuando se pasa el ratón por encima del botón */

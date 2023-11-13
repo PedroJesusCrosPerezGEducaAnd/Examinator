@@ -27,6 +27,10 @@ class Login
                 case 'teacher':
                     header("Location: ?rol=teacher");
                     break;
+
+                default:
+                    header("Location: ?rol=null");
+                    break;
             }
         }
     }

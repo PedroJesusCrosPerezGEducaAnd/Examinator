@@ -20,6 +20,8 @@ Class Autoload
             $directory = "entities";
         } elseif ( file_exists($docroot . "/" . "helpers/" . $filename . ".php") ) {
             $directory = "helpers";
+        } elseif ( file_exists($docroot . "/" . $filename . ".php") ) {
+            $directory = "";
         } else { $directory = "ERROR"; }
 
         require_once $_SERVER["DOCUMENT_ROOT"] . "/" . $directory . "/" . $filename . '.php';

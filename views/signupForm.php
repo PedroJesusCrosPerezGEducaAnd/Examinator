@@ -4,7 +4,7 @@
     <h2 id="h2Titulo">Sign up</h2>
 
     <form name="signupForm" accept-charset="utf-8" autocomplete="off" enctype="multipart/form-data"
-    method="post" formtarget="_blank" formnovalidate="formnovalidate">
+    method="post" formtarget="_blank" formnovalidate="formnovalidate" action="?menu=actionSignup">
 
     <!-- Signup form - START -->
     <div name="signup">
@@ -28,4 +28,4 @@
 <!-- Signup Form - END -->
 
 
-    <script src="views/js/ajax_copy.js"></script>
+    <!--<script src="views/js/ajax_copy.js"></script>-->

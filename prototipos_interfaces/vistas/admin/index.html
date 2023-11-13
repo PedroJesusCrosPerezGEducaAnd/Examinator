@@ -1,11 +1,45 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>teacher</title>
+    <title>Vista estudiante</title>
+    <link rel="stylesheet" href="resetStyles.css">
+    <link rel="stylesheet" href="mainStructure.css">
+    <link rel="stylesheet" href="cosmetic.css">
+    <link rel="stylesheet" href="dropdown.css">
+    <link rel="stylesheet" href="iconStyle.css">
 </head>
+
 <body>
-    <h1>Vista admin</h1>
+    <header>
+        <div>
+            <h2>HEADER</h2>
+        </div>
+    </header>
+
+    <nav>
+        <span><a href="?menu=landingpage" class="btn">Main</a></span>
+        <span class="dropdown">
+            <a href="?myAccount" class="dropbtn"><img src="../src/accountBox64x64.svg" alt="account-box"></a>
+            <div class="dropdown-content">
+                <a href="?menu=login" class="dropbtn">Login</a>
+                <a href="?menu=logout" class="dropbtn">Logout</a>
+                <a href="?menu=myAccount" class="dropbtn">My account</a>
+            </div>
+        </span>
+    </nav>
+
+    <main>
+        <p>USER NOT LOGED - DASHBOARD</p>
+
+        
+    </main>
+
+    <footer>
+        <h2>FOOTER</h2>
+    </footer>
 </body>
+
 </html>

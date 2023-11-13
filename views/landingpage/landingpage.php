@@ -1,4 +1,4 @@
-<div name="landingpage">
+<main name="landingpage">
     <section>
         <article>
             <h2>Bienvenido a la web Examinator</h2>
@@ -15,4 +15,4 @@
         <article>Article-3</article>
         <article>Article-4</article>
     </section>
-</div>
+</main>
