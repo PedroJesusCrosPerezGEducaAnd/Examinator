@@ -6,6 +6,23 @@ body {
   flex-direction: column;
   height: 100vh;
 }
+
+/* HEADER - start */
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+header div:first-child {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 64%;
+}
+/* HEADER - end */
+
+/* MAIN - start */
 main {
   display: flex;
   justify-content: center;
@@ -13,6 +30,8 @@ main {
 
   flex-grow: 1;
 }
+/* MAIN - end */
+
 /* FOOTER */
 footer {
   display: flex;
@@ -20,13 +39,6 @@ footer {
   padding-top: 1em;
 }
 
-/* HEADER */
-header {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
 /*header img[name="logo"] {
   height: 72px;
   width: 72px;

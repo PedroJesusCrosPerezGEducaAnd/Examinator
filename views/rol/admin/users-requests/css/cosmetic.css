@@ -36,31 +36,3 @@ nav > a {
 }
 
 
-/* =========================================================== */
-/* ==================== USER NAME ============================ */
-/* =========================================================== */
-.name {
-    color: darkblue;
-    font-weight: bold;
-    text-align: center;
-    padding-bottom: 0.5em;
-    margin-bottom: 0.5em;
-    border: 2px solid darkblue;
-}
-
-/* =========================================================== */
-/* ====================== BUTTONS ============================ */
-/* =========================================================== */
-.styled-button {
-    padding: 0.5em 1em;
-    background-color: rgb(23, 133, 23);
-    color: white;
-    border-radius: 8px;
-    border: 2px solid rgb(8, 48, 8);
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-    margin: auto;
-}
-.styled-button:hover {
-    background-color: rgb(1, 187, 1);
-}

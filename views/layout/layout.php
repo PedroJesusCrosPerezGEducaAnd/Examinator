@@ -53,6 +53,11 @@ $thisdir = "views/layout";
     ?>
   </header>
 
+  <nav>
+    <?php
+      require_once "nav.php";
+    ?>
+  </nav>
 
   <main>
   <?php

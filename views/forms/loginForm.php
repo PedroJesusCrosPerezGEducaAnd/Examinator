@@ -4,6 +4,7 @@ $thisdir = "views/forms";
 <head>
     <link rel="stylesheet" href="<?php echo $thisdir?>/css/styleForm.css">
 </head>
+
 <!-- Login Form - START -->
 <div class="form-container">
 
@@ -13,7 +14,7 @@ $thisdir = "views/forms";
     method="post" formtarget="_blank" formnovalidate="formnovalidate" action="?menu=actionLogin">
 
     <!-- Login form - START -->
-    <div id="login" name="login">
+    <div name="examinatorForm" name="login">
 
         <label for="name">Name:</label>
         <input type="text" name="name" autofocus maxlength="45" require>

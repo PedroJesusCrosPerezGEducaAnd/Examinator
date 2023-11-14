@@ -1,31 +1,8 @@
-body {
-    min-height: 100vh;
-}
-
-
-header {
-    min-height: 10vh;
-}
-nav {
-    min-height: 10vh;
-}
 main {
-    min-height: 70vh;
-}
-footer {
-    min-height: 10vh;
+    align-items: flex-start;
 }
 
 
-/* ========================================= */
-/* ============== FORM ===================== */
-/* ========================================= */
-form {
-    display: grid;
-    grid-template-columns: 1fr 0.2fr 0.2fr 0.3fr repeat(4, 0.2fr);
-    grid-template-rows: 1.4em 2em repeat(2, 1.4em) 2em repeat(2, 1.4em) 2em repeat(3, 1.4em);
-    margin: auto;
-}
 
 
 /* ========================================================================================= */
