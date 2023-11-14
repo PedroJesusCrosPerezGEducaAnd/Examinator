@@ -2,16 +2,12 @@
 /**
  * Cómo utilizar esta api
  * TODO como utilizar apiUser
+ * 
+ * 
+ * 
+ *
+ * 
  */
-
-
-
-
-
-
-
-
-
 
 
 // Autoload

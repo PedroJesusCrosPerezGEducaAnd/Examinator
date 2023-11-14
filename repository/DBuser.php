@@ -302,6 +302,45 @@ class DBUser
 
 
     // Find by role
+    static function findByRole2($role)
+    {
+        $cn = new DB(); // TODO quitar en el futuro
+
+        // Consulta segura utilizando prepared statements
+        $sql = "SELECT * FROM user WHERE role = ?";
+        $stmt = $cn->prepare($sql);
+        $stmt->bind_param("s", $role);
+        $stmt->execute();
+
+        // Manejo de errores
+        if ($stmt->error) {
+            // Aquí puedes manejar el error de acuerdo a tus necesidades
+            $cn->close();
+            return null;
+        }
+
+        // Asignación de resultados directamente a variables
+        $stmt->bind_result($id=null, $name, $password, $userRole);
+
+        // Variables
+        $arrUsers = [];
+
+        // Proceso
+        while ($stmt->fetch()) {
+            $arrUsers[] = new User($id, $name, $password, $userRole);
+        }
+
+        $cn->close();
+
+        // Return temprano si no hay resultados
+        if (empty($arrUsers)) {
+            return null;
+        }
+
+        // Return
+        return $arrUsers;
+    }
+
     static function findByRole($role)
     {
         $cn = new DB(); // TODO quitar en el futuro

@@ -49,10 +49,14 @@ class Configfile
     // ###################################################################################################
     // ############################################## API'S ##############################################
     // ###################################################################################################
-    static apiUser()
+    static apiEntity($entity, $option, field=null, value=null)
     {
-        //return "api/apiUser.php";
-        return "http://localexaminator/api/apiUser.php";
+        var apiroute = (field === null && value === null) ? 
+        "http://localexaminator/api/api"+$entity+".php?"+$entity+"="+$option+"&"+field+"="+value
+        :
+        "http://localexaminator/api/api"+$entity+".php?"+$entity+"="+$option
+
+        return apiroute;
     }
 
     static apiExam()

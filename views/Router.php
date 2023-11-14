@@ -12,7 +12,7 @@ class Router
                 switch ($_GET['menu']) 
                 {
                     case 'langingpage':
-                        require_once 'landingpage.php';
+                        require_once 'landingpage/landingpage.php';
                         break;
 
                     case 'login':
@@ -22,20 +22,21 @@ class Router
                         }
                         else
                         {
-                            require_once "loginForm.php";
+                            require_once "forms/loginForm.php";
                         }
                         break;
 
                     case 'signup':
-                        require_once "signupForm.php";
+                        require_once "forms/signupForm.php";
                         break;
 
                     case 'logout':
-                        require_once "logout.php";
+                        Session::delete("user");
+                        header("Location: ?menu=landingpage");
                         break;
 
                     default:
-                        require_once 'landingpage.php';
+                        require_once 'landingpage/landingpage.php';
                         break;
                 }
             }

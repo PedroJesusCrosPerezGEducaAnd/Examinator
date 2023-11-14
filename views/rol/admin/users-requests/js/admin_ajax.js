@@ -1,27 +1,30 @@
-async function getPendingUsers() 
-{
-    try {
-        const response = await fetch('http://localexaminator/api/apiUser.php?user=findByRole&role=null');
-        const data = await response.json();
-
-        if (response.ok) {
-            console.log('Usuarios obtenidos con éxito:', data);
-            // Aquí puedes manipular la información recibida (por ejemplo, mostrarla en la interfaz de usuario)
-        } else {
-            console.error('Error al obtener usuarios:', data.error);
-            // Aquí puedes manejar el error de acuerdo a tus necesidades
-        }
-    } catch (error) {
-        console.error('Error en la solicitud:', error.message);
-        // Aquí puedes manejar errores de red u otros problemas de solicitud
-    }
-}
-
 window.addEventListener("load", function () 
-{ 
-    array = JSON.parse(getPendingUsers());
-    array.forEach(item => {
-        uploadTuple(document.table[0],createTuple(item));
-    });
-});
+{
+    
+    //fetch(Configfile.apiEntity("user", "findRole", "role", "null"), {
+    fetch('http://localexaminator/api/apiuser.php?user=findByRole&role=null', 
+    {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+    .then(response => {
+        // Verificar si la respuesta está en el rango de códigos de éxito (200-299)
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(jsonData => {
+        console.log(jsonData);
 
+        var table = document.getElementById("tRequestUsers");
+        var tbody = table.getElementsByTagName("tbody")[0];
+        uploadTable(jsonData, tbody);
+    })
+    .catch(error => {
+        console.error('Error during fetch operation:', error);
+    });
+
+});

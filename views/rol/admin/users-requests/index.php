@@ -17,8 +17,8 @@ echo '
     <link rel="stylesheet" href="'.$thisdir.'css/iconStyle.css">
 
     <!-- JAVASCRIPT -->
-    <script src="'.$thisdir.'js/functions.js"></script>
     <script src="'.$thisdir.'js/admin_ajax.js"></script>
+    <script src="'.$thisdir.'js/uploadTable.js"></script>
 </head>
 
 <body>
@@ -42,11 +42,10 @@ echo '
 
     <main>
         <div>
-            <table>
+            <table id="tRequestUsers">
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Password</th>
                         <th>Role</th>
                         <th>Allow</th>
                     </tr>
@@ -55,7 +54,6 @@ echo '
                 <tbody>
                     <tr>
                         <td>Pedro</td>
-                        <td>1234</td>
                         <td>
                             <select name="selectRol" class="styled-select">
                                 <option value="student">Student</option>
@@ -75,7 +73,6 @@ echo '
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Password</th>
                         <th>Role</th>
                         <th>Allow</th>
                     </tr>
@@ -84,7 +81,6 @@ echo '
                 <tbody>
                     <tr>
                         <td>Pedro</td>
-                        <td>1234</td>
                         <td>
                             <select name="selectRol" class="styled-select">
                                 <option value="student">Student</option>

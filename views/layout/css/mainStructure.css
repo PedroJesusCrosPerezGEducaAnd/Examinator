@@ -1,0 +1,47 @@
+/* ######################################################################## */
+/* ############################# LAYOUT ################################### */
+/* ######################################################################## */
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-grow: 1;
+}
+/* FOOTER */
+footer {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 1em;
+}
+
+/* HEADER */
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+/*header img[name="logo"] {
+  height: 72px;
+  width: 72px;
+}
+header > nav {
+  display: flex;
+}
+header > nav > * {
+  margin: 1em;
+}
+
+header nav img {
+  height: 64px;
+  width: 64px;
+}
+header img:hover {
+  cursor: pointer;
+}*/
