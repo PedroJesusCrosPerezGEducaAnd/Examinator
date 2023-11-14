@@ -31,25 +31,13 @@ echo '
                 </tr>
             </thead>
 
-            <tbody>
-                <tr>
-                    <td>Pedro</td>
-                    <td>
-                        <select name="selectRol" class="styled-select">
-                            <option value="student">Student</option>
-                            <option value="teacher">Teacher</option>
-                            <option value="admin">Admin</option>
-                        </select>
-                    </td>
-                    <td><button class="btnAccept">accept</button><button class="btnDeny">deny</button></td>
-                </tr>
-            </tbody>
+            <tbody></tbody>
         </table>
         <button name="rellenar" id="temp">Rellenar</button>
     </div>
 
     <div>
-        <table>
+        <table id="tUsersRoleNotnull">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -58,19 +46,7 @@ echo '
                 </tr>
             </thead>
 
-            <tbody>
-                <tr>
-                    <td>Pedro</td>
-                    <td>
-                        <select name="selectRol" class="styled-select">
-                            <option value="student">Student</option>
-                            <option value="teacher">Teacher</option>
-                            <option value="admin">Admin</option>
-                        </select>
-                    </td>
-                    <td><button class="btnAccept">accept</button><button class="btnDeny">deny</button></td>
-                </tr>
-            </tbody>
+            <tbody></tbody>
         </table>
     </div>
 ';

@@ -1,9 +1,14 @@
 //TODO tengo que pasar todo esto a una clase
 
-// Api's
-let PHPapiGenerateExam = "api/apiGenerateExam.php";
-let PHPapiValidateLogin = "api/apiValidateLogin.php";
-let PHPapiValidateSignup = "api/apiValidateSignup.php";
+// URL Api's
+var urlActual = window.location.href;
+var urlBase = urlActual.split('?')[0];
+
+let PHPapiUsersRequests = urlBase+"api/apiuser.php?user=findByRole&role=null";
+let PHPapiUsersRoleNotnull = urlBase+"api/apiuser.php?user=findByRole&role=notnull";
+let PHPapiGenerateExam = urlBase+"api/apiGenerateExam.php";
+let PHPapiValidateLogin = urlBase+"api/apiValidateLogin.php";
+let PHPapiValidateSignup = urlBase+"api/apiValidateSignup.php";
 
 
 // Feedback messages

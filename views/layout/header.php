@@ -2,6 +2,7 @@
 
 if ( Login::isLoged() ) 
 {
+    $userName = Session::read("user")->getName();
     echo '
     <div>
         <span><img src="views/src/icons/logo_examinator.png" alt="logotipo" name="logo"></span>
@@ -11,6 +12,7 @@ if ( Login::isLoged() )
         <!--<a href="?menu=landingpage" class="btn">Landingpage</a>
         <div>-->
         <a href="?myAccount" class="dropbtn"><img src="views/src/icons/userLoged.svg" alt="loged-user-icon" name="userIcon"></a>
+        <p>'.$userName.'</p>
             <div class="dropdown-content">
                 <a href="?menu=myAccount" class="dropbtn">My account</a>
                 <a href="?menu=logout" class="dropbtn">Logout</a>

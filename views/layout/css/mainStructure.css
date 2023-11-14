@@ -32,6 +32,12 @@ main {
 }
 /* MAIN - end */
 
+/* NAV - start */
+nav p:first-child {
+  text-align: center;
+}
+/* NAV - end */
+
 /* FOOTER */
 footer {
   display: flex;

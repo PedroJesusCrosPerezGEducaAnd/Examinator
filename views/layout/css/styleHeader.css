@@ -20,7 +20,7 @@ header img[name="userIcon"] {
 /* ######################################################################## */
 /* Estilos para el botón del menú */
 .dropbtn {
-    padding: 10px;
+    /*padding: 10px;*/
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
