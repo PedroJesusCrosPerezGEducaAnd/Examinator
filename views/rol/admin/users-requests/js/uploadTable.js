@@ -25,12 +25,14 @@ function createTr(name)
         var btnAccept = document.createElement("button");
         btnAccept.setAttribute("class","btnAccept");
         btnAccept.innerHTML = "Accept";
+        btnAccept.addEventListener("click", fBtnAccept);
         tdButtons.appendChild(btnAccept);
 
         // Denegar
         var btnDeny = document.createElement("button");
         btnDeny.setAttribute("class","btnDeny");
         btnDeny.innerHTML = "Deny";
+        btnAccept.addEventListener("click", fBtnDeny);
         tdButtons.appendChild(btnDeny);
 
     

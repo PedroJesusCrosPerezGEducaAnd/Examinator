@@ -1,8 +1,30 @@
 <?php
 
+if ( Login::isLoged() ) 
+{
+    if ( Session::exist("user") ) 
+    {
+        $user = Session::read("user");
+        
+        if (  $user instanceof User && $user->getRole() == "admin" ) 
+        {
+            printAdminDashboard("");
+        }
+        else
+        {
+            printAdminDashboard("Sitio restringido exclusivamente a administradores.");
+        }
+    }
+}
+else
+{
+    echo "Usuario no logeado.";
+}
 
-
-
+function printAdminDashboard($error) 
+{
+    if (empty($error)) 
+    {
         echo "
         <div name='admin_dashboard'>
         <section>
@@ -22,10 +44,14 @@
             <article>Article-4</article>
         </section>
         
-        <a href='".
-        $_SERVER['REQUEST_URI']."&admin=users_requests'><button name='users_requests'>Users requests</button></a>
+        <a href='".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']."?admin_menu=users_requests'><button name='users_requests'>Users requests</button></a>
         ";
-
+    }
+    else
+    {
+        printAdminDashboard($error);
+    }
+}
 
 ?>
 

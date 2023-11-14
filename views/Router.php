@@ -80,7 +80,32 @@ class Router
                             break;
         
                         case 'teacher':
-                            require_once "views/rol/teacher/teacher_dashboard.php";
+                            $user = Session::read("user");
+                                
+                            if (  $user instanceof User && ($user->getRole() == "teacher" || $user->getRole() == "admin") ) 
+                            {
+                                if ( isset($_GET['teacher']) ) 
+                                {
+                                    switch ($_GET['teacher']) 
+                                    {
+                                        case 'crud-questions':
+                                            require_once "views/rol/teacher/crud-questions/index.php";
+                                            break;
+                                        
+                                        default:
+                                            require_once "views/rol/teacher/teacher_dashboard.php";
+                                            break;
+                                    }
+                                }
+                                else
+                                {
+                                    require_once "views/rol/teacher/teacher_dashboard.php";
+                                }
+                            }
+                            else
+                            {
+                                echo "Sitio restringido exclusivamente a administradores.";
+                            }
                             break;
 
                         case 'null':

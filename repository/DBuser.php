@@ -347,7 +347,11 @@ class DBUser
         // Variables
         $arrUsers = [];
         //$nameFields;
-        $sql = "SELECT * FROM user WHERE role = '$role'";
+        if ($role == "notnull") { 
+            $sql = "SELECT * FROM user WHERE role IS NOT NULL"; 
+        } else { 
+            $sql = "SELECT * FROM user WHERE role = '$role'"; 
+        }
         $result = $cn->query($sql);
 
         // Proceso
