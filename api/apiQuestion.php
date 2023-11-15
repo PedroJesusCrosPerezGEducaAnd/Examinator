@@ -20,7 +20,6 @@ header('Content-Type: application/json');
 switch ($_SERVER["REQUEST_METHOD"]) 
 {
     case 'GET': // SELECT
-    
         switch ($_GET["question"]) 
         {
             case 'findAll':
@@ -69,8 +68,21 @@ switch ($_SERVER["REQUEST_METHOD"])
         break;
 
     case 'PUT': // INSERT
-        // TODO: Handle PUT request
-        echo json_encode(['error' => 'Not implemented']);
+        $data = json_decode(file_get_contents('php://input'), true);
+        //$response = DBQuestion::insert($data["field"],$data["value"],$data["field_id"],$data["value_id"]);
+
+        $question = new Question(
+            null, 
+            $data["statement"], 
+            $data["question"], 
+            $data["option"], 
+            "futuro JSON para source", // TODO leer un recurso desde javascript
+            null, // Exam_id
+            $data["difficulty_id"], 
+            $data["category_id"]
+        );
+        
+        echo DBQuestion::insert($question) ? "true" : "false";
         break;
 
     case 'DELETE': // DELETE

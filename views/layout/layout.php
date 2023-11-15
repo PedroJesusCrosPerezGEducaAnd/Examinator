@@ -31,6 +31,9 @@ $thisdir = "views/layout";
 
   <!-- Estilos para elementos (header>*) -->
   <link rel="stylesheet" href="<?php echo $thisdir?>/css/styleHeader.css">
+  
+  <!-- Estilos para elementos (nav>*) -->
+  <link rel="stylesheet" href="<?php echo $thisdir?>/css/styleNav.css">
 
   <!--<link rel="stylesheet" href="<?php echo $thisdir?>/css/estiloPosicionamiento.css">-->
   <!-- Posicionamiento con flexbox. Además introduzco paddings y margin donde cuadrar los contenedores a mi gusto personal -->
@@ -39,6 +42,7 @@ $thisdir = "views/layout";
 
   <!-- JAVASCRIPT -->
   <script type="text/javascript" src="ConfigFile.js" charset="utf-8" defer></script>
+  <script type="text/javascript" src="<?php echo $thisdir?>/js/jsNav.js" charset="utf-8" defer></script>
   <!--<script type="text/javascript" src="views/js/formElements.js" charset="utf-8" defer></script>
   <script type="text/javascript" src="views/js/entities/Exam.js" charset="utf-8" defer></script>-->
   <!--<script type="text/javascript" src="views/js/inicialice.js" charset="utf-8" defer></script>-->

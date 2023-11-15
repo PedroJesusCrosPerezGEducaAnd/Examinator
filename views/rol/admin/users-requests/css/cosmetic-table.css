@@ -11,6 +11,7 @@ table th, table td {
     text-align: center;
 }
 
+
 thead {
     background-color: grey;
 }
@@ -21,17 +22,18 @@ thead th {
 td {
     padding: 1em;
     background-color: rgb(238, 238, 238);
-    font-size: 2em;
     font-weight: bold;
 }
 td > button:first-child {
     margin-right: 0.5em;
 }
+
+
 /* =========================================================== */
 /* ====================== CLASSES ============================ */
 /* =========================================================== */
 .table_title {
-    font-size: 3em;
+    font-size: 2em;
     font-family: Agbalumo;
 
     /*border: 12px solid black;*/
@@ -51,10 +53,7 @@ td > button:first-child {
 /* =========================================================== */
 /* ==================== FONT-SIZE ============================ */
 /* =========================================================== */
-* {/*td, th, select, button {*/
-    font-size: 0.95em;
-}
-th {
+td, th {
     font-size: 1.2em;
 }
 

@@ -189,7 +189,31 @@ class Router
         }
         else 
         {
-            require_once 'landingpage/landingpage.php';
+            if (Login::isLoged()) 
+            {
+                switch (Session::read("user")->getRole()) 
+                {
+                    case 'student':
+                        require_once $_SERVER['REQUEST_URI']."?rol=student";
+                        break;
+            
+                    case 'admin':
+                        require_once $_SERVER['REQUEST_URI']."?rol=admin";
+                        break;
+            
+                    case 'teacher':
+                        require_once $_SERVER['REQUEST_URI']."?rol=teacher";
+                        break;
+            
+                    default:
+                        require_once $_SERVER['REQUEST_URI']."?menu=landingpage";
+                        break;
+                }
+            }
+            else
+            {
+                require_once $_SERVER['REQUEST_URI']."?menu=landingpage";
+            }
         }
     }
 

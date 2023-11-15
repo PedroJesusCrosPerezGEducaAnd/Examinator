@@ -1,4 +1,4 @@
-window.addEventListener("click", function () {
+window.addEventListener("load", function () {
 
 // Prueba json de pregunta
 var questions = {
@@ -68,49 +68,77 @@ var questions = {
         }
     };
 
-    form.addEventListener("submit", function(event) {
+    
+      form.addEventListener("submit", function(event) {
         event.preventDefault();
   
         var formData = new FormData(this);
+        var any_field_empty = true;
   
-        // Convertir FormData a un objeto JSON
+        // Convertir objeto FormData a un objeto JSON
         var jsonData = {};
+        var i = 0;
+        jsonData["question"] = [];
         formData.forEach(function(value, key) {
-          jsonData[key] = value;
+          any_field_empty = (value == undefined) ? true : false;
+
+          if (key.substring(0,6) == "option" && key.length == 7) {
+            jsonData["question"][i] = value;
+            i++;
+          } else {
+            jsonData[key] = value;
+          }
         });
+        //console.log(jsonData); // debug
+        
   
-        // Imprimir el objeto JSON en la consola
-        console.log(jsonData);
-
-        //var formData = new FormData(form);
-        //console.log(formData.data);
-
-        /**
-         * Guardar pregunta en el servidor.
-         */
-        /*fetch(PHPapiUsersRequests, 
+        if ( !any_field_empty ) 
         {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: formData,
-        })
-        .then(response => {
-            // Verificar si la respuesta está en el rango de códigos de éxito (200-299)
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(jsonData => {
-            var table = document.getElementById("tRequestUsers");
-            var tbody = table.getElementsByTagName("tbody")[0];
-            uploadTable(jsonData, tbody);
-        })
-        .catch(error => {
-            console.error('Error during fetch operation:', error);
-        });*/
+          /**
+           * Petición a servidor para guardar pregunta en la base de datos.
+           */
+          fetch(PHPapiQuestion, 
+          {
+              method: "PUT",
+              headers: {
+                  "Content-Type": "application/json",
+              },
+              body: JSON.stringify(jsonData),
+          })
+          .then(response => {
+              // Verificar si la respuesta está en el rango de códigos de éxito (200-299)
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              
+              return response.json().text;
+          })
+          .then(response => {
+            var feedback = document.getElementById("feedback");
+              if (response == true || response == undefined) {
+                feedback.setAttribute("class","true");
+                feedback.innerHTML = Configfile.getFeedbackCrudQuestion().true;
+                resetForm(form);
+              } else if (response == "true") {
+                feedback.setAttribute("class","false");
+                feedback.innerHTML = Configfile.getFeedbackCrudQuestion().false;
+              } else {
+                feedback.setAttribute("class","error");
+                feedback.innerHTML = Configfile.getFeedbackCrudQuestion().error + response;
+              }
+          })
+          .catch(error => {
+              feedback.setAttribute("class","error");
+              feedback.innerHTML = Configfile.getFeedbackCrudQuestion().error + " | " + error;
+          });
+        } 
+        else 
+        {
+          var feedback = document.getElementById("feedback");
+          feedback.setAttribute("class","false");
+          feedback.innerHTML = Configfile.getFeedbackCrudQuestion().error;
+        }
+        
     })
 
 })

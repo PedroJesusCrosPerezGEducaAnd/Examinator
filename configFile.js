@@ -7,6 +7,7 @@ var urlBase = urlActual.split('?')[0];
 let PHPapiUsersRequests = urlBase+"api/apiuser.php?user=findByRole&role=null";
 let PHPapiUsersRoleNotnull = urlBase+"api/apiuser.php?user=findByRole&role=notnull";
 let PHPapiUser = urlBase+"api/apiuser.php";
+let PHPapiQuestion = urlBase+"api/apiQuestion.php";
 let PHPapiGenerateExam = urlBase+"api/apiGenerateExam.php";
 let PHPapiValidateLogin = urlBase+"api/apiValidateLogin.php";
 let PHPapiValidateSignup = urlBase+"api/apiValidateSignup.php";
@@ -30,6 +31,9 @@ class Configfile
     // ###################################################################################################
     // ########################################### FEEDBACK ##############################################
     // ###################################################################################################
+        /* ========================================================================================= */
+        /* ================================ LOGIN - FORM =========================================== */
+        /* ========================================================================================= */
     static getFeedbackLoginForm()
     {
         return feedbackLoginForm = 
@@ -39,14 +43,30 @@ class Configfile
             "error" : "Se ha producido un error en el servidor: "
         }
     }
-
-
+        /* ========================================================================================= */
+        /* =============================== SIGNUP - FORM =========================================== */
+        /* ========================================================================================= */
     static getFeedbackSignupForm()
     {
         return feedbackSignupForm =
         {
             "true" : "Te has registrado correctamente",
             "false" : "Los campos introducidos son incorrectos",
+            "error" : "Se ha producido un error en el servidor: "
+        }
+    }
+
+
+
+    /* ========================================================================================= */
+    /* ================================ CRUD - QUESTION ======================================== */
+    /* ========================================================================================= */
+    static getFeedbackCrudQuestion()
+    {
+        return feedbackLoginForm = 
+        {
+            "true" : "¡Se ha creado con éxito!",
+            "false" : "Debes rellenar todos los campos, para crear la pregunta.",
             "error" : "Se ha producido un error en el servidor: "
         }
     }

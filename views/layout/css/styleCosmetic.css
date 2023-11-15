@@ -35,6 +35,9 @@ header a {
 body>nav {
   background-color: grey;
 }
+body>nav a {
+  text-decoration: none;
+}
 
 /* ######################################################################## */
 /* ############################### MAIN ################################### */
@@ -77,9 +80,24 @@ footer {
   pointer-events: none;
 }
 .inputError {
-    color: darkred;
-    font-size: small;
-    font-weight: bold;
+  color: darkred;
+  font-size: small;
+  font-weight: bold;
+}
+.true {
+  color: green;
+  font-size: x-large;
+  font-weight: bold;
+}
+.false {
+  color: red;
+  font-size: medium;
+  font-weight: bold;
+}
+.error {
+  color: darkblue;
+  font-size: x-large;
+  font-weight: bold;
 }
 
 

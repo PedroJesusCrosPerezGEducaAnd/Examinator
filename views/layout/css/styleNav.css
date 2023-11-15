@@ -1,0 +1,59 @@
+.navBtn {
+    /*background-color: darkred;*/
+    background-color: #9dc58c;
+    color: white;
+
+    /*border: 1px solid rgb(72, 0, 0);*/
+    border: 1px solid #1f271c;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+
+    padding: 0.5em 2em;
+    margin: 0.5em auto;
+}
+/*.navBtn:hover {
+background-color: rgb(242, 0, 0);
+cursor: pointer;
+}*/
+
+.navBtn:hover {
+    border: 1px solid;
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.2);
+    outline-offset: 15px;
+    outline-color: rgba(255, 255, 255, 0);
+    /*text-shadow: 1px 1px 2px #427388;*/
+    text-shadow: 1px 1px 2px #3f4f38;
+
+    
+    box-shadow: inset 400px 50px 0 0 #D80286;
+}
+
+.navBtn {
+    /*color: #FFF;
+    border: 2px solid rgb(216, 2, 134);
+    border-radius: 0px;
+    padding: 18px 36px;*/
+    display: inline-block;
+    /*font-family: "Lucida Console", Monaco, monospace;
+    font-size: 14px;
+    letter-spacing: 1px;*/
+    cursor: pointer;
+    box-shadow: inset 0 0 0 0 #D80286;
+    -webkit-transition: ease-out 0.4s;
+    -moz-transition: ease-out 0.4s;
+    transition: ease-out 0.4s;
+}
+
+.navBtnClicked {
+    border: 1px solid;
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.2);
+    outline-offset: 15px;
+    outline-color: rgba(255, 255, 255, 0);
+    /*text-shadow: 1px 1px 2px #427388;*/
+    text-shadow: 1px 1px 2px #3f4f38;
+
+    
+    box-shadow: inset 400px 50px 0 0 #D80286;
+}

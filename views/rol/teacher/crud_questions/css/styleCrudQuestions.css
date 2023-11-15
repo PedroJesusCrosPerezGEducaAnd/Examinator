@@ -15,17 +15,17 @@ form[name="crud_questions"] {
 /* ========================================================================================= */
 /* ============================= PARTE IZQUIERDA =========================================== */
 /* ========================================================================================= */
-form>label[for='option1']                   { grid-row: 1/2; grid-column: 1/2; }
-form>input[name='option1']                  { grid-row: 2/3; grid-column: 1/2; }
-form>input[type="radio"][value="option1"]   { grid-row: 2/3; grid-column: 2/3; }
+form>label[for='option1']               { grid-row: 1/2; grid-column: 1/2; }
+form>input[name='option1']              { grid-row: 2/3; grid-column: 1/2; }
+form>input[type="radio"][value="1"]     { grid-row: 2/3; grid-column: 2/3; }
 
-form>label[for='option2']                   { grid-row: 4/5; grid-column: 1/2; }
-form>input[name='option2']                  { grid-row: 5/6; grid-column: 1/2; }
-form>input[type="radio"][value="option2"]   { grid-row: 5/6; grid-column: 2/3; }
+form>label[for='option2']               { grid-row: 4/5; grid-column: 1/2; }
+form>input[name='option2']              { grid-row: 5/6; grid-column: 1/2; }
+form>input[type="radio"][value="2"]     { grid-row: 5/6; grid-column: 2/3; }
 
-form>label[for='option3']                   { grid-row: 7/8; grid-column: 1/2; }
-form>input[name='option3']                  { grid-row: 8/9; grid-column: 1/2; }
-form>input[type="radio"][value="option3"]   { grid-row: 8/9; grid-column: 2/3; }
+form>label[for='option3']               { grid-row: 7/8; grid-column: 1/2; }
+form>input[name='option3']              { grid-row: 8/9; grid-column: 1/2; }
+form>input[type="radio"][value="3"]     { grid-row: 8/9; grid-column: 2/3; }
 
 
 /* ========================================================================================= */
@@ -34,11 +34,11 @@ form>input[type="radio"][value="option3"]   { grid-row: 8/9; grid-column: 2/3; }
 form>label[for='statement']     { grid-row: 1/2; grid-column: 4/9; }
 form>input[name='statement']    { grid-row: 2/3; grid-column: 4/9; }
 
-form>label[for='difficulty']    { grid-row: 4/5; grid-column: 4/9; }
-form>select[name='difficulty']  { grid-row: 4/5; grid-column: 6/8; }
+form>label[for='difficulty_id']    { grid-row: 4/5; grid-column: 4/9; }
+form>select[name='difficulty_id']  { grid-row: 4/5; grid-column: 6/8; }
 
-form>label[for='category']      { grid-row: 6/7; grid-column: 4/9; }
-form>select[name='category']    { grid-row: 6/7; grid-column: 6/8; }
+form>label[for='category_id']      { grid-row: 6/7; grid-column: 4/9; }
+form>select[name='category_id']    { grid-row: 6/7; grid-column: 6/8; }
 
 
 /* ========================================================================================= */
@@ -76,7 +76,7 @@ div[name="crud_questions"] {
 /* =========================================================== */
 /* ======================= POSITION ========================== */
 /* =========================================================== */
-div[name="crud_questions"] > p {
+.formTitle {
     font-size: 2em;
     font-weight: bold;
     border: 2px solid darkred;

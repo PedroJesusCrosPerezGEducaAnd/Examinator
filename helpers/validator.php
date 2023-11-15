@@ -126,6 +126,12 @@ class Validator
     {
         
     }
+
+    // JSON
+    static function esJSON($cadena) {
+        json_decode($cadena);
+        return (json_last_error() == JSON_ERROR_NONE);
+    }
 }
 
 ?>

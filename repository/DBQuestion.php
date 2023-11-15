@@ -38,24 +38,50 @@ class DBQuestion
     // ############################################################################################
     static function insert($question) : bool
     {
+        // Crear una instancia de la clase DB, asumiendo que devuelve un objeto MySQLi
         $cn = new DB(); // TODO quitar en el futuro
+    
         // Variables
         $reached = false;
-        $sql = "INSERT INTO question (name, password, role) VALUES ('" . $question->getName() . "', '" . $question->getPassword() . "', '" . $question->getRole() . "')";
-        
-        // Proceso
-        if ($cn->query($sql) === TRUE) {
-            echo "Inserción exitosa";
-            $reached = true;
-        } else {
-            echo "Error al insertar datos: " . $cn->error;
+        $sql = "INSERT INTO question (id, statement, question, `option`, source, exam_id, difficulty_id, category_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    
+        // Preparar la consulta
+        $stmt = $cn->prepare($sql);
+    
+        // Verificar si la preparación de la consulta fue exitosa
+        if ($stmt === false) {
+            // Manejar el error, por ejemplo, lanzar una excepción
+            throw new Exception("Error preparing statement: " . $cn->error);
         }
+    
+        // Crear variables temporales
+        $id =               $question->get_id();
+        $statement =        $question->getStatement();
+        $questionjson =     $question->getQuestionJSON();
+        $option =           $question->getOption();
+        $source =           $question->getSourceJSON();
+        $exam_id =          $question->getExam_id();
+        $difficulty_id =    $question->getDifficulty_id();
+        $category_id =      $question->getCategory_id();
 
+        // Asociar valores utilizando bind_param
+        $stmt->bind_param('issisiii', $id, $statement, $questionjson, $option, $source, $exam_id, $difficulty_id, $category_id);
+    
+        // Ejecutar la consulta
+        $stmt->execute();
+    
+        // Verificar si la ejecución fue exitosa
+        if ($stmt->affected_rows > 0) {
+            $reached = true;
+        }
+    
+        // Cerrar la conexión (si es necesario)
         $cn->close();
-        
+    
         // Return
         return $reached;
     }
+    
 
 
     // ############################################################################################
@@ -132,7 +158,7 @@ class DBQuestion
         return $tuples;
     }
 
-    static function deleteById($id) : bool
+    static function deleteBy_id($id) : bool
     {
         $cn = new DB(); // TODO quitar en el futuro
         // Variables
