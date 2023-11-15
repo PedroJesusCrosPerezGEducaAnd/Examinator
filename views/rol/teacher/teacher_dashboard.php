@@ -12,7 +12,7 @@ if ( Login::isLoged() )
         }
         else
         {
-            printTeacherDashboard("Sitio restringido exclusivamente a profesores2.");
+            printTeacherDashboard("Sitio restringido exclusivamente a profesores.");
         }
     }
 }
@@ -44,12 +44,12 @@ function printTeacherDashboard($error)
             <article>Article-4</article>
         </section>
         
-        <a href='".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']."?teacher_menu=crud-questions'><button name='crudQuestions'>Crud preguntas</button></a>
+        <a href='".$_SERVER['REQUEST_URI']."&teacher=crud_questions'><button name='crud_questions'>Crud questions</button></a>
         ";
     }
     else
     {
-        printTeacherDashboard("error->teacher_dashboard");
+        printTeacherDashboard($error);
     }
 }
 

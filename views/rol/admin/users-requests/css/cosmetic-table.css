@@ -27,8 +27,26 @@ td {
 td > button:first-child {
     margin-right: 0.5em;
 }
+/* =========================================================== */
+/* ====================== CLASSES ============================ */
+/* =========================================================== */
+.table_title {
+    font-size: 3em;
+    font-family: Agbalumo;
 
+    /*border: 12px solid black;*/
+    border: 8px solid rgb(104, 48, 28);
+    border-radius: 20px;
+    /*background-color: darkred;*/
+    background-color: coral;
+    color: white;
 
+    text-align: center;
+    padding: 0.3em 1em;
+    margin: 1.8em auto 1em;
+
+    width: 80%;
+}
 
 /* =========================================================== */
 /* ==================== FONT-SIZE ============================ */
@@ -121,4 +139,30 @@ th {
 }
 .styled-button:hover {
     background-color: rgb(1, 187, 1);
+}
+
+
+/* =========================================================== */
+/* ================== BUTTONS CLASS TABLE ==================== */
+/* =========================================================== */
+span.boton{
+    position: relative;
+    height: 32px;
+    width: 32px;
+    display: inline-block;
+}
+
+span.editar{
+    background-image: url("botones.png");
+    background-position:0;
+}
+
+span.borrar{
+    background-image: url("botones.png");
+    background-position-x:-32px;
+}
+
+span.guardar{
+    background-image: url("botones.png");
+    background-position-x:-64px;
 }

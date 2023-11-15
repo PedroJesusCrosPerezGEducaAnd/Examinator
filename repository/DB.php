@@ -1,8 +1,8 @@
 <?php
     include_once $_SERVER["DOCUMENT_ROOT"]."/configFile.php";
     //var_dump($dataBase);
-?>
-<?php
+
+
 
 class DB extends mysqli
 {

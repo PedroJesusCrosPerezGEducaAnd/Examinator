@@ -59,7 +59,7 @@ class Router
                                 {
                                     switch ($_GET['admin']) 
                                     {
-                                        case 'users_requests':
+                                        case 'users-requests':
                                             require_once "views/rol/admin/users-requests/index.php";
                                             break;
                                         
@@ -82,14 +82,14 @@ class Router
                         case 'teacher':
                             $user = Session::read("user");
                                 
-                            if (  $user instanceof User && ($user->getRole() == "teacher" || $user->getRole() == "admin") ) 
+                            if (  $user instanceof User && ($user->getRole() == "admin" || $user->getRole() == "teacher") ) 
                             {
                                 if ( isset($_GET['teacher']) ) 
                                 {
                                     switch ($_GET['teacher']) 
                                     {
-                                        case 'crud-questions':
-                                            require_once "views/rol/teacher/crud-questions/index.php";
+                                        case 'crud_questions':
+                                            require_once "views/rol/teacher/crud_questions/index.php";
                                             break;
                                         
                                         default:
@@ -104,7 +104,7 @@ class Router
                             }
                             else
                             {
-                                echo "Sitio restringido exclusivamente a administradores.";
+                                echo "Sitio restringido exclusivamente a profesores.";
                             }
                             break;
 
@@ -178,9 +178,13 @@ class Router
                         break;
                     
                     default:
-                    echo "DEFAULTTTTTTTTTTTTTTTTTTTTTT";
+                        echo "DEFAULTTTTTTTTTTTTTTTTTTTTTT";
                         break;
                 }
+            }
+            else
+            {
+                require_once 'landingpage/landingpage.php';
             }
         }
         else 

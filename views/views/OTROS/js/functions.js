@@ -1,7 +1,0 @@
-// TEACHER
-
-// btnGenerateExams
-function fgenerateExams()
-{
-
-}

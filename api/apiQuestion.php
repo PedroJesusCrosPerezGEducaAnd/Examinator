@@ -1,7 +1,7 @@
 <?php
 /**
  * Cómo utilizar esta api
- * TODO como utilizar apiUser
+ * TODO como utilizar apiQuestion
  * 
  * 
  * 
@@ -20,23 +20,24 @@ header('Content-Type: application/json');
 switch ($_SERVER["REQUEST_METHOD"]) 
 {
     case 'GET': // SELECT
-        switch ($_GET["user"]) 
+    
+        switch ($_GET["question"]) 
         {
             case 'findAll':
-                $users = DBUser::findAll();
-                echo json_encode(['data' => $users]);
+                $questions = DBQuestion::findAll();
+                echo json_encode(['data' => $questions]);
                 break;
 
             case 'findByName':
                 $name = isset($_GET["name"]) ? $_GET["name"] : null;
-                $user = DBUser::findByName($name);
-                echo json_encode(['data' => $user]);
+                $question = DBQuestion::findByName($name);
+                echo json_encode(['data' => $question]);
                 break;
 
             case 'findByRole':
                 $role = isset($_GET["role"]) ? $_GET["role"] : null;
-                $users = DBUser::findByRole($role);
-                echo json_encode(['data' => $users]);
+                $questions = DBQuestion::findByRole($role);
+                echo json_encode(['data' => $questions]);
                 break;
             
             default:
@@ -47,18 +48,21 @@ switch ($_SERVER["REQUEST_METHOD"])
 
     case 'POST': // UPDATE
         $data = json_decode(file_get_contents('php://input'), true);
-        $response = DBUser::update($data["field"],$data["value"],$data["field_id"],$data["value_id"]);
-        //echo "true";
-        echo $response ? json_encode(new Response("true")) : json_encode(new Response("false"));
+        $response = DBQuestion::update($data["field"],$data["value"],$data["field_id"],$data["value_id"]);
+        //$response = DBQuestion::update("password","holahola","name","actualizabien");
         
-        /* Para probar */ //$response = DBUser::update("password","holahola","name","actualizabien");
+        if ($response) {
+            echo "true";
+        } else {
+            echo "false";
+        }
         /*$name = isset($_POST["name"]) ? $_POST["name"] : null;
         $password = isset($_POST["password"]) ? $_POST["password"] : null;
 
         if ($name !== null && $password !== null) {
             $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-            DBUser::insert(new User(null, $name, $hashedPassword, null));
-            echo json_encode(['success' => 'User inserted successfully']);
+            DBQuestion::insert(new Question(null, $name, $hashedPassword, null));
+            echo json_encode(['success' => 'Question inserted successfully']);
         } else {
             echo json_encode(['error' => 'Invalid input']);
         }*/

@@ -6,6 +6,7 @@ var urlBase = urlActual.split('?')[0];
 
 let PHPapiUsersRequests = urlBase+"api/apiuser.php?user=findByRole&role=null";
 let PHPapiUsersRoleNotnull = urlBase+"api/apiuser.php?user=findByRole&role=notnull";
+let PHPapiUser = urlBase+"api/apiuser.php";
 let PHPapiGenerateExam = urlBase+"api/apiGenerateExam.php";
 let PHPapiValidateLogin = urlBase+"api/apiValidateLogin.php";
 let PHPapiValidateSignup = urlBase+"api/apiValidateSignup.php";

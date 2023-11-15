@@ -1,3 +1,4 @@
+/* TODO
 function uploadTable(jsonData, dstTable) 
 {
     var data = jsonData.data;
@@ -10,7 +11,7 @@ function uploadTable(jsonData, dstTable)
 
 function createTr(name) 
 {
-    /* Creo fila */
+    // Creo fila
     var row = document.createElement("tr");
 
     // Columna - Nombre
@@ -19,32 +20,23 @@ function createTr(name)
 
 
     // Columna - Botones (accept && deny)
-    /* Creo columna con botones aceptar y denegar */
+    // Creo columna con botones aceptar y denegar
     var tdButtons = document.createElement("td");
         // Aceptar
         var btnAccept = document.createElement("button");
-        btnAccept.setAttribute("class","btnAccept");
-        btnAccept.innerHTML = "Accept";
-        //btnAccept.addEventListener("click", function () { fBtnAccept(ev) });
-        btnAccept.addEventListener("click", fBtnAccept);
+        btnAccept.setAttribute("class","btnEdit");
+        btnAccept.innerHTML = "Edit";
         tdButtons.appendChild(btnAccept);
-
-        // Denegar
-        var btnDeny = document.createElement("button");
-        btnDeny.setAttribute("class","btnDeny");
-        btnDeny.innerHTML = "Deny";
-        btnDeny.addEventListener("click", function () { fBtnDeny(ev) });
-        tdButtons.appendChild(btnDeny);
 
     
     // Columna - Select roles
     var tdSelect = document.createElement("td");
-        /* Creo select con roles */
+        // Creo select con roles
         var select = createSelect();
     tdSelect.appendChild(select);
 
 
-    /* Añado columnas a la fila */
+    // Añado columnas a la fila
     row.appendChild(tdName);
     row.appendChild(tdSelect);
     row.appendChild(tdButtons);
@@ -55,7 +47,7 @@ function createTr(name)
 
 function createSelect() 
 {
-    /* Crear select con opciones */
+    // Crear select con opciones
     var select = document.createElement("select");
     select.setAttribute("class", "styled-select");
         // Option admin
@@ -77,4 +69,4 @@ function createSelect()
     select.appendChild(optnTeacher);
 
     return select;
-}
+} */

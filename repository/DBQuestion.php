@@ -1,59 +1,32 @@
 <?php
+include_once $_SERVER["DOCUMENT_ROOT"]."/helpers/Autoload.php";
 
 
-class DBUser 
+class DBQuestion
 {
 
     // ############################################################################################
     // ################################## SELECT ##################################################
     // ############################################################################################
     // Select *
-    function findAllIndexed() 
-    {
-        $cn = new DB(); // TODO quitar en el futuro
-        // Variables
-        $arrUsers = [];
-        //$nameFields;
-        $sql = "SELECT * FROM user";
-        $result = $cn->query($sql);
-
-        // Process
-        if ($result == true) 
-        {
-            //$nameFields = ["id", "name", "password", "role"];
-            while ($row = $result->fetch_assoc()) 
-            {
-                $arrUsers[$row["name"]] = new User($row["id"],$row["name"],$row["password"],$row["role"]);
-            }
-            $cn->close();
-        }
-        else
-        {
-            echo "Error en consulta<br>";
-        }
-
-        return $arrUsers;
-    }
-
-    // Select *
     static function findAll()
     {
-        $cn = new DB(); // TODO quitar en el futuro
+        $cn = new DB();
         // Variables
-        $arrUsers = [];
+        $arrQuestions = [];
         //$nameFields;
-        $sql = "SELECT * FROM user";
+        $sql = "SELECT * FROM question";
         $result = $cn->query($sql);
 
         // Proceso
         while ($row = $result->fetch_assoc()) 
         {
-            $arrUsers[$row["name"]] = new User($row["id"],$row["name"], $row["password"], $row["role"]);
+            $arrQuestions[$row["name"]] = new Question($row["id"],$row["name"], $row["password"], $row["role"]);
         }
         $cn->close();
         
         // Return
-        return $arrUsers;
+        return $arrQuestions;
     }
 
 
@@ -63,12 +36,12 @@ class DBUser
     // ############################################################################################
     // ################################## INSERT ##################################################
     // ############################################################################################
-    static function insert($user) : bool
+    static function insert($question) : bool
     {
         $cn = new DB(); // TODO quitar en el futuro
         // Variables
         $reached = false;
-        $sql = "INSERT INTO user (name, password, role) VALUES ('" . $user->getName() . "', '" . $user->getPassword() . "', '" . $user->getRole() . "')";
+        $sql = "INSERT INTO question (name, password, role) VALUES ('" . $question->getName() . "', '" . $question->getPassword() . "', '" . $question->getRole() . "')";
         
         // Proceso
         if ($cn->query($sql) === TRUE) {
@@ -91,7 +64,7 @@ class DBUser
     static function update($field, $value, $field_id, $value_id) : bool
     {
         $cn = new DB();
-        $sql = "UPDATE user SET {$field} = '{$value}' WHERE {$field_id} = '{$value_id}'";
+        $sql = "UPDATE question SET {$field} = '{$value}' WHERE {$field_id} = '{$value_id}'";
         
         if ($cn->query($sql) == true) {
             // Cerrar la conexión
@@ -105,12 +78,12 @@ class DBUser
     }
 
 
-    static function updateUser($user) : int
+    static function updateQuestion($question) : int
     {
         $cn = new DB(); // TODO quitar en el futuro
         // Variables
         $tuples = 0;
-        $sql = "INSERT INTO user (name, password, role) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO question (name, password, role) VALUES (?, ?, ?)";
         $stmt = $cn->prepare($sql);
         $stmt->bind_param("sss", $name, $password, $role);
         
@@ -140,7 +113,7 @@ class DBUser
         // Variables
         $tuples = 0;
         // Consulta SQL
-        $sql = "DELETE FROM user WHERE name = ?";
+        $sql = "DELETE FROM question WHERE name = ?";
         $stmt = $cn->prepare($sql);
         $stmt->bind_param("i", $name);
 
@@ -165,7 +138,7 @@ class DBUser
         // Variables
         $tuples = 0;
         // Consulta SQL
-        $sql = "DELETE FROM user WHERE id = ?";
+        $sql = "DELETE FROM question WHERE id = ?";
         $stmt = $cn->prepare($sql);
         $stmt->bind_param("i", $id);
 
@@ -193,8 +166,8 @@ class DBUser
     {
         $cn = new DB(); // TODO quitar en el futuro
         // Variables
-        $user = null;
-        $sql = "SELECT * FROM user WHERE name = '$name' AND password = '$password';";
+        $question = null;
+        $sql = "SELECT * FROM question WHERE name = '$name' AND password = '$password';";
         $result = $cn->query($sql);
 
         // Process
@@ -203,7 +176,7 @@ class DBUser
             //$nameFields = ["id", "name", "password", "role"];
             while ($row = $result->fetch_assoc()) 
             {
-                $user = new User($row["id"],$row["name"],$row["password"],$row["role"]);
+                $question = new Question($row["id"],$row["name"],$row["password"],$row["role"]);
             }
             $cn->close();
         }
@@ -212,7 +185,7 @@ class DBUser
             echo "Error en consulta<br>";
         }
 
-        return $user;
+        return $question;
     }
     
     // Find by name
@@ -220,8 +193,8 @@ class DBUser
     {
         $cn = new DB(); // TODO quitar en el futuro
         // Variables
-        $user = null;
-        $sql = "SELECT * FROM user WHERE name = '$name';";
+        $question = null;
+        $sql = "SELECT * FROM question WHERE name = '$name';";
         $result = $cn->query($sql);
 
         // Process
@@ -230,7 +203,7 @@ class DBUser
             //$nameFields = ["id", "name", "password", "role"];
             while ($row = $result->fetch_assoc()) 
             {
-                $user = new User($row["id"],$row["name"],$row["password"],$row["role"]);
+                $question = new Question($row["id"],$row["name"],$row["password"],$row["role"]);
             }
             $cn->close();
         }
@@ -239,7 +212,7 @@ class DBUser
             echo "Error en consulta<br>";
         }
 
-        return $user;
+        return $question;
     }
 
 
@@ -247,25 +220,24 @@ class DBUser
     {
         $cn = new DB(); // TODO quitar en el futuro
         // Variables
-        $arrUsers = [];
+        $arrQuestions = [];
         //$nameFields;
         if ($role == "notnull") { 
-            //$sql = "SELECT * FROM user WHERE role IS NOT NULL"; 
-            $sql = "SELECT * FROM user WHERE role != 'null'"; 
+            $sql = "SELECT * FROM question WHERE role IS NOT NULL"; 
         } else { 
-            $sql = "SELECT * FROM user WHERE role = '$role'"; 
+            $sql = "SELECT * FROM question WHERE role = '$role'"; 
         }
         $result = $cn->query($sql);
 
         // Proceso
         while ($row = $result->fetch_assoc()) 
         {
-            $arrUsers[$row["name"]] = new User($row["id"],$row["name"], $row["password"], $row["role"]);
+            $arrQuestions[$row["name"]] = new Question($row["id"],$row["name"], $row["password"], $row["role"]);
         }
         $cn->close();
         
         // Return
-        return $arrUsers;
+        return $arrQuestions;
     }
 }
 
@@ -317,19 +289,19 @@ class DBUser
             { $cn = new DB(); }
         
         // Variables a utilizar
-        $arrUsers = [];
+        $arrQuestions = [];
         //$nameFields;
-        $sql = "SELECT * FROM user";
+        $sql = "SELECT * FROM question";
         $result = $cn->query($sql);
 
         // Proceso
         if ($result == true) 
         {
-            //$nameFields = DB::getNameFields("user");
-            $nameFields = $cn->getNameFields("user");
+            //$nameFields = DB::getNameFields("question");
+            $nameFields = $cn->getNameFields("question");
             while ($row = $result->fetch_assoc()) 
             {
-                $arrUsers[] = new User($row["id"],$row["name"], $row["password"], $row["role"]);
+                $arrQuestions[] = new Question($row["id"],$row["name"], $row["password"], $row["role"]);
             }
             $cn->close();
         }
@@ -339,7 +311,7 @@ class DBUser
         }
         
         // Return
-        return $arrUsers;
+        return $arrQuestions;
     }
 
 
@@ -351,20 +323,20 @@ class DBUser
             $cn = new DB();
         
         // Variables a utilizar
-        $arUsers;
+        $arQuestions;
         $nameFields;
-        $sql = "SELECT * FROM users";
+        $sql = "SELECT * FROM questions";
         $result = $connection->query($sql);
 
         // Proceso
         $nameFields = DB::getNameFields();
         while ($row = $result->fetch_assoc()) 
         {
-            $arrUsers[$row["name"]] = new User($row["id"],$row["name"], $row["password"], $row["role"]);
+            $arrQuestions[$row["name"]] = new Question($row["id"],$row["name"], $row["password"], $row["role"]);
         }
         $connection->close();
         // Return
-        return $arUsers;
+        return $arQuestions;
     }
 
     
@@ -375,7 +347,7 @@ class DBUser
         $cn = new DB(); // TODO quitar en el futuro
 
         // Consulta segura utilizando prepared statements
-        $sql = "SELECT * FROM user WHERE role = ?";
+        $sql = "SELECT * FROM question WHERE role = ?";
         $stmt = $cn->prepare($sql);
         $stmt->bind_param("s", $role);
         $stmt->execute();
@@ -388,25 +360,25 @@ class DBUser
         }
 
         // Asignación de resultados directamente a variables
-        $stmt->bind_result($id=null, $name, $password, $userRole);
+        $stmt->bind_result($id=null, $name, $password, $questionRole);
 
         // Variables
-        $arrUsers = [];
+        $arrQuestions = [];
 
         // Proceso
         while ($stmt->fetch()) {
-            $arrUsers[] = new User($id, $name, $password, $userRole);
+            $arrQuestions[] = new Question($id, $name, $password, $questionRole);
         }
 
         $cn->close();
 
         // Return temprano si no hay resultados
-        if (empty($arrUsers)) {
+        if (empty($arrQuestions)) {
             return null;
         }
 
         // Return
-        return $arrUsers;
+        return $arrQuestions;
     }
 
     static function update3($field, $value, $field_id, $value_id) : int
@@ -414,7 +386,7 @@ class DBUser
         $cn = new DB(); // TODO quitar en el futuro
         // Variables
         $tuples = 0;
-        $sql = 'UPDATE user SET {$field} = "{$value}" WHERE {$field_id} = "{$value_id}";';
+        $sql = 'UPDATE question SET {$field} = "{$value}" WHERE {$field_id} = "{$value_id}";';
         $stmt = $cn->prepare($sql);
         $stmt->bind_param("sss", $name, $password, $role);
         

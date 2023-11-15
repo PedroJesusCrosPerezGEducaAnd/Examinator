@@ -1,0 +1,21 @@
+span.boton{
+    position: relative;
+    height: 32px;
+    width: 32px;
+    display: inline-block;
+}
+
+span.editar{
+    background-image: url("botones.png");
+    background-position:0;
+}
+
+span.borrar{
+    background-image: url("botones.png");
+    background-position-x:-32px;
+}
+
+span.guardar{
+    background-image: url("botones.png");
+    background-position-x:-64px;
+}

@@ -43,8 +43,8 @@ function printAdminDashboard($error)
             <article>Article-3</article>
             <article>Article-4</article>
         </section>
-        
-        <a href='".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']."?admin_menu=users_requests'><button name='users_requests'>Users requests</button></a>
+
+        <a href='".$_SERVER['REQUEST_URI']."&admin=users-requests'><button name='users_requests'>Users requests</button></a>
         ";
     }
     else
