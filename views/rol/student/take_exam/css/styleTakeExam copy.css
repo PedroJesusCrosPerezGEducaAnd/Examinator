@@ -1,10 +1,10 @@
 main {
     flex-direction: column;
 }
-#btn_container {
+.btnContainer {
     text-align: center;
 }
-#exam_container {
+#exam {
     background-color: #d8e8d1;
     padding: 6em;
     margin-bottom: 2em;
@@ -60,8 +60,13 @@ main {
 /* ######################################################################## */
 /* ################### Buttons styles with image ########################## */
 /* ######################################################################## */
-#btnSiguiente>img, #btnAnterior>img {
-  cursor: pointer;
-  width: 128px;
-  height: 128px;
+#btnSiguiente {
+  background-image: url(../src/arrow_next.png);
+  width: 32px;
+  height: 32px;
+}
+#btnAnterior {
+  background-image: url(../src/arrow_before.png);
+  width: 32px;
+  height: 32px;
 }

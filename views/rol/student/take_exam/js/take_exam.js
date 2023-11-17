@@ -61,7 +61,8 @@ window.addEventListener("load", function () {
 
             // INICIALIZAR
                 // Mostrar la primera pregunta
-                divExam.firstChild.style.display = "block";
+                //divExam.firstChild.style.display = "block";
+                divExam.firstElementChild.style.display = "block";
 
                 let preguntaActual = 0;
                 btnAnterior.disabled = true;

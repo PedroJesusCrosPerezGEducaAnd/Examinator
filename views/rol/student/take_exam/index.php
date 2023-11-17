@@ -3,22 +3,22 @@ $thisdir = "views/rol/student/take_exam/";
 echo '
 <head>
     <!-- CSS - take_exam -->
-    <!--<link rel="stylesheet" href="'.$thisdir.'css/styleTakeExam.css">-->
+    <link rel="stylesheet" href="'.$thisdir.'css/styleTakeExam.css">
     <link rel="stylesheet" href="'.$thisdir.'css/styleStructureTakeExam.css">
 
     <!-- JAVASCRIPT - take_exam -->
-    <!--<script src="'.$thisdir.'js/take_exam.js"></script>-->
+    <script src="'.$thisdir.'js/take_exam.js"></script>
     <script src="'.$thisdir.'js/exam_functions.js"></script>
 </head>
 <body>
 
-    <div id="exam">
+    <div id="exam_container">
         <div id="left">
-            <p>5</p>
+            <p>ID: 5</p>
         </div>
 
-        <div id="middle">
-            <span>
+        <div id="examen" name="examen">
+            <!--<span>
                 <p>Título</p>
             </span>
             <hr>
@@ -33,7 +33,7 @@ echo '
             <span>
                 <p>c. <span>Option 3</span></p>
                 <input type="radio" name="option">
-            </span>
+            </span>-->
         </div>
         
         <div id="right">
@@ -49,12 +49,13 @@ echo '
         </div>
     </div>
 
-
-    <!--<div id="exam" name="examen"></div>
-    <div name="btnContainer">
-        <button id="btnAnterior" class="styled_take_exam_button">Before</button>
-        <button id="btnSiguiente" class="styled_take_exam_button">Next</button>
-    </div>-->
+    <div id="btn_container">
+        <!--<button id="btnAnterior" class="styled_take_exam_button">Before</button>
+        <button id="btnSiguiente" class="styled_take_exam_button">Next</button>-->
+        <span id="btnAnterior"><img src="http://serverpedroexaminator/views/src/icons/arrow_before512px.png" alt="Anterior"></span>
+        <span id="btnSiguiente"><img src="http://serverpedroexaminator/views/src/icons/arrow_next512px.png" alt="Siguiente"></span>
+          
+    </div>
 </body>
 </html>
 ';
