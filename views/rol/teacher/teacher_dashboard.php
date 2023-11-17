@@ -45,6 +45,7 @@ function printTeacherDashboard($error)
         </section>
         
         <a href='".$_SERVER['REQUEST_URI']."&teacher=crud_questions'><button name='crud_questions'>Crud questions</button></a>
+        <a href='?rol=teacher&teacher=crud_exams'><button name='crud_exams_dashboard'>Crud exams</button></a>
         ";
     }
     else

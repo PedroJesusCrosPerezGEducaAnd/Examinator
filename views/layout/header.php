@@ -6,6 +6,7 @@ if ( Login::isLoged() )
     echo '
     <div>
         <span><img src="views/src/icons/logo_examinator.png" alt="logotipo" name="logo"></span>
+        <h1>¡¡¡Bienvenido a la web Examinator!!!</h1>
     </div>
 
     <nav class="dropdown">

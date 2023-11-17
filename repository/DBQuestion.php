@@ -21,7 +21,7 @@ class DBQuestion
         // Proceso
         while ($row = $result->fetch_assoc()) 
         {
-            $arrQuestions[$row["name"]] = new Question($row["id"],$row["name"], $row["password"], $row["role"]);
+            $arrQuestions[$row["id"]] = new Question($row["id"],$row["statement"], $row["question"], $row["option"], $row["source"], null/*TODO EXAM*/, $row["difficulty_id"], $row["category_id"]);
         }
         $cn->close();
         
@@ -43,7 +43,7 @@ class DBQuestion
     
         // Variables
         $reached = false;
-        $sql = "INSERT INTO question (id, statement, question, `option`, source, exam_id, difficulty_id, category_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO question (id, date, question, `option`, source, exam_id, difficulty_id, category_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     
         // Preparar la consulta
         $stmt = $cn->prepare($sql);
@@ -187,246 +187,118 @@ class DBQuestion
     // ############################################################################################
     // ################################# FIND BY ##################################################
     // ############################################################################################
-    // Find by name and password
-    static function findByName_Password($name, $password) 
+    // Find by question id
+    /*static function findByQuestion_id($question_id) 
     {
-        $cn = new DB(); // TODO quitar en el futuro
+        $cn = new DB();
         // Variables
-        $question = null;
-        $sql = "SELECT * FROM question WHERE name = '$name' AND password = '$password';";
-        $result = $cn->query($sql);
-
+        $arrayQuestion = [];
+    
+        $sql = "SELECT * FROM question WHERE question_id = ?";
+        $stmt = $cn->prepare($sql);
+        $stmt->bind_param("i", $question_id);
+        $stmt->execute();
+    
         // Process
-        if ($result == true) 
+        $result = $stmt->get_result();
+    
+        if ($result) 
         {
-            //$nameFields = ["id", "name", "password", "role"];
             while ($row = $result->fetch_assoc()) 
             {
-                $question = new Question($row["id"],$row["name"],$row["password"],$row["role"]);
+                $arrayQuestion[] = new Questionjs( $row["question_id"], $row["statement"], $row["question"], DBDifficulty::findByDifficulty_id($row["difficulty_id"]), DBCategory::findByCategory_id($row["category_id"]) );
             }
+            $stmt->close();
             $cn->close();
-        }
-        else
+        } 
+        else 
         {
-            echo "Error en consulta<br>";
+            return false; // Return boolean false in case of error
         }
+    
+        return $arrayQuestion;
+    }*/
+    static function findByQuestion_id($question_id) 
+    {
+        $cn = new DB();
+        $question = null;
+    
+        $sql = "SELECT * FROM question WHERE id = ?";
+        $stmt = $cn->prepare($sql);
+        
+        $stmt->bind_param("i", $question_id);
+        
+        if ($stmt->execute()) {
+            $result = $stmt->get_result();
+    
+            if ($result && $row = $result->fetch_assoc()) {
+                $question = new Question( $row["id"], $row["statement"], $row["question"], $row["option"], $row["source"], $row["exam_id"], $row["difficulty_id"], $row["category_id"] );
+            }
+        } else {
+            echo "Error en la consulta: " . $stmt->error;
+        }
+    
+        $stmt->close();
+        $cn->close();
+    
+        return $question;
+    }
 
+    // Find by question id
+    static function findStatementByQuestion_id($question_id) 
+    {
+        $cn = new DB();
+        $statement = null;
+    
+        $sql = "SELECT statement FROM question WHERE id = ?";
+        $stmt = $cn->prepare($sql);
+        
+        $stmt->bind_param("i", $question_id);
+        
+        if ($stmt->execute()) {
+            $result = $stmt->get_result();
+    
+            if ($result && $row = $result->fetch_assoc()) {
+                $statement = $row["statement"];
+            }
+        } else {
+            echo "Error en la consulta: " . $stmt->error;
+        }
+    
+        $stmt->close();
+        $cn->close();
+    
+        return $statement;
+    }
+    
+    // Find by question id
+    static function findQuestionByQuestion_id($question_id) 
+    {
+        $cn = new DB();
+        $question = null;
+    
+        $sql = "SELECT question FROM question WHERE id = ?";
+        $stmt = $cn->prepare($sql);
+        
+        $stmt->bind_param("i", $question_id);
+        
+        if ($stmt->execute()) {
+            $result = $stmt->get_result();
+    
+            if ($result && $row = $result->fetch_assoc()) {
+                $question = $row["question"];
+            }
+        } else {
+            echo "Error en la consulta: " . $stmt->error;
+        }
+    
+        $stmt->close();
+        $cn->close();
+    
         return $question;
     }
     
-    // Find by name
-    static function findByName($name) 
-    {
-        $cn = new DB(); // TODO quitar en el futuro
-        // Variables
-        $question = null;
-        $sql = "SELECT * FROM question WHERE name = '$name';";
-        $result = $cn->query($sql);
-
-        // Process
-        if ($result == true) 
-        {
-            //$nameFields = ["id", "name", "password", "role"];
-            while ($row = $result->fetch_assoc()) 
-            {
-                $question = new Question($row["id"],$row["name"],$row["password"],$row["role"]);
-            }
-            $cn->close();
-        }
-        else
-        {
-            echo "Error en consulta<br>";
-        }
-
-        return $question;
-    }
-
-
-    static function findByRole($role)
-    {
-        $cn = new DB(); // TODO quitar en el futuro
-        // Variables
-        $arrQuestions = [];
-        //$nameFields;
-        if ($role == "notnull") { 
-            $sql = "SELECT * FROM question WHERE role IS NOT NULL"; 
-        } else { 
-            $sql = "SELECT * FROM question WHERE role = '$role'"; 
-        }
-        $result = $cn->query($sql);
-
-        // Proceso
-        while ($row = $result->fetch_assoc()) 
-        {
-            $arrQuestions[$row["name"]] = new Question($row["id"],$row["name"], $row["password"], $row["role"]);
-        }
-        $cn->close();
-        
-        // Return
-        return $arrQuestions;
-    }
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* TODO DBUSER EN UN FUTURO SI ES NECESARIO */
-
-
-
-/*     // Select *
-    function findAll2()
-    {
-        try {
-
-            $cn = new DB();
-            if ($cn->connect_error) 
-            {
-                throw new Exception("Error de conexión: " . $cn->connect_error);
-            }
-        } catch (Exception $e) {
-            echo "Ha ocurrido un error: " . $e->getMessage();
-        }
-
-        // Comprobación y/o creación de conexión
-        if (!$cn->isConnected()) 
-            { $cn = new DB(); }
-        
-        // Variables a utilizar
-        $arrQuestions = [];
-        //$nameFields;
-        $sql = "SELECT * FROM question";
-        $result = $cn->query($sql);
-
-        // Proceso
-        if ($result == true) 
-        {
-            //$nameFields = DB::getNameFields("question");
-            $nameFields = $cn->getNameFields("question");
-            while ($row = $result->fetch_assoc()) 
-            {
-                $arrQuestions[] = new Question($row["id"],$row["name"], $row["password"], $row["role"]);
-            }
-            $cn->close();
-        }
-        else
-        {
-            die("Error de consulta: " . $cn->error);
-        }
-        
-        // Return
-        return $arrQuestions;
-    }
-
-
-    // Select *
-    function findAllAssoc ()
-    {
-        // Comprobación y/o creación de conexión
-        if (!DB::isConnected()) 
-            $cn = new DB();
-        
-        // Variables a utilizar
-        $arQuestions;
-        $nameFields;
-        $sql = "SELECT * FROM questions";
-        $result = $connection->query($sql);
-
-        // Proceso
-        $nameFields = DB::getNameFields();
-        while ($row = $result->fetch_assoc()) 
-        {
-            $arrQuestions[$row["name"]] = new Question($row["id"],$row["name"], $row["password"], $row["role"]);
-        }
-        $connection->close();
-        // Return
-        return $arQuestions;
-    }
-
-    
-
-    // Find by role
-    static function findByRole2($role)
-    {
-        $cn = new DB(); // TODO quitar en el futuro
-
-        // Consulta segura utilizando prepared statements
-        $sql = "SELECT * FROM question WHERE role = ?";
-        $stmt = $cn->prepare($sql);
-        $stmt->bind_param("s", $role);
-        $stmt->execute();
-
-        // Manejo de errores
-        if ($stmt->error) {
-            // Aquí puedes manejar el error de acuerdo a tus necesidades
-            $cn->close();
-            return null;
-        }
-
-        // Asignación de resultados directamente a variables
-        $stmt->bind_result($id=null, $name, $password, $questionRole);
-
-        // Variables
-        $arrQuestions = [];
-
-        // Proceso
-        while ($stmt->fetch()) {
-            $arrQuestions[] = new Question($id, $name, $password, $questionRole);
-        }
-
-        $cn->close();
-
-        // Return temprano si no hay resultados
-        if (empty($arrQuestions)) {
-            return null;
-        }
-
-        // Return
-        return $arrQuestions;
-    }
-
-    static function update3($field, $value, $field_id, $value_id) : int
-    {
-        $cn = new DB(); // TODO quitar en el futuro
-        // Variables
-        $tuples = 0;
-        $sql = 'UPDATE question SET {$field} = "{$value}" WHERE {$field_id} = "{$value_id}";';
-        $stmt = $cn->prepare($sql);
-        $stmt->bind_param("sss", $name, $password, $role);
-        
-        if ($cn->query($sql) === TRUE) {
-            echo "Record updated successfully";
-          } else {
-            echo "Error updating record: " . $cn->error;
-          }
-        
-        // Cerrar la conexión
-        $stmt->close();
-        $cn->close();
-        
-        // Return
-        return $tuples;
-    } */
 ?>

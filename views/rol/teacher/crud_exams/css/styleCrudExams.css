@@ -1,0 +1,85 @@
+main {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: start;
+}
+main > div {
+    width: 600px;
+    height: 800px;
+    padding: 1em 4em;
+    
+    background-color: #9dc58c;
+    border-right: 2em solid #5e7654;
+    border-left: 2em solid #5e7654;
+    overflow-y: auto;
+}
+
+.title {
+    font-size: 2em;
+    font-weight: bold;
+    font-family: Agbalumo;
+    text-align: center;
+    padding: 0.6em 0em;
+
+    border: 8px solid rgb(104, 48, 28);
+    border-radius: 16px;
+    background-color: coral;
+    color: white;
+}
+
+#container_questions {
+    padding: 2em;
+    background-color: lightslategrey;
+}
+
+.question {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1em;
+
+    background-color: #d8e8d1;
+    border: 12px solid #7e9e70;
+    border-radius: 20px;
+}
+
+.question:hover {
+    border-color: #3f4f38;
+    background-color: #ebf3e8;
+    cursor: pointer;
+}
+.question_selected {
+    border: 12px solid #7e9e70;
+    border-radius: 20px;
+    border-color: #3f4f38;
+    background-color: #ebf3e8;
+}
+
+.question .title_question, .question .questions {
+    width: 50%;
+    margin: 0.5em auto;
+}
+.question .difficulty, .question .category {
+    width: 50%;
+    text-align: left;
+    color: red;
+    font-weight: bold;
+    margin: 0.4em auto;
+}
+
+
+#selected_questions {
+}
+
+.styled_btn, #feedback, a[name="cancel"] {
+    position: absolute;
+}
+#feedback {
+    margin-top: 3em;
+    font-size: 1.2em;
+}
+a[name="cancel"] {
+    margin-top: 6em;
+    font-size: 0.8em;
+    text-decoration: none;
+    background-color: rgb(121, 0, 0);
+}

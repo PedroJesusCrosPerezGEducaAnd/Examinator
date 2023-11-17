@@ -1,0 +1,46 @@
+main {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: start;
+}
+main > div {
+    width: 40%;
+
+    width: 600px;
+    height: 800px;
+    background-color: lightblue;
+}
+
+#container_questions {
+    padding: 2em;
+    background-color: lightslategrey;
+}
+
+.example_question {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    margin: 1em 6em;
+
+    background-color: lightgrey;
+    border: 12px solid rgb(136, 136, 136);
+    border-radius: 20px;
+}
+.example_question:hover {
+    border-color: black;
+    cursor: pointer;
+}
+.example_question .title_question, .example_question .questions {
+    width: 80%;
+}
+.example_question .difficulty, .example_question .category {
+    width: 40%;
+    text-align: center;
+    color: red;
+    font-weight: bold;
+}
+
+
+#config_exam {
+}

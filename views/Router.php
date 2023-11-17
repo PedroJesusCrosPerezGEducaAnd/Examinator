@@ -47,7 +47,42 @@ class Router
                     switch ($_GET['rol'])
                     {
                         case 'student':
-                            require_once "views/rol/student/student_dashboard.php";
+                            $user = Session::read("user");
+                                
+                            if (  $user instanceof User && ($user->getRole() == "student" || $user->getRole() == "admin") ) 
+                            {
+                                if ( isset($_GET['student']) ) 
+                                {
+                                    switch ($_GET['student']) 
+                                    {
+                                        case 'dashboard':
+                                            require_once "views/rol/student/student_dashboard.php";
+                                            break;
+
+                                        case 'pending_exams':
+                                            require_once "views/rol/student/pending_exams/index.php";
+                                            break;
+
+                                        case 'take_exam':
+                                            //$exam_id = json_decode(file_get_contents('php://input'), true);
+                                            require_once "views/rol/student/take_exam/index.php";
+                                            //echo json_encode(DBExam::findByExam_id($exam_id));
+                                            break;
+                                        
+                                        default:
+                                            require_once "views/rol/student/student_dashboard.php";
+                                            break;
+                                    }
+                                }
+                                else
+                                {
+                                    require_once "views/rol/student/student_dashboard.php";
+                                }
+                            }
+                            else
+                            {
+                                echo "Sitio restringido exclusivamente a estudiantes.";
+                            }
                             break;
         
                         case 'admin':
@@ -88,13 +123,63 @@ class Router
                                 {
                                     switch ($_GET['teacher']) 
                                     {
+                                        case 'dashboard':
+                                            require_once "views/rol/teacher/teacher_dashboard.php";
+                                            break;
+
                                         case 'crud_questions':
                                             require_once "views/rol/teacher/crud_questions/index.php";
                                             break;
+                                            
+                                        case 'crud_exams':
+                                            if ( isset($_GET['crud_exams']) ) 
+                                            {                                            
+                                                switch ($_GET['crud_exams']) 
+                                                {
+                                                    case 'create':
+                                                        DBExam::insert(new Exam(null, null, $user->getId()));
+                                                        $exam = DBExam::findLastExam();
+                                                        Session::save("exam",$exam);
+                                                        require_once "views/rol/teacher/crud_exams/create.php";
+                                                        break;
+                                                    
+                                                    case 'edit':
+                                                        require_once "views/rol/teacher/crud_exams/edit.php";
+                                                        break;
+
+                                                    case 'dashboard':
+                                                        require_once "views/rol/teacher/crud_exams/index.php";
+                                                        break;
+                                                    
+                                                    default:
+                                                        require_once "views/rol/teacher/crud_exams/index.php";
+                                                        break;
+                                                }
+                                                break;
+                                            }
+                                            elseif ( isset($_GET['action']) ) 
+                                            {
+                                                switch ($_GET['action']) 
+                                                {
+                                                    case 'cancel':
+                                                        DBExam::delete( Session::read("exam")->getId() );
+                                                        header("Location: http://" . $_SERVER["HTTP_HOST"] . "?rol=" . Session::read("user")->getRole());
+                                                        break;
+                                                    
+                                                    default:
+                                                        DBExam::delete( Session::read("exam")->getId() );
+                                                        header("Location : ?rol="+Session::read("user")->getRole());
+                                                        break;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                require_once "views/rol/teacher/crud_exams/index.php";
+                                            }
                                         
-                                        default:
+                                        /*default:
                                             require_once "views/rol/teacher/teacher_dashboard.php";
-                                            break;
+                                            break;*/
                                     }
                                 }
                                 else

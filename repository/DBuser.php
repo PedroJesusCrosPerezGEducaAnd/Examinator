@@ -134,7 +134,7 @@ class DBUser
     // ############################################################################################
     // ################################## DELETE ##################################################
     // ############################################################################################
-    static function delete($name) : bool
+    static function delete($name): bool
     {
         $cn = new DB(); // TODO quitar en el futuro
         // Variables
@@ -142,22 +142,23 @@ class DBUser
         // Consulta SQL
         $sql = "DELETE FROM user WHERE name = ?";
         $stmt = $cn->prepare($sql);
-        $stmt->bind_param("i", $name);
-
+        $stmt->bind_param("s", $name); // Cambiado "i" a "s" para cadena (string)
+    
         if ($stmt->execute()) {
             echo "Eliminación exitosa";
             $tuples = $stmt->affected_rows;
         } else {
             echo "Error al eliminar: " . $stmt->error;
         }
-
+    
         // Cerrar la conexión
         $stmt->close();
         $cn->close();
-        
+    
         // Return
         return $tuples;
     }
+    
 
     static function deleteById($id) : bool
     {

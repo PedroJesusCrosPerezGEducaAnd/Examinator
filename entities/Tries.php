@@ -58,6 +58,12 @@ class Tries
     private function setExamId($exam_id) {
         $this->exam_id = $exam_id;
     }
+
+
+    function jsonSerialize()
+    {
+        return get_object_vars($this);
+    }
 }
 
 

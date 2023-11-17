@@ -1,0 +1,17 @@
+[
+    {
+        "numero":"1",
+        "categoria":"cultura general",
+        "descripcion":"¿Qué día es hoy?"
+    },
+    {
+        "numero":"2",
+        "categoria":"cultura general",
+        "descripcion":"¿Qué hora es hoy?"
+    },
+    {
+        "numero":"3",
+        "categoria":"tiempo",
+        "descripcion":"¿Qué temperatura hace hoy?"
+    }
+]

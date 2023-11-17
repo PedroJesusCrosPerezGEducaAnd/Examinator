@@ -1,0 +1,15 @@
+{
+    "examen": [
+    {
+        "numero":"1",
+        "categoria":"cultura general",
+        "descripcion":"¿Qué día es hoy?"
+    },
+    {
+        "numero":"2",
+        "categoria":"cultura general",
+        "descripcion":"¿Qué hora es hoy?"
+    }
+    ]
+}
+  

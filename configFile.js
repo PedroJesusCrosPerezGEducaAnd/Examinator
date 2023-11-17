@@ -4,10 +4,17 @@
 var urlActual = window.location.href;
 var urlBase = urlActual.split('?')[0];
 
+// User
 let PHPapiUsersRequests = urlBase+"api/apiuser.php?user=findByRole&role=null";
 let PHPapiUsersRoleNotnull = urlBase+"api/apiuser.php?user=findByRole&role=notnull";
 let PHPapiUser = urlBase+"api/apiuser.php";
+// Question
 let PHPapiQuestion = urlBase+"api/apiQuestion.php";
+let PHPapiQuestionFindAll = urlBase+"api/apiQuestion.php?question=findall";
+// User has exam
+let PHPapiUser_has_exam = urlBase+"api/apiUser_has_exam.php?user_has_exam=findByUser_id";
+
+
 let PHPapiGenerateExam = urlBase+"api/apiGenerateExam.php";
 let PHPapiValidateLogin = urlBase+"api/apiValidateLogin.php";
 let PHPapiValidateSignup = urlBase+"api/apiValidateSignup.php";
@@ -24,6 +31,9 @@ let feedbackSignupForm = {
     "false" : "Los campos introducidos son incorrectos",
     "error" : "Se ha producido un error en el servidor: "
 }
+let feedbackCrudQuestion = "";
+let feedbackCrudExam = "";
+
 
 class Configfile 
 {
@@ -63,10 +73,23 @@ class Configfile
     /* ========================================================================================= */
     static getFeedbackCrudQuestion()
     {
-        return feedbackLoginForm = 
+        return feedbackCrudQuestion = 
         {
             "true" : "¡Se ha creado con éxito!",
             "false" : "Debes rellenar todos los campos, para crear la pregunta.",
+            "error" : "Se ha producido un error en el servidor: "
+        }
+    }
+
+        /* ========================================================================================= */
+        /* ================================= CRUD - EXAM =========================================== */
+        /* ========================================================================================= */
+    static getFeedbackCrudExam()
+    {
+        return feedbackCrudExam =
+        {
+            "true" : "¡Se ha creado con éxito!",
+            "false" : "Debes seleccionar las preguntas correctas, error de lógica: ",
             "error" : "Se ha producido un error en el servidor: "
         }
     }

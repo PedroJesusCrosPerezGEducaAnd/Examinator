@@ -6,11 +6,13 @@ class Category
     private $id;
     private $name;
 
+
     // Constructor
     public function __construct($id, $name) {
         $this->setId($id);
         $this->setName($name);
     }
+
 
     // Getters and Setters
     public function getId() {
@@ -27,6 +29,18 @@ class Category
     
     private function setName($name) {
         $this->name = $name;
+    }
+    
+    
+    // Methods
+    public function __toString()
+    {
+        return self::class . "==> [ID: " . $this->getId() . " | Name: " . $this->getName(). "]";
+    }
+
+    function jsonSerialize()
+    {
+        return get_object_vars($this);
     }
 }
 

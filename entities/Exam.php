@@ -9,7 +9,7 @@ class Exam
 
 
     // Constructor
-    public function __construct($id=null,$date, $user_id) 
+    public function __construct($id=null,$date=null, $user_id) 
     {
         $this->setId($id);
         $this->setDate($date);
@@ -43,6 +43,12 @@ class Exam
     private function setUser_id($user_id) 
     {
         $this->user_id = $user_id;
+    }
+
+
+    function jsonSerialize()
+    {
+        return get_object_vars($this);
     }
 }
 

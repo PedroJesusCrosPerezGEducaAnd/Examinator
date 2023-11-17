@@ -24,19 +24,7 @@ switch ($_SERVER["REQUEST_METHOD"])
         {
             case 'findAll':
                 $questions = DBQuestion::findAll();
-                echo json_encode(['data' => $questions]);
-                break;
-
-            case 'findByName':
-                $name = isset($_GET["name"]) ? $_GET["name"] : null;
-                $question = DBQuestion::findByName($name);
-                echo json_encode(['data' => $question]);
-                break;
-
-            case 'findByRole':
-                $role = isset($_GET["role"]) ? $_GET["role"] : null;
-                $questions = DBQuestion::findByRole($role);
-                echo json_encode(['data' => $questions]);
+                echo json_encode($questions);
                 break;
             
             default:

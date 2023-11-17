@@ -1,0 +1,14 @@
+#pending_exams {
+    display: flex;
+    flex-wrap: wrap;
+}
+#pending_exams>div { margin-right: 4em}
+
+.exam {
+    margin: auto;
+
+    width: 200px;
+    height: 200px;
+
+    background-color: #b1d1a3;
+}

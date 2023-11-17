@@ -48,20 +48,8 @@ switch ($_SERVER["REQUEST_METHOD"])
     case 'POST': // UPDATE
         $data = json_decode(file_get_contents('php://input'), true);
         $response = DBUser::update($data["field"],$data["value"],$data["field_id"],$data["value_id"]);
-        //echo "true";
-        echo $response ? json_encode(new Response("true")) : json_encode(new Response("false"));
         
-        /* Para probar */ //$response = DBUser::update("password","holahola","name","actualizabien");
-        /*$name = isset($_POST["name"]) ? $_POST["name"] : null;
-        $password = isset($_POST["password"]) ? $_POST["password"] : null;
-
-        if ($name !== null && $password !== null) {
-            $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-            DBUser::insert(new User(null, $name, $hashedPassword, null));
-            echo json_encode(['success' => 'User inserted successfully']);
-        } else {
-            echo json_encode(['error' => 'Invalid input']);
-        }*/
+        echo $response ? json_encode(new Response("true")) : json_encode(new Response("false"));
         break;
 
     case 'PUT': // INSERT
