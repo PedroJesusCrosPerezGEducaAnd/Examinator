@@ -1,42 +1,40 @@
-/* td buttons functions */
-function fBtnAccept( ev ) 
-{
+/* Función para aceptar cambios de rol */
+function fBtnAccept(ev) {
     /**
      * Actualizar rol en la base de datos
      */
     ev.preventDefault();
-    
-    // Cuando le de al botón aceptar
-    // Recojo el nombre de usuario y su rol
+
+    // Cuando se hace clic en el botón "Aceptar"
+    // Se recoge el nombre de usuario y su nuevo rol
     var username = this.parentElement.parentElement.getElementsByTagName("td")[0].innerHTML;
     var role = this.parentElement.parentElement.getElementsByTagName("select")[0].value;
-    console.log("Has hecho click en Aceptar, ponerle el rol:"+role+" al usuario:"+username);
+    console.log("Has hecho clic en Aceptar, asignarle el rol:" + role + " al usuario:" + username);
 
-    // Los guardo en formato json
+    // Se guardan en formato JSON
     var json = {
-        "field":"role",
-        "value":role,
-        "field_id":"name",
-        "value_id":username
-    }
-    // Hago un fetch a la api que me actualiza el rol en la base de datos
-    fetch(PHPapiUser, 
-    {
+        "field": "role",
+        "value": role,
+        "field_id": "name",
+        "value_id": username
+    };
+
+    // Se realiza una solicitud fetch a la API para actualizar el rol en la base de datos
+    fetch(PHPapiUser, {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        // Le paso el contenido por el body del POST, y listo
-        body: JSON.stringify(json),
+        headers: { "Content-Type": "application/json" },
+        // Se pasa el contenido a través del cuerpo del POST
+        body: JSON.stringify(json)
     })
     .then(response => {
-        // Verificar si la respuesta está en el rango de códigos de éxito (200-299)
+        // Se verifica si la respuesta está en el rango de códigos de éxito (200-299)
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
         return response.json();
     })
     .then(json => {
+        // Se muestra una alerta según la respuesta del servidor
         if (json.response == "true") {
             alert("¡El usuario se ha actualizado con éxito!");
         } else {
@@ -48,9 +46,9 @@ function fBtnAccept( ev )
     });
 }
 
-function fBtnDeny(/* ev */) 
-{
+/* Función para denegar cambios */
+function fBtnDeny(/* ev */) {
     /* ev.preventDefault(); */
-    alert("deny");
+    alert("Denegar");
     document.body.style.backgroundColor = "black";
 }

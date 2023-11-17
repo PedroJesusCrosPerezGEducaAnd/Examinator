@@ -1,53 +1,80 @@
 <?php
 
-Class Examjs implements JsonSerializable
+/**
+ * Clase Examjs representa un examen en JavaScript.
+ */
+class Examjs implements JsonSerializable
 {
-    // Properties
-    private $id;            // INT
-    private $questionjs;    // OBJ Questionjs
+    /**
+     * @var int|null Id del examen.
+     */
+    private $id;
 
-    
-    // Constructor
-    public function __construct(
-        $id=null, 
-        $questionjs
-    ) 
+    /**
+     * @var array|null Array de objetos Questionjs.
+     */
+    private $questionjs;
+
+    /**
+     * Constructor de la clase Examjs.
+     *
+     * @param int|null $id Id del examen.
+     * @param array $questionjs Array de objetos Questionjs.
+     */
+    public function __construct($id = null, $questionjs)
     {
         $this->setId($id);
         $this->setQuestionjs($questionjs);
     }
 
-
-    // Getters and Setters
-    public function getId() 
+    /**
+     * Obtiene el id del examen.
+     *
+     * @return int|null Id del examen.
+     */
+    public function getId()
     {
         return $this->id;
     }
-    private function setId($id) 
+
+    /**
+     * Establece el id del examen.
+     *
+     * @param int|null $id Id del examen.
+     */
+    private function setId($id)
     {
         $this->id = $id;
     }
 
-    public function getQuestionjs() 
+    /**
+     * Obtiene el array de objetos Questionjs.
+     *
+     * @return array|null Array de objetos Questionjs.
+     */
+    public function getQuestionjs()
     {
         return $this->questionjs;
     }
-    private function setQuestionjs($questionjs) 
+
+    /**
+     * Establece el array de objetos Questionjs.
+     *
+     * @param array $questionjs Array de objetos Questionjs.
+     */
+    private function setQuestionjs($questionjs)
     {
         $this->questionjs = $questionjs;
     }
 
-
-    // Methods
-    public function __toString()
-    {
-        return "Questionjs [ID: " . $this->id . ", Questionjs: " . $this->getQuestionjs() . "]";
-    }
-
-    function jsonSerialize()
+    /**
+     * Implementación de la interfaz JsonSerializable.
+     * Convierte el objeto a un array asociativo para su serialización JSON.
+     *
+     * @return array Array asociativo con las propiedades del objeto.
+     */
+    public function jsonSerialize()
     {
         return get_object_vars($this);
     }
 }
-
-?>

@@ -1,55 +1,107 @@
 <?php
 
-class Exam 
+/**
+ * Clase Exam representa un examen.
+ */
+class Exam implements JsonSerializable
 {
-    // Properties
+    /**
+     * @var int|null Id del examen.
+     */
     private $id;
+
+    /**
+     * @var string|null Fecha del examen.
+     */
     private $date;
+
+    /**
+     * @var int Id del usuario asociado al examen.
+     */
     private $user_id;
 
-
-    // Constructor
-    public function __construct($id=null,$date=null, $user_id) 
+    /**
+     * Constructor de la clase Exam.
+     *
+     * @param int|null $id Id del examen.
+     * @param string|null $date Fecha del examen.
+     * @param int $user_id Id del usuario asociado al examen.
+     */
+    public function __construct($id = null, $date = null, $user_id)
     {
         $this->setId($id);
         $this->setDate($date);
         $this->setUser_id($user_id);
     }
 
-
-    // Getters and Setters
-    public function getId() 
+    /**
+     * Obtiene el id del examen.
+     *
+     * @return int|null Id del examen.
+     */
+    public function getId()
     {
         return $this->id;
     }
-    private function setId($id) 
+
+    /**
+     * Establece el id del examen.
+     *
+     * @param int|null $id Id del examen.
+     */
+    private function setId($id)
     {
         $this->id = $id;
     }
 
-    public function getDate() 
+    /**
+     * Obtiene la fecha del examen.
+     *
+     * @return string|null Fecha del examen.
+     */
+    public function getDate()
     {
         return $this->date;
     }
-    private function setDate($date) 
+
+    /**
+     * Establece la fecha del examen.
+     *
+     * @param string|null $date Fecha del examen.
+     */
+    private function setDate($date)
     {
         $this->date = $date;
     }
-    
-    public function getUser_id() 
+
+    /**
+     * Obtiene el id del usuario asociado al examen.
+     *
+     * @return int Id del usuario asociado al examen.
+     */
+    public function getUser_id()
     {
         return $this->user_id;
     }
-    private function setUser_id($user_id) 
+
+    /**
+     * Establece el id del usuario asociado al examen.
+     *
+     * @param int $user_id Id del usuario asociado al examen.
+     */
+    private function setUser_id($user_id)
     {
         $this->user_id = $user_id;
     }
 
-
-    function jsonSerialize()
+    /**
+     * Implementación de la interfaz JsonSerializable.
+     * Convierte el objeto a un array asociativo para su serialización JSON.
+     *
+     * @return array Array asociativo con las propiedades del objeto.
+     */
+    public function jsonSerialize()
     {
         return get_object_vars($this);
     }
 }
-
-?>
