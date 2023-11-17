@@ -10,10 +10,6 @@ echo '
     <script src="'.$thisdir.'js/admin_ajax.js"></script>
     <script src="'.$thisdir.'js/tdBtnf.js"></script>
     <script src="'.$thisdir.'js/uploadTable.js"></script>
-    <!--<script src="'.$thisdir.'js/buttons.js"></script>
-    <script src="'.$thisdir.'js/Tabla.js"></script>-->
-    <!--<script src="'.$thisdir.'js/ejemploDom.js"></script>
-    <script src="'.$thisdir.'js/tablas.js"></script>-->
     <script src="'.$thisdir.'js/Tabla_silverio.js"></script>
 </head>
 
