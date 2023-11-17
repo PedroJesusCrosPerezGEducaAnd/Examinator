@@ -2,13 +2,16 @@
     display: flex;
     flex-wrap: wrap;
 }
-#pending_exams>div { margin-right: 4em}
-
 .exam {
-    margin: auto;
+    margin-right: 4em;
 
     width: 200px;
     height: 200px;
 
-    background-color: #b1d1a3;
+    background-color: #7e9e70;
+    text-decoration: none;
+}
+
+.exam:hover {
+    background-color: #c4dcba;
 }

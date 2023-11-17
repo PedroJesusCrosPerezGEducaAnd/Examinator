@@ -11,8 +11,8 @@ echo '
 <body>
     <div id="exam" name="examen"></div>
     <div name="btnContainer">
-        <button id="btnAnterior">Before</button>
-        <button id="btnSiguiente">Next</button>
+        <button id="btnAnterior" class="styled_take_exam_button">Before</button>
+        <button id="btnSiguiente" class="styled_take_exam_button">Next</button>
     </div>
 </body>
 </html>
