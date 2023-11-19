@@ -55,6 +55,7 @@ function createTr(name)
 
 function createSelect() 
 {
+    // TODO fetch data base
     /* Crear select con opciones */
     var select = document.createElement("select");
     select.setAttribute("class", "styled-select");
@@ -77,4 +78,39 @@ function createSelect()
     select.appendChild(optnTeacher);
 
     return select;
+}
+
+
+
+function uploadTableUsers(jsonData, dstTable) 
+{
+    var data = jsonData.data;
+    for (var user in data) 
+    { 
+        dstTable.appendChild(createTrUsers(data[user].name));
+    }
+}
+
+function createTrUsers(name) 
+{
+    /* Creo fila */
+    var row = document.createElement("tr");
+
+    // Columna - Nombre
+    var tdName = document.createElement("td");
+    tdName.innerHTML = name;
+
+
+    // Columna - Select roles
+    var tdSelect = document.createElement("td");
+        /* Creo select con roles */
+        var select = createSelect();
+    tdSelect.appendChild(select);
+
+
+    /* Añado columnas a la fila */
+    row.appendChild(tdName);
+    row.appendChild(tdSelect);
+
+    return row;
 }

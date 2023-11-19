@@ -1,18 +1,17 @@
-<main name="landingpage">
-    <section>
-        <article>
-            <h2>Bienvenido a la web Examinator</h2>
-        </article>
-        
-        <article>
-            <h3>Landing page</h3>
-        </article>
-    </section>
+<?php
+$thisdir = "views/landingpage/";
+echo '
+<head>
+    <!-- CSS3 - landingpage -->
+    <link rel="stylesheet" href="'.$thisdir.'css/styleLandingpage.css">
+</head>
 
-    <section>
-        <article>Article-1</article>
-        <article>Article-2</article>
-        <article>Article-3</article>
-        <article>Article-4</article>
-    </section>
-</main>
+<section name="landingpage">
+    <article>
+        <h2>Bienvenido a la web Examinator</h2>
+    </article>
+    <!--<img src="http://serverpedroexaminator/views/src/imgs/landingpage_img.jpg" alt="Clases_de_conducción">-->
+    <div name="carousel">PENDING TO IMPLEMENT -> Carousel</div>
+</section>
+';
+?>

@@ -94,8 +94,20 @@ class Router
                                 {
                                     switch ($_GET['admin']) 
                                     {
-                                        case 'users-requests':
-                                            require_once "views/rol/admin/users-requests/index.php";
+                                        case 'pending_exams':
+                                            require_once "views/rol/student/pending_exams/index.php";
+                                            break;
+
+                                        case 'crud_questions':
+                                            require_once "views/rol/teacher/crud_questions/index.php";
+                                            break;
+
+                                        case 'crud_exams':
+                                            require_once "views/rol/teacher/crud_exams/index.php";
+                                            break;
+
+                                        case 'users_requests':
+                                            require_once "views/rol/admin/users_requests/index.php";
                                             break;
                                         
                                         default:
@@ -176,10 +188,15 @@ class Router
                                             {
                                                 require_once "views/rol/teacher/crud_exams/index.php";
                                             }
-                                        
-                                        /*default:
+                                            break;
+
+                                        case "pending_exams":
+                                            require_once "views/rol/student/pending_exams/index.php";
+                                            break;
+
+                                        default:
                                             require_once "views/rol/teacher/teacher_dashboard.php";
-                                            break;*/
+                                            break;
                                     }
                                 }
                                 else
@@ -198,7 +215,7 @@ class Router
                             break;
 
                         default:
-                            echo "Estás en la sala de espera";
+                            echo "error";
                             break;
                     }
                 }
@@ -224,7 +241,7 @@ class Router
                             $user = DBUser::findByName_Password($_POST["name"], $_POST["password"]);
                             if ( isset($user) ) 
                             {
-                                Login::login($user, false);
+                                Login::login($user, true);
                             }
                             else
                             {

@@ -27,10 +27,13 @@ window.addEventListener("load", function () {
             return response.json();
         })
         .then(data => {
+            console.log(data); // Depurar
+            console.log(data.arrayQuestion[0].statement); // Depurar
             // Obtener elementos del DOM relevantes
-            let divExam = document.querySelector("div[name='examen']");
-            let btnSiguiente = document.querySelector("#btnSiguiente");
-            let btnAnterior = document.querySelector("#btnAnterior");
+            //let divExam = document.querySelector("div[name='examen']");
+            let divExam = document.getElementById("exam_container");
+            let btnNext = document.querySelector("#btnNext");
+            let btnBefore = document.querySelector("#btnBefore");
 
             var length = data.arrayQuestion.length;
             // Iterar sobre las preguntas y crear elementos para cada una
@@ -42,8 +45,8 @@ window.addEventListener("load", function () {
                 // Agregar clases y asignar contenido
                 pregAux.classList.add("question");
                 pregAux.key = question.id;
-                pregAux.getElementsByClassName("key")[0].innerHTML = question.id;
-                pregAux.getElementsByClassName("statement")[0].innerHTML = question.statement;
+                pregAux.getElementsByClassName("question_id")[0].innerHTML = question.id;
+                pregAux.getElementsByClassName("statement")[0].innerHTML = question.statement || "Default Statement";//question.statement;
 
                 // Asignar opciones de la pregunta
                 for (var j = 0; j < question.question.length; j++) {
@@ -59,59 +62,112 @@ window.addEventListener("load", function () {
                 pregAux.style.display = "none";
             }
 
+
+
+
+            // ########################################################################
+            // ################### FUNCTIONS ENABLE/DISABLE ###########################
+            // ########################################################################
+            // NEXT
+            function disableNext() {
+                btnNext.querySelector('img').src = "http://serverpedroexaminator/views/src/icons/arrow_next_disabled512px.png";
+                btnNext.addEventListener("click", function(){});
+                //btnNext.style.pointerEvents = "none";
+                btnNext.disabled = true;
+            }
+            function enableNext() {
+                btnNext.querySelector('img').src = "http://serverpedroexaminator/views/src/icons/arrow_next512px.png";
+                btnNext.addEventListener("click", showNext);
+                //btnNext.style.pointerEvents = "all";
+                btnNext.disabled = false;
+            }
+
+            // BEFORE
+            function disableBefore() {
+                btnBefore.querySelector('img').src = "http://serverpedroexaminator/views/src/icons/arrow_before_disabled512px.png";
+                btnBefore.addEventListener("click", function(){});
+                //btnBefore.style.pointerEvents = "none";
+                btnBefore.disabled = true;
+            }
+            function enableBefore() {
+                btnBefore.querySelector('img').src = "http://serverpedroexaminator/views/src/icons/arrow_before512px.png";
+                btnBefore.addEventListener("click", showBefore);
+                //btnBefore.style.pointerEvents = "all";
+                btnBefore.disabled = false;
+            }
+
+
             // INICIALIZAR
                 // Mostrar la primera pregunta
-                //divExam.firstChild.style.display = "block";
-                divExam.firstElementChild.style.display = "block";
+                //divExam.firstChild.style.display = "flex";
+                divExam.firstElementChild.style.display = "flex";
 
                 let preguntaActual = 0;
-                btnAnterior.disabled = true;
-
+                //btnBefore.disabled = true;
+                //btnBefore.style.pointerEvents = "none";
+                disableBefore();
+            
+            
+            // ########################################################################
+            // ################ FUNCTIONS MOVE ON QUESTIONS ###########################
+            // ########################################################################
             // Función para mostrar la siguiente pregunta
-            function mostrarSiguiente() {
+            function showNext() {
                 divExam.children[preguntaActual].style.display = "none";
                 preguntaActual = (preguntaActual + 1) % divExam.children.length;
-                divExam.children[preguntaActual].style.display = "block";
+                divExam.children[preguntaActual].style.display = "flex";
 
                 // Mostrar/Ocultar botón NEXT
                 if ( preguntaActual == data.arrayQuestion.length-1 ) {
-                    btnSiguiente.disabled = true;
+                    //btnNext.disabled = true;
+                    //btnNext.style.pointerEvents = "all";
+                    disableNext();
                 } else {
-                    btnSiguiente.disabled = false;
+                    //btnNext.disabled = false;
+                    //btnNext.style.pointerEvents = "none";
+                    enableNext();
                 }
 
                 // Mostrar/Ocultar botón BEFORE
                 if ( preguntaActual == 0 ) {
-                    btnAnterior.disabled = true;
+                    //btnBefore.disabled = true;
+                    //btnBefore.style.pointerEvents = "all";
+                    disableBefore();
                 } else {
-                    btnAnterior.disabled = false;
+                    //btnBefore.disabled = false;
+                    //btnBefore.style.pointerEvents = "none";
+                    enableBefore();
                 } 
             }
             // Agregar evento al botón "Siguiente"
-            btnSiguiente.addEventListener("click", mostrarSiguiente);
+            btnNext.addEventListener("click", showNext);
 
             // Función para mostrar la pregunta anterior
-            function mostrarAnterior() {
+            function showBefore() {
                 divExam.children[preguntaActual].style.display = "none";
                 preguntaActual = (preguntaActual - 1 + divExam.children.length) % divExam.children.length;
-                divExam.children[preguntaActual].style.display = "block";
+                divExam.children[preguntaActual].style.display = "flex";
 
                 // Mostrar/Ocultar botón NEXT
                 if ( preguntaActual == data.arrayQuestion.length-1 ) {
-                    btnSiguiente.disabled = true;
+                    //btnNext.disabled = true;
+                    disableNext();
                 } else {
-                    btnSiguiente.disabled = false;
+                    //btnNext.disabled = false;
+                    enableNext();
                 }
 
                 // Mostrar/Ocultar botón BEFORE
                 if ( preguntaActual == 0 ) {
-                    btnAnterior.disabled = true;
+                    //btnBefore.disabled = true;
+                    disableBefore();
                 } else {
-                    btnAnterior.disabled = false;
+                    //btnBefore.disabled = false;
+                    enableBefore();
                 } 
             }
             // Agregar evento al botón "Anterior"
-            btnAnterior.addEventListener("click", mostrarAnterior);
+            btnBefore.addEventListener("click", showBefore);
         })
     })
 })

@@ -7,7 +7,7 @@ if ( Login::isLoged() )
         case 'student':
             $nav = "
                 <span>
-                    <a href='?rol=student&student=dashboard' class='navBtn'>Panel de control</a>
+                    <a href='?rol=student&student=dashboard' class='navBtn'>Control panel</a>
                 </span>
                 <span>
                     <a href='?rol=student&student=pending_exams' class='navBtn'>Examenes pendientes</a>
@@ -18,21 +18,30 @@ if ( Login::isLoged() )
         case 'admin':
             $nav = "
             <span>
-                <a href='".$_SERVER['REQUEST_URI']."&admin=dashboard' class='navBtn'>Panel de control</a>
+                <a href='".$_SERVER['REQUEST_URI']."&admin=dashboard' class='navBtn'>Control panel</a>
+            <span>
+            </span>
+                <a href='".$_SERVER['REQUEST_URI']."&admin=pending_exams' class='navBtn'>Pending exams</a>
+            </span>
             </span>
                 <a href='".$_SERVER['REQUEST_URI']."&admin=crud_questions' class='navBtn'>Create questions</a>
             </span>
-            <span>
-                <a href='".$_SERVER['REQUEST_URI']."&admin=users_requests' class='navBtn'>Peticiones</a>
+            </span>
+                <a href='".$_SERVER['REQUEST_URI']."&admin=crud_exams' class='navBtn'>Create exams</a>
             </span>
             <span>
+                <a href='".$_SERVER['REQUEST_URI']."&admin=users_requests' class='navBtn'>Users Requests</a>
+            </span>
             ";
             break;
 
         case 'teacher':
             $nav = "
                 <span>
-                    <a href='?rol=teacher&teacher=dashboard' class='navBtn'>Panel de control</a>
+                    <a href='?rol=teacher&teacher=dashboard' class='navBtn'>Control panel</a>
+                </span>
+                <span>
+                    <a href='?rol=teacher&teacher=pending_exams' class='navBtn'>Pending exams</a>
                 </span>
                 <span>
                     <a href='?rol=teacher&teacher=crud_questions' class='navBtn'>Create questions</a>
@@ -44,7 +53,7 @@ if ( Login::isLoged() )
             break;
 
         default:
-            # code...
+            echo "error";
             break;
     }
 
@@ -52,11 +61,7 @@ if ( Login::isLoged() )
 }
 else
 {
-    echo '
-    <div>
-        <h4>Este es el nav</h4>
-    </div>
-    ';
+    echo '';
 }
 
 ?>

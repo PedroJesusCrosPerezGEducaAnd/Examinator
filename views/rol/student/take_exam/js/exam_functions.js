@@ -1,45 +1,57 @@
 window.addEventListener("load", function () {
-    function cambiarImagen(id, nuevaImagen) {
+
+    function changeImg(id, nuevaImagen) {
         var elemento = document.getElementById(id);
         if (elemento) {
             elemento.querySelector('img').src = nuevaImagen;
         }
     }
 
-    function restaurarImagen(id, imagenOriginal) {
-        var elemento = document.getElementById(id);
-        if (elemento) {
-            elemento.querySelector('img').src = imagenOriginal;
+
+    var btnNext = document.getElementById("btnNext");
+    btnNext.addEventListener("mouseover", function () {
+        if (!btnNext.disabled) {
+            changeImg("btnNext", "http://serverpedroexaminator/views/src/icons/arrow_next_hover512px.png");
         }
-    }
+    });
+    btnNext.addEventListener("mouseout", function () {
+        if (!btnNext.disabled) {
+        changeImg("btnNext", "http://serverpedroexaminator/views/src/icons/arrow_next512px.png");
+        }
+    });
+    btnNext.addEventListener("mousedown", function () {
+        if (!btnNext.disabled) {
+        changeImg("btnNext", "http://serverpedroexaminator/views/src/icons/arrow_next_down512px.png");
+        }
+    });
+    btnNext.addEventListener("mouseup", function () {
+        if (!btnNext.disabled) {
+        changeImg("btnNext", "http://serverpedroexaminator/views/src/icons/arrow_next512px.png");
+        }
+    });
 
-    var btnSiguiente = document.getElementById("btnSiguiente");
-    btnSiguiente.addEventListener("mouseover", function () {
-        cambiarImagen("btnSiguiente", "http://serverpedroexaminator/views/src/icons/arrow_next_hover512px.png");
+    var btnBefore = document.getElementById("btnBefore");
+    btnBefore.addEventListener("mouseover", function () {
+        if (!btnBefore.disabled) {
+            changeImg("btnBefore", "http://serverpedroexaminator/views/src/icons/arrow_before_hover512px.png");
+        }
     });
-    btnSiguiente.addEventListener("mouseout", function () {
-        restaurarImagen("btnSiguiente", "http://serverpedroexaminator/views/src/icons/arrow_next512px.png");
+    btnBefore.addEventListener("mouseout", function () {
+        if (!btnBefore.disabled) {
+            changeImg("btnBefore", "http://serverpedroexaminator/views/src/icons/arrow_before512px.png");
+        }
     });
-    btnSiguiente.addEventListener("mousedown", function () {
-        cambiarImagen("btnSiguiente", "http://serverpedroexaminator/views/src/icons/arrow_next_down512px.png");
+    btnBefore.addEventListener("mousedown", function () {
+        if (!btnBefore.disabled) {
+            changeImg("btnBefore", "http://serverpedroexaminator/views/src/icons/arrow_before_down512px.png");
+        }
     });
-    btnSiguiente.addEventListener("mouseup", function () {
-        restaurarImagen("btnSiguiente", "http://serverpedroexaminator/views/src/icons/arrow_next512px.png");
+    btnBefore.addEventListener("mouseup", function () {
+        if (!btnBefore.disabled) {
+            changeImg("btnBefore", "http://serverpedroexaminator/views/src/icons/arrow_before512px.png");
+        }
     });
 
-    var btnAnterior = document.getElementById("btnAnterior");
-    btnAnterior.addEventListener("mouseover", function () {
-        cambiarImagen("btnAnterior", "http://serverpedroexaminator/views/src/icons/arrow_before_hover512px.png");
-    });
-    btnAnterior.addEventListener("mouseout", function () {
-        restaurarImagen("btnAnterior", "http://serverpedroexaminator/views/src/icons/arrow_before512px.png");
-    });
-    btnAnterior.addEventListener("mousedown", function () {
-        cambiarImagen("btnAnterior", "http://serverpedroexaminator/views/src/icons/arrow_before_down512px.png");
-    });
-    btnAnterior.addEventListener("mouseup", function () {
-        restaurarImagen("btnAnterior", "http://serverpedroexaminator/views/src/icons/arrow_before512px.png");
-    });
 });
 
 

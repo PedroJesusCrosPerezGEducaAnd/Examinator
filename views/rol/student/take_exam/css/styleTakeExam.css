@@ -1,67 +1,128 @@
 main {
-    flex-direction: column;
+  flex-direction: column;
 }
-#btn_container {
-    text-align: center;
-}
-#exam_container {
-    background-color: #d8e8d1;
-    padding: 6em;
-    margin-bottom: 2em;
 
-    border: #7e9e70 solid 20px;
-    border-radius: 1000px;
+#exam_container {
+  width: 95%;
+
+  display: flex;
+  justify-content: center;
+
+  margin-bottom: 1em;
+
+  background-color: #9dc58c;
+  border: 20px solid #7e9e70;
+  border-radius: 10px;
 }
-.statement {
-    font-weight: bold;
-    font-size: 1.4em;
+
+.question {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 90%;
+  height: 50vh;
+
+  padding: 4em;
+
+  background-color: #d8e8d1;
+}
+.question>div {
+  border: 6px solid #7e9e70;
+  border-radius: 10px;
+  margin: 3em;
+}
+
+
+.left {
+  width: 15%;
+  padding: 1em;
+
+  background-color: #b1d1a3;
+}
+
+
+.middle {
+  width: 60%;
+  height: 80%;
+
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  background-color: #9dc58c;
+  padding: 0em 2em;
+}
+p[name="pstatement"] { /* STATEMENT */
+  font-size: 1.6em;
+  margin-bottom: 1em;
+  font-weight: bold;
+}
+p[name="questions"] {
+  font-size: 1.6em;
+  
+  display: flex;
+  flex-direction: column;
 }
 .question > p:first-child {
-    margin-bottom: 1em;
+  margin-bottom: 1em;
+}
+p[name="questions"] input {
+  width: 1.6em;
+  height: 1.6em;
 }
 
 
-/* ######################################################################## */
-/* ########################## Buttons styles ############################## */
-/* ######################################################################## */
-.styled_take_exam_button {
-    --c:  #7e9e70; /* the color*/
-    
-    box-shadow: 0 0 0 .1em inset var(--c); 
-    --_g: linear-gradient(var(--c) 0 0) no-repeat;
-    background: 
-      var(--_g) calc(var(--_p,0%) - 100%) 0%,
-      var(--_g) calc(200% - var(--_p,0%)) 0%,
-      var(--_g) calc(var(--_p,0%) - 100%) 100%,
-      var(--_g) calc(200% - var(--_p,0%)) 100%;
-    background-size: 50.5% calc(var(--_p,0%)/2 + .5%);
-    outline-offset: .1em;
-    transition: background-size .4s, background-position 0s .4s;
-  }
-  .styled_take_exam_button:hover {
-    --_p: 100%;
-    transition: background-position .4s, background-size 0s;
-  }
-  .styled_take_exam_button:active {
-    box-shadow: 0 0 9e9q inset #0009; 
-    background-color: var(--c);
-    color: #fff;
-  }
+.right {
+  width: 25%;
+  height: 80%;
+
+  padding: 1em;
+
+  background-size: 20em;
+  background-position: center;
+  background-color: #b1d1a3;
+  /*background-image: url(lobo.jpg);*/
+
+  display: flex;
+  /*justify-content: stretch;*/
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.right>div {
+  width: 40px;
+  height: 40px;
+
+  font-size: 1em;
+  margin: 0em 0.8em;
   
-  .styled_take_exam_button {
-    font-family: system-ui, sans-serif;
-    font-size: 2em;
-    cursor: pointer;
-    padding: .1em .6em;
-    font-weight: bold;  
-    border: none;
-  }
+  background-color: white;
+  border: 2px solid grey;
+  border-radius: 4px;
+  padding: 0.7em;
+
+  cursor: pointer;
+}
+.right>div:hover {
+  background-color: grey;
+  border: 2px solid rgb(48, 48, 48);
+}
+
 
 /* ######################################################################## */
 /* ################### Buttons styles with image ########################## */
 /* ######################################################################## */
-#btnSiguiente>img, #btnAnterior>img {
+#btnNext>img, #btnBefore>img {
   cursor: pointer;
-  width: 128px;
-  height: 128px;
+  width: 90px;
+  height: 90px;
+}
+#btn_container {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+
+  width: 50%;
 }

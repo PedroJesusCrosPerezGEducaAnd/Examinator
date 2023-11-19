@@ -1,0 +1,16 @@
+body {
+  background-image: url("http://serverpedroexaminator/views/src/imgs/landingpage_img.jpg");
+  background-position: center;
+  background-size: 100em;
+  backdrop-filter: blur(10px);
+}
+
+body div[name="carousel"] {
+    width: 600px;
+    height: 300px;
+    background-color: lightgrey;
+    border: 10px solid grey;
+    border-radius: 40px;
+
+    padding: 6em 6em;
+}

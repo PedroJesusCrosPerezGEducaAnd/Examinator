@@ -54,7 +54,7 @@ window.addEventListener("load", function () {
         })
         .then(jsonData => {
             // Utiliza la función para añadir un JSON a un TBODY
-            uploadTable(jsonData, tbodyCrud_users);
+            uploadTableUsers(jsonData, tbodyCrud_users);
         })
         .catch(error => {
             // Console.error cambia la forma de imprimir mensajes por consola, a modo error

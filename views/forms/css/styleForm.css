@@ -1,3 +1,10 @@
+body {
+  background-image: url("http://serverpedroexaminator/views/src/imgs/landingpage_img.jpg");
+  background-position: center;
+  background-size: 100em;
+  backdrop-filter: blur(10px);
+}
+
 /* ######################################################################## */
 /* ######################### ESTRUCTURA ################################### */
 /* ######################################################################## */

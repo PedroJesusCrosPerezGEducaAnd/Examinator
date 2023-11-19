@@ -1,5 +1,5 @@
 <?php
-$thisdir = "views/rol/admin/users-requests/";
+$thisdir = "views/rol/admin/users_requests/";
 echo '
 <head>
     <!-- CSS - users_request -->
@@ -35,7 +35,7 @@ echo '
                 <tr>
                     <th>Name</th>
                     <th>Role</th>
-                    <th>Allow</th>
+                    <!--<th>Allow</th>-->
                 </tr>
             </thead>
 
