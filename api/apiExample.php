@@ -24,4 +24,5 @@
         $obj = $DBuser->findById($id);
         echo json_encode($obj);
     }
+    
 ?>

@@ -98,6 +98,56 @@ class DBExam_has_question
         // Return
         return $reached;
     }
+
+
+    // ############################################################################################
+    // ################################## DELETE ##################################################
+    // ############################################################################################
+    static function delete_array_id($arrId) : bool
+    {
+        $cn = new DB();
+        // Variables
+        $length = count($arrId);
+        $tuples = 0;
+
+        try {
+            // Comenzar una transacción
+            $cn->begin_transaction();
+
+            // Consulta SQL
+            $sql = "DELETE FROM exam_has_question WHERE question_id = ?";
+            
+            for ($i = 0; $i < $length; $i++) { 
+                // Crear un nuevo objeto preparado en cada iteración
+                $stmt = $cn->prepare($sql);
+                $stmt->bind_param("i", $arrId[$i]);
+
+                if ($stmt->execute()) {
+                    echo "Eliminación exitosa<br>";
+                    $tuples += $stmt->affected_rows;
+                } else {
+                    echo "Error al eliminar: " . $stmt->error . "<br>";
+                }
+
+                // Cerrar el objeto preparado
+                $stmt->close();
+            }
+
+            // Confirmar la transacción
+            $cn->commit();
+        } catch (Exception $e) {
+            // Revertir la transacción en caso de error
+            $cn->rollback();
+            echo "Error en la transacción: " . $e->getMessage() . "<br>";
+        }
+
+        // Cerrar la conexión
+        $cn->close();
+        
+        // Return
+        return $tuples;
+    }
+
     
 }
 

@@ -77,8 +77,10 @@ switch ($_SERVER["REQUEST_METHOD"])
         break;
 
     case 'DELETE': // DELETE
-        // TODO: Handle DELETE request
-        echo json_encode(['error' => 'Not implemented']);
+        $data = json_decode(file_get_contents('php://input'), true);
+        $response = DBExam_has_question::delete_array_id($data);
+        
+        echo $response ? json_encode(new Response("true")) : json_encode(new Response("false"));
         break;
     
     default:

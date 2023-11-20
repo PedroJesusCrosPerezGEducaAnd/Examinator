@@ -87,11 +87,38 @@ function uploadTableUsers(jsonData, dstTable)
     var data = jsonData.data;
     for (var user in data) 
     { 
-        dstTable.appendChild(createTrUsers(data[user].name));
+        dstTable.appendChild(createTrUsers(data[user]));
+        // dstTable.appendChild(createTrUsers(data[user].name));
     }
 }
 
-function createTrUsers(name) 
+function createTrUsers(user) 
+{
+    /* Creo fila */
+    var row = document.createElement("tr");
+    row.id = user.id;
+
+    // Columna - Nombre
+    var tdName = document.createElement("td");
+    tdName.innerHTML = user.name;
+
+
+    // Columna - Select roles
+    var tdSelect = document.createElement("td");
+        /* Creo select con roles */
+        var select = createSelect();
+        select.disabled = true;
+    tdSelect.appendChild(select);
+
+
+    /* Añado columnas a la fila */
+    row.appendChild(tdName);
+    row.appendChild(tdSelect);
+
+    return row;
+}
+
+function createTrUsers2(name) 
 {
     /* Creo fila */
     var row = document.createElement("tr");
@@ -105,6 +132,7 @@ function createTrUsers(name)
     var tdSelect = document.createElement("td");
         /* Creo select con roles */
         var select = createSelect();
+        select.disabled = true;
     tdSelect.appendChild(select);
 
 

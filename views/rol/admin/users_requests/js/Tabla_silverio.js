@@ -49,6 +49,7 @@ HTMLTableElement.prototype.editar=function(bool=true){
         this.parentNode.parentNode.editar();
     }
     function guardar(){
+        //actionSave(this);
         var fila=this.parentNode.parentNode;
         fila.guardar();
         this.style.display="none";
@@ -56,6 +57,7 @@ HTMLTableElement.prototype.editar=function(bool=true){
         this.previousElementSibling.previousElementSibling.style.display="";
     }
     function borrar(){
+        //actionDelete();
         this.parentNode.parentNode.borrar();
     }
     if (bool && ! estado){
@@ -78,13 +80,14 @@ HTMLTableElement.prototype.editar=function(bool=true){
                 celda.className="qwert_edic";
                 var btnEditar=document.createElement("span");
                 btnEditar.className="boton editar";
-                btnEditar.onclick=editar;
+                btnEditar.addEventListener("click", editar);
                 var btnBorrar=document.createElement("span");
                 btnBorrar.className="boton borrar";
-                btnBorrar.onclick=borrar;
+                btnBorrar.addEventListener("click", actionDelete);
+                btnBorrar.addEventListener("click", borrar);
                 var btnGuardar=document.createElement("span");
                 btnGuardar.className="boton guardar";
-                btnGuardar.onclick=guardar;
+                btnGuardar.addEventListener("click", guardar);
                 btnGuardar.style.display="none";
                 //Logica de los botones
 
@@ -115,13 +118,21 @@ window.addEventListener("load",function(){
     var tablas=document.getElementsByTagName("table");
     var tamano=tablas.length;
     for(let i=0;i<tamano;i++)
-        tablas[i].ondblclick=function(){
-            this.editar(!(this.editada||false))
+        tablas[i].ondblclick=function() {
+        this.editar(!(this.editada||false))
+        
+        var selects = Array();
+        selects = this.getElementsByTagName("select");
+        var length = selects.length;
+        for (let i = 0; i < length; i++) {
+            selects[i].disabled = false;
         }
+    }
 
     tablas = document.querySelectorAll("table.editada");
     var tamano=tablas.length;
-    for(let i=0;i<tamano;i++)
+    for(let i=0;i<tamano;i++){
         tablas[i].editar(true);
+    }
 
 })

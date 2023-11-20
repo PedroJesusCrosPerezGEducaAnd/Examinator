@@ -190,6 +190,11 @@ class Router
                                             }
                                             break;
 
+                                        case "assign_users_exams":
+                                            require_once "views/rol/teacher/assign_users_exams/index.php";
+                                            break;
+                                        
+                                        // STUDENT ROL
                                         case "pending_exams":
                                             require_once "views/rol/student/pending_exams/index.php";
                                             break;

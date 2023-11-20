@@ -49,6 +49,9 @@ if ( Login::isLoged() )
                 <span>
                     <a href='?rol=teacher&teacher=crud_exams' class='navBtn'>Create exams</a>
                 </span>
+                <span>
+                    <a href='?rol=teacher&teacher=assign_users_exams' class='navBtn'>Assign users exams</a>
+                </span>
             ";
             break;
 

@@ -105,28 +105,38 @@ class DBUser
     }
 
 
-    static function updateUser($user) : int
+    static function updateUser($user_id, $user) : int
     {
-        $cn = new DB(); // TODO quitar en el futuro
-        // Variables
-        $tuples = 0;
-        $sql = "INSERT INTO user (name, password, role) VALUES (?, ?, ?)";
-        $stmt = $cn->prepare($sql);
-        $stmt->bind_param("sss", $name, $password, $role);
+        $cn = new DB();
+        //$sql = "UPDATE user SET {$field} = '{$value}' WHERE id = '{$user_id}'";
+        $sql = "UPDATE user SET name = '{$user->getName()}', role = '{$user->getRole()}' WHERE id = {$user_id};";
         
-        if ($stmt->execute()) {
-            echo "Inserción exitosa";
-            $tuples = $stmt->affected_rows;
+        if ($cn->query($sql) == true) {
+            // Cerrar la conexión
+            $cn->close();
+            return true;
         } else {
-            echo "Error al insertar datos: " . $stmt->error;
+            // Cerrar la conexión
+            $cn->close();
+            return false;
         }
+    }
+
+    static function updateById($user_id, $name, $role) : int
+    {
+        $cn = new DB();
+        //$sql = "UPDATE user SET {$field} = '{$value}' WHERE id = '{$user_id}'";
+        $sql = "UPDATE user SET name = '{$name}', role = '{$role}' WHERE id = {$user_id};";
         
-        // Cerrar la conexión
-        $stmt->close();
-        $cn->close();
-        
-        // Return
-        return $tuples;
+        if ($cn->query($sql) == true) {
+            // Cerrar la conexión
+            $cn->close();
+            return true;
+        } else {
+            // Cerrar la conexión
+            $cn->close();
+            return false;
+        }
     }
 
 
@@ -134,7 +144,33 @@ class DBUser
     // ############################################################################################
     // ################################## DELETE ##################################################
     // ############################################################################################
-    static function delete($name): bool
+    static function delete($id): bool
+    {
+        $cn = new DB(); // TODO quitar en el futuro
+        // Variables
+        $tuples = 0;
+        // Consulta SQL
+        $sql = "DELETE FROM user WHERE id = ?";
+        $stmt = $cn->prepare($sql);
+        $stmt->bind_param("i", $id);
+    
+        if ($stmt->execute()) {
+            echo "Eliminación exitosa";
+            $tuples = $stmt->affected_rows;
+        } else {
+            echo "Error al eliminar: " . $stmt->error;
+        }
+    
+        // Cerrar la conexión
+        $stmt->close();
+        $cn->close();
+    
+        // Return
+        return $tuples;
+    }
+
+
+    static function deleteByName($name): bool
     {
         $cn = new DB(); // TODO quitar en el futuro
         // Variables
@@ -142,7 +178,7 @@ class DBUser
         // Consulta SQL
         $sql = "DELETE FROM user WHERE name = ?";
         $stmt = $cn->prepare($sql);
-        $stmt->bind_param("s", $name); // Cambiado "i" a "s" para cadena (string)
+        $stmt->bind_param("s", $name);
     
         if ($stmt->execute()) {
             echo "Eliminación exitosa";

@@ -1,5 +1,5 @@
 <?php
-    require_once "helpers/Autoload.php";
+    require_once $_SERVER["DOCUMENT_ROOT"]."/helpers/Autoload.php";
 
 class DBExam
 {
@@ -8,7 +8,7 @@ class DBExam
     // ############################################################################################
     // ################################## SELECT ##################################################
     // ############################################################################################
-    function findAll()
+    static function findAll()
     {
         $cn = new DB(); // TODO quitar en el futuro
         // Variables
@@ -20,6 +20,25 @@ class DBExam
         while ($row = $result->fetch_assoc()) 
         {
             $arrExams[] = new Exam($row["id"],$row["date"], $row["user_id"]);
+        }
+        $cn->close();
+        
+        // Return
+        return $arrExams;
+    }
+
+    static function findAllId()
+    {
+        $cn = new DB(); // TODO quitar en el futuro
+        // Variables
+        $arrExams = [];
+        $sql = "SELECT * FROM exam";
+        $result = $cn->query($sql);
+
+        // Proceso
+        while ($row = $result->fetch_assoc()) 
+        {
+            $arrExams[] = $row["id"];
         }
         $cn->close();
         
@@ -127,7 +146,29 @@ class DBExam
         return new Examjs($exam_id, $arrayQuestion);
     }
 
+
     
+    // ############################################################################################
+    // ################################## UPDATE ##################################################
+    // ############################################################################################
+    static function update($field, $value, $field_id, $value_id) : bool
+    {
+        $cn = new DB();
+        $sql = "UPDATE exam SET {$field} = '{$value}' WHERE {$field_id} = '{$value_id}'";
+        
+        if ($cn->query($sql) == true) {
+            // Cerrar la conexión
+            $cn->close();
+            return true;
+        } else {
+            // Cerrar la conexión
+            $cn->close();
+            return false;
+        }
+    }
+
+    
+
     // ##################################################################################################
     // ####################################### DELETE ###################################################
     // ##################################################################################################

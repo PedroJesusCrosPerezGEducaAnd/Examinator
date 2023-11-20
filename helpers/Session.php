@@ -16,22 +16,34 @@ class Session
     }
 
     static function read($clave) {
-        Session::start();
+        if (session_status() == PHP_SESSION_NONE) 
+        {
+            Session::start();
+        }
         return $_SESSION[$clave] ?? null;
     }
 
     static function save($clave, $valor) {
-        Session::start();
+        if (session_status() == PHP_SESSION_NONE) 
+        {
+            Session::start();
+        }
         $_SESSION[$clave] = $valor;
     }
 
     static function delete($clave) {
-        Session::start();
+        if (session_status() == PHP_SESSION_NONE) 
+        {
+            Session::start();
+        }
         unset($_SESSION[$clave]);
     }
     
     static function exist($clave) {
-        Session::start();
+        if (session_status() == PHP_SESSION_NONE) 
+        {
+            Session::start();
+        }
         return $_SESSION[$clave] ?? null;
     }
 

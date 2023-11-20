@@ -32,7 +32,7 @@ class DBCategory
     // ################################# FIND BY ##################################################
     // ############################################################################################
     // Find by category id
-    static function findByCategory_id($category_id) 
+    static function findById($category_id) 
     {
         $cn = new DB();
         $category = null;
@@ -45,7 +45,7 @@ class DBCategory
         if ($stmt->execute()) {
             $result = $stmt->get_result();
     
-            if ($result && $row = $result->fetch_assoc()) {
+            if ($result && $row = $result) {
                 $category = new Category($row["id"], $row["name"]);
             }
         } else {
