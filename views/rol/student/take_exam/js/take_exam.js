@@ -73,12 +73,14 @@ window.addEventListener("load", function () {
                 btnNext.querySelector('img').src = "http://serverpedroexaminator/views/src/icons/arrow_next_disabled512px.png";
                 btnNext.addEventListener("click", function(){});
                 //btnNext.style.pointerEvents = "none";
+                btnNext.style.cursor = "not-allowed";
                 btnNext.disabled = true;
             }
             function enableNext() {
                 btnNext.querySelector('img').src = "http://serverpedroexaminator/views/src/icons/arrow_next512px.png";
                 btnNext.addEventListener("click", showNext);
                 //btnNext.style.pointerEvents = "all";
+                btnNext.style.cursor = "default";
                 btnNext.disabled = false;
             }
 
@@ -87,12 +89,14 @@ window.addEventListener("load", function () {
                 btnBefore.querySelector('img').src = "http://serverpedroexaminator/views/src/icons/arrow_before_disabled512px.png";
                 btnBefore.addEventListener("click", function(){});
                 //btnBefore.style.pointerEvents = "none";
+                btnNext.style.cursor = "not-allowed";
                 btnBefore.disabled = true;
             }
             function enableBefore() {
                 btnBefore.querySelector('img').src = "http://serverpedroexaminator/views/src/icons/arrow_before512px.png";
                 btnBefore.addEventListener("click", showBefore);
                 //btnBefore.style.pointerEvents = "all";
+                btnNext.style.cursor = "default";
                 btnBefore.disabled = false;
             }
 

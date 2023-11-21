@@ -31,6 +31,32 @@ class DBCategory
     // ############################################################################################
     // ################################# FIND BY ##################################################
     // ############################################################################################
+    static function findByCategory_id($category_id) 
+    {
+        $cn = new DB();
+        $category = null;
+    
+        $sql = "SELECT * FROM category WHERE id = ?";
+        $stmt = $cn->prepare($sql);
+        
+        $stmt->bind_param("i", $category_id);
+        
+        if ($stmt->execute()) {
+            $result = $stmt->get_result();
+    
+            if ($result && $row = $result->fetch_assoc()) {
+                $category = new Category($row["id"], $row["name"]);
+            }
+        } else {
+            echo "Error en la consulta: " . $stmt->error;
+        }
+    
+        $stmt->close();
+        $cn->close();
+    
+        return $category;
+    }
+
     // Find by category id
     static function findById($category_id) 
     {
