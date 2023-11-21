@@ -169,14 +169,51 @@ class DBUser
         return $tuples;
     }
 
-
     static function deleteByName($name): bool
+    {
+        $cn = new DB();
+        // Variables
+        $tuples = 0;
+        
+        // Consulta SQL para desactivar temporalmente las claves externas
+        $sqlDisableFK = "SET foreign_key_checks = 0;";
+        $cn->query($sqlDisableFK);
+    
+        // Consulta SQL para eliminar el usuario por nombre
+        $sqlDeleteUser = "DELETE FROM user WHERE name = ?;";
+        $stmt = $cn->prepare($sqlDeleteUser);
+        $stmt->bind_param("s", $name);
+    
+        if ($stmt->execute()) {
+            echo "Eliminación exitosa";
+            $tuples = $stmt->affected_rows;
+        } else {
+            echo "Error al eliminar: " . $stmt->error;
+        }
+    
+        // Cerrar la conexión
+        $stmt->close();
+    
+        // Consulta SQL para reactivar las claves externas
+        $sqlEnableFK = "SET foreign_key_checks = 1;";
+        $cn->query($sqlEnableFK);
+    
+        $cn->close();
+    
+        // Return
+        return $tuples;
+    }
+    
+
+    static function deleteByName2($name): bool
     {
         $cn = new DB(); // TODO quitar en el futuro
         // Variables
         $tuples = 0;
         // Consulta SQL
-        $sql = "DELETE FROM user WHERE name = ?";
+        $sql = "DELETE FROM user WHERE name = ?;";
+        $sql1 = "SET foreign_key_checks = 0;";
+        $sql1 = "SET foreign_key_checks = 1;";
         $stmt = $cn->prepare($sql);
         $stmt->bind_param("s", $name);
     

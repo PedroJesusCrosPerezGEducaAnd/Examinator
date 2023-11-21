@@ -13,7 +13,7 @@ window.addEventListener("load", function () {
         var pregunta = contenedor.firstChild;
 
         // Obtener las preguntas del servidor mediante una solicitud POST a la API
-        fetch("http://serverpedroexaminator/api/apiExam_has_question.php?exam_has_question=findByExam_id",
+        fetch(PHPapiExam_has_question,
         {
             method: "POST",
             headers: {"Content-Type": "application/json"},

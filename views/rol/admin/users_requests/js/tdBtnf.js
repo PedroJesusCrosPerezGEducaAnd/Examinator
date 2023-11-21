@@ -37,6 +37,7 @@ function fBtnAccept(ev) {
         // Se muestra una alerta según la respuesta del servidor
         if (json.response == "true") {
             alert("¡El usuario se ha actualizado con éxito!");
+            this.parentElement.parentElement.style.display="none";
         } else {
             alert("Se ha producido un error en el servidor.");
         }
@@ -47,10 +48,45 @@ function fBtnAccept(ev) {
 }
 
 /* Función para denegar cambios */
-function fBtnDeny(/* ev */) {
-    /* ev.preventDefault(); */
-    alert("Denegar");
-    document.body.style.backgroundColor = "black";
+function fBtnDeny(ev) {
+    ev.preventDefault();
+
+    // Cuando se hace clic en el botón "Denegar"
+    // Se recoge el nombre de usuario
+    var username = this.parentElement.parentElement.getElementsByTagName("td")[0].innerHTML;
+
+    // Se guardan en formato JSON
+    /*var json = {
+        "name": username
+    };*/
+
+    // Se realiza una solicitud fetch a la API para actualizar el rol en la base de datos
+    fetch(PHPapiUser, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        // Se pasa el contenido a través del cuerpo del DELETE
+        body: JSON.stringify({ "name": "user4" })
+        //body: "user4" //JSON.stringify("user4")
+    })
+    .then(response => {
+        // Se verifica si la respuesta está en el rango de códigos de éxito (200-299)
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+            this.parentElement.style.display="none";
+        }
+        return response.json();
+    })
+    .then(json => {
+        // Se muestra una alerta según la respuesta del servidor
+        if (json.response == "true") {
+            alert("¡El usuario se ha actualizado con éxito!");
+        } else {
+            alert("Se ha producido un error en el servidor.");
+        }
+    })
+    .catch(error => {
+        console.log('Error during fetch operation:', error);
+    });
 }
 
 // function actionSave(this) {

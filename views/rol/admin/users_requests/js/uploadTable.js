@@ -33,7 +33,7 @@ function createTr(name)
         var btnDeny = document.createElement("button");
         btnDeny.setAttribute("class","btnDeny");
         btnDeny.innerHTML = "Deny";
-        btnDeny.addEventListener("click", function () { fBtnDeny(ev) });
+        btnDeny.addEventListener("click", fBtnDeny);
         tdButtons.appendChild(btnDeny);
 
     

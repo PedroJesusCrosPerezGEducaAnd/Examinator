@@ -1,6 +1,6 @@
 <?php
 
-class Validator 
+class Validator implements JsonSerializable
 {
     // Properties
     private $errors = array();
@@ -120,10 +120,11 @@ class Validator
             $this->setErrors($fieldName, "isInt", $errorMessage);
         }
     }
-    
-    function int() : bool
-    {
-        
+
+    function isNumeric($var, $fieldName, $errorMessage) {
+        if (!is_numeric($var)) {
+            $this->setErrors($fieldName, "isNumber", $errorMessage);
+        }
     }
 
 
@@ -144,14 +145,14 @@ class Validator
 
     function isNotNull($var, $fieldName, $errorMessage) 
     {
-        if ($var == null) {
+        if ($var != null) {
             $this->setErrors($fieldName, 'isNotNull', $errorMessage);
         }
     }
 
     function isNull($var, $fieldName, $errorMessage) 
     {
-        if ($var != null) {
+        if ($var == null) {
             $this->setErrors($fieldName, 'isNull', $errorMessage);
         }
     }
@@ -160,6 +161,16 @@ class Validator
     static function esJSON($cadena) {
         json_decode($cadena);
         return (json_last_error() == JSON_ERROR_NONE);
+    }
+
+    function toJSON() 
+    {
+        return json_encode(get_object_vars($this));
+    }
+
+    function jsonSerialize()
+    {
+        return get_object_vars($this);
     }
 }
 

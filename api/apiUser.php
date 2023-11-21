@@ -64,12 +64,13 @@ switch ($_SERVER["REQUEST_METHOD"])
 
         $val->isEmpty($data, "data", "No se ha recibido ningún usuario para actualizar.");
         $val->isExist($data, "data", "No se han recibido datos por parte de servidor.");
-        $val->isNotNull($data, "data", "La información recibida es nula.");
+        $val->isNull($data, "data", "La información recibida es nula.");
 
         if ($val->isError()) {
             $val->showErrors();
         } else {
-            $response = DBUser::updateById($data["id"], $data["name"], $data["role"]);
+            //$response = DBUser::updateById($data["id"], $data["name"], $data["role"]); // FUNCIONA
+            $response = DBUser::update($data["field"], $data["value"], $data["field_id"], $data["value_id"]);
         }
         
         echo $response ? json_encode(new Response("true")) : json_encode(new Response("false"));
@@ -84,10 +85,29 @@ switch ($_SERVER["REQUEST_METHOD"])
         break;
 
     case 'DELETE': // DELETE
-        $data = json_decode(file_get_contents('php://input'), true);
-        $response = DBUser::deleteByName($data);
-        
-        echo $response ? json_encode(new Response("true")) : json_encode(new Response("false"));
+        switch ($_POST["property"]) 
+        {
+            case 'id':
+                $data = json_decode(file_get_contents('php://input'), true);
+                $response = DBUser::delete($data["id"]);
+                
+                echo $response ? json_encode(new Response("true")) : json_encode(new Response("false"));
+                break;
+            
+            case 'name':
+                $data = json_decode(file_get_contents('php://input'), true);
+                $response = DBUser::deleteByName($data["name"]);
+                
+                echo $response ? json_encode(new Response("true")) : json_encode(new Response("false"));
+                break;
+
+            default:
+                $data = json_decode(file_get_contents('php://input'), true);
+                $response = DBUser::deleteByName($data["name"]);
+                
+                echo $response ? json_encode(new Response("true")) : json_encode(new Response("false"));
+                break;
+        }
         break;
     
     default:
