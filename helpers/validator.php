@@ -8,11 +8,17 @@ class Validator
 
     // Getters y Setters
     function getErrors() 
-    { return $this->errors; }
-    function getError($campo) 
-    { return $this->errors[$campo]; }
-    private function setErrors($fieldName, $errorMessage) 
-    { return $this->errors[$fieldName] = $errorMessage; }
+    {
+        return $this->errors;
+    }
+    private function setErrors($fieldName, $errorType, $errorMessage) 
+    {
+        $this->errors[$fieldName][$errorType] = $errorMessage;
+    }
+    function getError($fieldName, $errorType) 
+    { 
+        return $this->errors[$fieldName][$errorType]; 
+    }
 
 
     // Methods
@@ -21,43 +27,19 @@ class Validator
         return !empty($this->errors);
     }
 
-    // Este código lo rescataré en el futuro para intentar hacer pruebas sobre que la propia clase validator sea la que la clase validator ayude a mostrar errores para depurar (por ahora). aunque no debe encargase de ello en el programa futuro
-    function pruebas () {
-        /*function showErrors() 
-        {
-            if ($val->isError()) 
-            {
-                echo "Se han producido los siguiente errores: <br>";
-                $errors = $val->getErrors();
-                for ($i=0; $i < count($errors); $i++) 
-                { 
-                    echo " - ".$errors[$i]-"<br>";
+    function showErrors() {
+        if ($this->isError()) {
+            $errors = $this->getErrors();
+            foreach ($errors as $fieldName => $errorTypes) {
+                foreach ($errorTypes as $errorType => $errorMessage) {
+                    echo "$fieldName - $errorType: $errorMessage <hr>";
                 }
             }
-
-            echo "Validar string <br>";
-            $val = new Validator();
-
-            $name="12345";
-            $val->string("name", $name, "El nombre que has introducido es demasiado largo", 6, 30);
-
-            $errors = $val->getErrors();
-            $length = count($errors);
-            if ($length > 0) {
-                echo "Se han producido los siguientes errores: <br>";
-                for ($i = 0; $i < $length; $i++) {
-                    $error = $errors[$i];
-                    foreach ($error as $type => $message) {
-                        echo " - $type: $message <br>";
-                    }
-                }
-            }
-            else
-            {
-                echo "Resultado: ".$name;
-            }
-        }*/
+        } else {
+            echo "¡¡No se han encontrado errores!! <hr>";
+        }
     }
+
 
     // ###########################################################################################
     // ############################### Validate ##################################################
@@ -66,9 +48,9 @@ class Validator
     // String
     function isString($fieldName, $value, $errorMessage) 
     {
-        if ( !is_string($value) ) 
+        if (!is_string($value)) 
         {
-            $this->setErrors($fieldName, $errorMessage);
+            $this->setErrors($fieldName, 'isString', $errorMessage);
         }
     }
 
@@ -80,7 +62,7 @@ class Validator
         if ( !is_string($value) || !preg_match($regex, $value) ) 
         {
             $isValid = false;
-            $this->setErrors($fieldName, $errorMessage);
+            $this->setErrors($fieldName, "stringLength", $errorMessage);
         }
 
         return $isValid;
@@ -93,13 +75,24 @@ class Validator
         if ( !preg_match($regex, $value) ) 
         {
             $isValid = false;
-            $this->setErrors($fieldName, $errorMessage);
+            $this->setErrors($fieldName, "stringRegex", $errorMessage);
         }
 
         return $isValid;
     }
     
-    function stringEnum($fieldName, $value, $arr, $errorMessage) : bool 
+    function stringEnum($fieldName, $value, $arr, $errorMessage) 
+    {
+        if (!in_array($value, $arr)) 
+        {
+            $this->setErrors($fieldName, 'stringEnum', $errorMessage);
+            return false;
+        }
+
+        return true;
+    }
+
+    function stringEnum2($fieldName, $value, $arr, $errorMessage) : bool 
     {
         $isValid = true;
         $i=0;
@@ -110,7 +103,7 @@ class Validator
             if (!$arr[$i] == $value) 
             {
                 $isValid = false;
-                $this->setErrors($fieldName, $errorMessage);
+                $this->setErrors($fieldName, 'stringEnum', $errorMessage);
             }
             
             $i++;
@@ -120,11 +113,47 @@ class Validator
     }
 
 
-
     // Int
+    function isInt($var, $fieldName, $errorMessage)
+    {
+        if (!is_int($var)) {
+            $this->setErrors($fieldName, "isInt", $errorMessage);
+        }
+    }
+    
     function int() : bool
     {
         
+    }
+
+
+    // Others
+    function isEmpty($var, $fieldName, $errorMessage)
+    {
+        if (empty($var)) {
+            $this->setErrors($fieldName, 'empty', $errorMessage);
+        }
+    }
+
+    function isExist($var, $fieldName, $errorMessage)
+    {
+        if (!isset($var)) {
+            $this->setErrors($fieldName, 'exist', $errorMessage);
+        }
+    }
+
+    function isNotNull($var, $fieldName, $errorMessage) 
+    {
+        if ($var == null) {
+            $this->setErrors($fieldName, 'isNotNull', $errorMessage);
+        }
+    }
+
+    function isNull($var, $fieldName, $errorMessage) 
+    {
+        if ($var != null) {
+            $this->setErrors($fieldName, 'isNull', $errorMessage);
+        }
     }
 
     // JSON

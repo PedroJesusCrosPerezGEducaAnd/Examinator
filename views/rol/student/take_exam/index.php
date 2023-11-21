@@ -11,7 +11,9 @@ echo '
 </head>
 <body>
 
+<!--<form action="" method="POST" id="form"> **TODO** -->
     <div id="exam_container"></div>
+<!--</form>-->
 
     <div id="btn_container">
         <span id="btnBefore"><img src="http://serverpedroexaminator/views/src/icons/arrow_before512px.png" alt="Before"></span>
