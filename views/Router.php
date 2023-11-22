@@ -218,7 +218,6 @@ class Router
                         case 'null':
                             echo "Estás en la sala de espera, espera a que el administrador te acepte.";
                             break;
-
                         default:
                             echo "error";
                             break;
