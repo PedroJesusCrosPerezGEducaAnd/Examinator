@@ -62,7 +62,7 @@ switch ($_SERVER["REQUEST_METHOD"])
         $question = new Question(
             null, 
             $data["statement"], 
-            $data["question"], 
+            json_encode($data["question"]), 
             $data["option"], 
             "futuro JSON para source", // TODO leer un recurso desde javascript
             null, // Exam_id

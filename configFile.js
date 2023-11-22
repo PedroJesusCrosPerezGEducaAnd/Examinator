@@ -14,7 +14,7 @@ let PHPapiQuestionFindAll = urlBase+"api/apiQuestion.php?question=findall";
 // User has exam
 let PHPapiUser_has_exam = urlBase+"api/apiUser_has_exam.php?user_has_exam=findByUser_id";
 // Exam has questions
-let PHPapiExam_has_question = urlBase+"api/apiExam_has_question.php?exam_has_question=findByExam_id&exam=4";
+let PHPapiExam_has_question = urlBase+"api/apiExam_has_question.php?exam_has_question=findByExam_id"; // AQUI &exam=4
 
 
 let PHPapiGenerateExam = urlBase+"api/apiGenerateExam.php";

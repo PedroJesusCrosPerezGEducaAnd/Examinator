@@ -33,7 +33,7 @@ switch ($_SERVER["REQUEST_METHOD"])
                         if ($jsonEncoded === false) {
                             echo json_encode(['error' => 'Error encoding JSON: ' . json_last_error_msg()]);
                         } elseif ( empty($arrayExams_id) ) {
-                            echo "false";
+                            echo json_encode(false);
                         } else {
                             echo $jsonEncoded;
                         }

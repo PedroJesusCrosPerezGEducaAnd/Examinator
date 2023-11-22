@@ -18,8 +18,8 @@ window.addEventListener("load", function () {
         console.log(jsonData);
         if (jsonData || jsonData == "true") {
             createPendingExams(jsonData);
-        } else if (jsonData == "false") {
-            alert("Este usuario no tiene ningún examen pendiente");
+        } else if (jsonData == false) {
+            alert("¡¡No tienes ningún exámen asignado todavía!!");
         } else {
             alert(jsonData);
         }

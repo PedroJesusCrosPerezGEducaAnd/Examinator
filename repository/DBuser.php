@@ -325,7 +325,7 @@ class DBUser
         //$nameFields;
         if ($role == "notnull") { 
             $sql = "SELECT * FROM user WHERE role IS NOT NULL"; 
-            //$sql = "SELECT * FROM user WHERE role != 'null'"; 
+            //$sql = "SELECT * FROM user WHERE role != 'null' role = 'null';"; 
         } elseif ( $role == "null" ) { 
             $sql = "SELECT * FROM user WHERE role IS NULL"; 
         } else { 

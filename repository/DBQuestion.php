@@ -43,7 +43,7 @@ class DBQuestion
     
         // Variables
         $reached = false;
-        $sql = "INSERT INTO question (id, date, question, `option`, source, exam_id, difficulty_id, category_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO question (id, statement, question, `option`, source, exam_id, difficulty_id, category_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     
         // Preparar la consulta
         $stmt = $cn->prepare($sql);
@@ -57,7 +57,7 @@ class DBQuestion
         // Crear variables temporales
         $id =               $question->get_id();
         $statement =        $question->getStatement();
-        $questionjson =     $question->getQuestionJSON();
+        $questionjson =     $question->getQuestionJSON(); //JSON
         $option =           $question->getOption();
         $source =           $question->getSourceJSON();
         $exam_id =          $question->getExam_id();
